@@ -50,8 +50,14 @@ test('source tree has no production Next Cloudflare or Sites imports', async () 
 });
 
 
-test('Vite node TypeScript config supports build mode with TypeScript-extension imports', async () => {
+test('Vite node TypeScript config supports modern iterable syntax during build mode', async () => {
   const config = JSON.parse(await text('../../tsconfig.node.json'));
   assert.equal(config.compilerOptions.allowImportingTsExtensions, true);
   assert.equal(config.compilerOptions.noEmit, true);
+  assert.equal(config.compilerOptions.target, 'ES2022');
+});
+
+test('TypeScript build info files are ignored', async () => {
+  const gitignore = await text('../../.gitignore');
+  assert.match(gitignore, /^\*\.tsbuildinfo$/m);
 });

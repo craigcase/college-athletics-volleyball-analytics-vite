@@ -1,6 +1,6 @@
 # College Athletics Consulting — Volleyball Analytics
 
-Migration build **v0.3.0** replaces the abandoned Sites/Next runtime with a clean **Vite + React + TypeScript** frontend, **Supabase** for Postgres/Auth/Storage, and **Netlify Functions** for privileged ingestion and analytics access.
+Migration build **v0.3.2** replaces the abandoned Sites/Next runtime with a clean **Vite + React + TypeScript** frontend, **Supabase** for Postgres/Auth/Storage, and **Netlify Functions** for privileged ingestion and analytics access.
 
 ## Local / StackBlitz frontend
 
