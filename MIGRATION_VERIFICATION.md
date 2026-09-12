@@ -6,3 +6,9 @@
 - Netlify Functions replace the six prior Next API routes and add read endpoints for roster, schedule, matches, and match summary.
 - Browser auth uses Supabase access tokens; server functions verify the token before program-scoped privileged access.
 - Existing deterministic analytics, reconciliation, parsers, evidence provenance, sticky overrides, and regression fixtures retained.
+
+## v0.3.1 StackBlitz build configuration
+
+- Added `noEmit: true` to `tsconfig.node.json` so `allowImportingTsExtensions` is valid during `tsc -b`.
+- Added regression coverage for the Vite node TypeScript build configuration.
+

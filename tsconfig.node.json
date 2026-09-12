@@ -5,7 +5,15 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "allowImportingTsExtensions": true,
-    "types": ["node"]
+    "types": [
+      "node"
+    ],
+    "noEmit": true
   },
-  "include": ["vite.config.ts", "netlify/functions/**/*.ts", "db/**/*.ts", "lib/**/*.ts"]
+  "include": [
+    "vite.config.ts",
+    "netlify/functions/**/*.ts",
+    "db/**/*.ts",
+    "lib/**/*.ts"
+  ]
 }

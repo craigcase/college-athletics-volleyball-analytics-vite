@@ -48,3 +48,10 @@ test('source tree has no production Next Cloudflare or Sites imports', async () 
     assert.doesNotMatch(source, /next\/(headers|navigation|server)|cloudflare:workers|oai-authenticated-user|@openai\/sites-vite-plugin|R2Bucket|D1Database/);
   }
 });
+
+
+test('Vite node TypeScript config supports build mode with TypeScript-extension imports', async () => {
+  const config = JSON.parse(await text('../../tsconfig.node.json'));
+  assert.equal(config.compilerOptions.allowImportingTsExtensions, true);
+  assert.equal(config.compilerOptions.noEmit, true);
+});
