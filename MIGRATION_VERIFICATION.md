@@ -49,6 +49,10 @@
 - Production remains unchanged: Netlify redirects `/api/*` to deployed Netlify Functions.
 - Acceptance check: `curl -i http://localhost:5173/api/program` should return quickly (typically `401` without an auth token), never hang or return Vite's SPA 404.
 
+## v0.3.8 async API dispatch regression
+
+The local HTTP server request callback is asynchronous and explicitly awaits `handleApi(req, res, pathname)`. Core migration coverage rejects the old fire-and-forget `void handleApi(...)` dispatch so StackBlitz API requests stay attached until a response is written.
+
 ## v0.3.7 single-port local development
 
 - Replaced the two-process Vite + port-8787 API arrangement with one local development server on port 5173.

@@ -31,6 +31,9 @@ test('runtime is Vite React + Supabase + Netlify with no Next/Sites/Cloudflare d
   assert.match(localDev, /middlewareMode:\s*true/);
   assert.match(localDev, /ws:\s*\{\s*server/);
   assert.match(localDev, /pathname\.startsWith\(['"]\/api\/['"]\)/);
+  assert.match(localDev, /createHttpServer\(async \(req, res\) =>/);
+  assert.match(localDev, /await handleApi\(req, res, pathname\)/);
+  assert.doesNotMatch(localDev, /void handleApi\(req, res, pathname\)/);
   assert.match(localDev, /listen\(port, ['"]0\.0\.0\.0['"]/);
   assert.match(localDev, /const port = Number\(process\.env\.PORT \|\| 5173\)/);
   assert.doesNotMatch(localDev, /8787|LOCAL_API_PORT/);

@@ -1,6 +1,6 @@
 # College Athletics Consulting — Volleyball Analytics
 
-Current migration build **v0.3.7** uses a clean **Vite + React + TypeScript** frontend, **Supabase** for Postgres/Auth/Storage, and **Netlify Functions** for privileged production HTTP operations.
+Current migration build **v0.3.8** uses a clean **Vite + React + TypeScript** frontend, **Supabase** for Postgres/Auth/Storage, and **Netlify Functions** for privileged production HTTP operations.
 
 ## StackBlitz / local development
 

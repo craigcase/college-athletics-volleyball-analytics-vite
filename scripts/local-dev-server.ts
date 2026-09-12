@@ -97,10 +97,10 @@ async function handleApi(req: IncomingMessage, res: ServerResponse, pathname: st
   }
 }
 
-const server = createHttpServer((req, res) => {
+const server = createHttpServer(async (req, res) => {
   const pathname = new URL(req.url || '/', `http://127.0.0.1:${port}`).pathname;
   if (pathname.startsWith('/api/')) {
-    void handleApi(req, res, pathname);
+    await handleApi(req, res, pathname);
     return;
   }
 

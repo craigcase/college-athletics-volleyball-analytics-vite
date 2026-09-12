@@ -9,6 +9,10 @@ Portable domain modules remain under `lib/` and `db/repositories/`. The browser 
 
 StackBlitz no longer executes server handlers through Vite's SSR module loader. A dedicated Node API process runs the same handler modules locally, and Vite proxies `/api/*` to it. This isolates local testing from Netlify while preserving Netlify Functions for deployment.
 
+### v0.3.8 awaited StackBlitz API dispatch
+
+StackBlitz WebContainers require the custom HTTP request callback to remain attached while asynchronous API handlers complete. The single-port local server now awaits `handleApi(...)` instead of dispatching it fire-and-forget. This preserves the v0.3.7 one-port architecture while preventing real `/api/*` requests from ending with a socket hang-up.
+
 ### v0.3.7 single-port StackBlitz development
 
 Local development now uses one Node HTTP server on port 5173. The server handles `/api/*` directly with the existing production handler modules and delegates all other traffic to Vite middleware. The separate port-8787 API process and Vite proxy are removed. Netlify remains production-only.
