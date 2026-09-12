@@ -114,7 +114,8 @@ test('local StackBlitz API uses authenticated user-scoped Supabase access instea
   const localDev = await text('../../scripts/local-dev-server.ts');
   assert.match(localDev, /runWithUserAccessToken/);
   assert.match(localDev, /authorization/i);
-  assert.doesNotMatch(localDev, /SUPABASE_SECRET_KEY/);
+  const withoutSecretRemoval = localDev.replace(/delete process\.env\.SUPABASE_SECRET_KEY;?/, '');
+  assert.doesNotMatch(withoutSecretRemoval, /SUPABASE_SECRET_KEY/);
 });
 
 test('user-scoped Supabase migration bootstraps program creation and RLS access', async () => {
@@ -128,4 +129,52 @@ test('user-scoped Supabase migration bootstraps program creation and RLS access'
   assert.match(sql, /create policy[\s\S]*programs/i);
   assert.match(sql, /create policy[\s\S]*storage\.objects/i);
   assert.match(sql, /grant select, insert, update, delete/i);
+});
+
+
+test('request-scoped Supabase client imports resolve to one canonical ESM module', async () => {
+  const clientConsumers = [
+    '../../db/repositories/analytics.ts',
+    '../../db/repositories/matches.ts',
+    '../../db/repositories/programs.ts',
+    '../../db/repositories/roster.ts',
+    '../../db/repositories/schedule.ts',
+    '../../db/repositories/sources.ts',
+    '../../lib/services/import-match.ts',
+    '../../scripts/local-dev-server.ts',
+  ];
+  for (const path of clientConsumers) {
+    const source = await text(path);
+    if (!/client(?:\.js)?['"]/.test(source)) continue;
+    assert.doesNotMatch(source, /(?:db\/client|\.\.\/client)['"]/, `${path} must not import the request-scoped client without .js`);
+  }
+  for (const path of [
+    '../../db/repositories/analytics.ts',
+    '../../db/repositories/matches.ts',
+    '../../db/repositories/programs.ts',
+    '../../db/repositories/roster.ts',
+    '../../db/repositories/schedule.ts',
+    '../../db/repositories/sources.ts',
+  ]) {
+    const source = await text(path);
+    assert.match(source, /from ['"]\.\.\/client\.js['"]/, `${path} must import ../client.js`);
+  }
+  const importMatch = await text('../../lib/services/import-match.ts');
+  assert.match(importMatch, /from ['"]\.\.\/\.\.\/db\/client\.js['"]/);
+  const localDev = await text('../../scripts/local-dev-server.ts');
+  assert.match(localDev, /from ['"]\.\.\/db\/client\.js['"]/);
+});
+
+test('StackBlitz local runtime cannot fall back to the Supabase secret client', async () => {
+  const localDev = await text('../../scripts/local-dev-server.ts');
+  assert.match(localDev, /SUPABASE_DB_ACCESS_MODE/);
+  assert.match(localDev, /user-scoped-only/);
+  assert.match(localDev, /delete process\.env\.SUPABASE_SECRET_KEY/);
+
+  const dbClient = await text('../../db/client.ts');
+  assert.match(dbClient, /SUPABASE_DB_ACCESS_MODE/);
+  assert.match(dbClient, /user-scoped-only/);
+  const modeGuard = dbClient.indexOf('SUPABASE_DB_ACCESS_MODE');
+  const secretRead = dbClient.indexOf('SUPABASE_SECRET_KEY');
+  assert.ok(modeGuard >= 0 && secretRead >= 0 && modeGuard < secretRead, 'user-scoped-only guard must run before reading the secret key');
 });

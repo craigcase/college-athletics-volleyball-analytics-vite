@@ -1,4 +1,4 @@
-# Supabase setup — v0.6.0
+# Supabase setup — v0.6.1
 
 ## Existing project
 
@@ -13,7 +13,7 @@ VITE_SUPABASE_URL=<your project URL>
 VITE_SUPABASE_PUBLISHABLE_KEY=<your publishable key>
 ```
 
-`SUPABASE_SECRET_KEY` is not used by the StackBlitz development path and should be removed from StackBlitz after v0.6.0 is installed.
+`SUPABASE_SECRET_KEY` is not used by the StackBlitz development path. v0.6.1 also strips it from the local runtime process and blocks privileged fallback, so the local app cannot use it even if an older `.env` still contains it. You can remove the stale secret from StackBlitz when convenient.
 
 ## What the new migration does
 
@@ -32,3 +32,8 @@ VITE_SUPABASE_PUBLISHABLE_KEY=<your publishable key>
 5. Test the app in StackBlitz.
 
 Netlify is not required for the ordinary development/test loop.
+
+
+## v0.6.1 note
+
+There is no new database migration for v0.6.1. If `202609120001_user_scoped_rls.sql` has already been run successfully, do not create or run another SQL query for this code fix.

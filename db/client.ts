@@ -51,6 +51,10 @@ export function getAdminClient() {
     return scope.client;
   }
 
+  if (process.env.SUPABASE_DB_ACCESS_MODE === 'user-scoped-only') {
+    throw new Error('SUPABASE_REQUEST_NOT_SCOPED');
+  }
+
   if (adminClient) return adminClient;
   const url = process.env.SUPABASE_URL?.trim();
   const key = process.env.SUPABASE_SECRET_KEY?.trim();

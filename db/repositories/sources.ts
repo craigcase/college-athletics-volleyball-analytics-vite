@@ -1,4 +1,4 @@
-import { getAdminClient, getEvidenceBucket } from '../client';
+import { getAdminClient, getEvidenceBucket } from '../client.js';
 import { assertNoError } from '../supabase-utils';
 import { id, nowIso } from '../../lib/ids';
 import { sha256Hex, type SourceFamily } from '../../lib/ingestion/source-family';

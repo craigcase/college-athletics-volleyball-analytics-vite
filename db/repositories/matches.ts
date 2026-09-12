@@ -1,4 +1,4 @@
-import { getAdminClient } from '../client';
+import { getAdminClient } from '../client.js';
 import { assertNoError, byId } from '../supabase-utils';
 import { id, nowIso } from '../../lib/ids';
 import type { EvidenceObservation } from '../../lib/ingestion/types';

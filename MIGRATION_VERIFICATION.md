@@ -1,19 +1,24 @@
-# Migration Verification — v0.6.0
+# Migration Verification — v0.6.1
 
-## Local runtime
+## Request-scoped database client
 
-- One local server on port 5173.
-- Vite builds the frontend; Node serves `dist/` and `/api/*`.
-- Local API requests are wrapped in `runWithUserAccessToken(...)`.
-- User-scoped Supabase clients use the publishable key plus the signed-in user's bearer token.
-- The StackBlitz path does not require or read `SUPABASE_SECRET_KEY` for authenticated requests.
+- `scripts/local-dev-server.ts` imports `../db/client.js`.
+- Every repository under `db/repositories/` imports `../client.js`.
+- `lib/services/import-match.ts` imports `../../db/client.js`.
+- Regression tests reject extensionless imports of the request-scoped client.
+
+## Local security boundary
+
+- Local development sets `SUPABASE_DB_ACCESS_MODE=user-scoped-only`.
+- Local development removes `SUPABASE_SECRET_KEY` from `process.env` before serving requests.
+- `getAdminClient()` refuses secret-key fallback while the local user-scoped mode is active.
+- Authenticated API requests continue to use the publishable key plus the signed-in user's JWT under Supabase RLS.
 
 ## Supabase
 
 - Initial schema remains `202609090001_initial.sql`.
-- New migration `202609120001_user_scoped_rls.sql` adds authenticated RLS policies, Storage policies, private membership helper functions, explicit Data API grants, and `create_volleyball_program(...)`.
-- Program creation uses the RPC when running under a user-scoped request.
-- Existing privileged server fallback remains available only outside the local user-scoped path for later production use.
+- User-scoped migration remains `202609120001_user_scoped_rls.sql`.
+- **No additional SQL migration is required for v0.6.1.**
 
 ## Verification commands
 
@@ -31,4 +36,4 @@ curl -i --max-time 5 http://127.0.0.1:5173/api/program
 
 Expected: `401 Unauthorized` with `{"error":"UNAUTHENTICATED"}`.
 
-The real acceptance test is signing in through the Preview and completing **Create Program** after the new Supabase migration is applied.
+The acceptance test is signing in through the Preview and completing **Create Program** without a secret-key browser error.

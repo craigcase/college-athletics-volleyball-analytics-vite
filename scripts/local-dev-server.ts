@@ -20,6 +20,11 @@ try {
   // StackBlitz may inject environment variables without a physical .env file.
 }
 
+// StackBlitz/WebContainer development is user-scoped only. Never allow a
+// browser-hosted local process to use the privileged Supabase secret key.
+process.env.SUPABASE_DB_ACCESS_MODE = 'user-scoped-only';
+delete process.env.SUPABASE_SECRET_KEY;
+
 type Handler = (request: Request) => Response | Promise<Response>;
 
 const handlers: Record<string, Handler> = {

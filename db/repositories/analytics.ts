@@ -1,4 +1,4 @@
-import { getAdminClient } from '../client';
+import { getAdminClient } from '../client.js';
 import { assertNoError } from '../supabase-utils';
 import { id, nowIso } from '../../lib/ids';
 import { detectCapabilities } from '../../lib/capabilities/detect';

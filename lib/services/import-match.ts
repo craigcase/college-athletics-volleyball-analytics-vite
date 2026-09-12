@@ -2,7 +2,7 @@ import { detectSourceFamily, type SourceFamily } from '../ingestion/source-famil
 import { parseMatchSource } from '../ingestion/match/parse-source';
 import { preserveSource } from '../../db/repositories/sources';
 import { resolveMatchForEvidence, attachEvidenceToMatch } from '../../db/repositories/matches';
-import { getAdminClient } from '../../db/client';
+import { getAdminClient } from '../../db/client.js';
 import { assertNoError } from '../../db/supabase-utils';
 import { id, nowIso } from '../ids';
 

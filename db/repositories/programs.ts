@@ -1,4 +1,4 @@
-import { getAdminClient, hasUserDbScope } from '../client';
+import { getAdminClient, hasUserDbScope } from '../client.js';
 import { assertNoError } from '../supabase-utils';
 import { id, nowIso } from '../../lib/ids';
 import type { CurrentUser } from '../../lib/auth/current-user';
