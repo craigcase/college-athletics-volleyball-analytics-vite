@@ -48,3 +48,11 @@
 - The local API server imports the existing Netlify handlers directly, so local and production request logic stay aligned.
 - Production remains unchanged: Netlify redirects `/api/*` to deployed Netlify Functions.
 - Acceptance check: `curl -i http://localhost:5173/api/program` should return quickly (typically `401` without an auth token), never hang or return Vite's SPA 404.
+
+## v0.3.7 single-port local development
+
+- Replaced the two-process Vite + port-8787 API arrangement with one local development server on port 5173.
+- `/api/*` is handled directly by the existing server handler modules; all non-API traffic is delegated to Vite middleware.
+- Removed the Vite proxy, `concurrently`, `dev:api`, `dev:web`, and `scripts/local-api-server.ts`.
+- Netlify production routing remains unchanged.
+- Acceptance check: `curl -i --max-time 5 http://127.0.0.1:5173/api/program` returns promptly, normally `401` without an auth token.

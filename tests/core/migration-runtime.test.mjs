@@ -14,32 +14,34 @@ test('runtime is Vite React + Supabase + Netlify with no Next/Sites/Cloudflare d
   for (const removed of ['next','@supabase/ssr','vinext','@openai/sites-vite-plugin','@cloudflare/vite-plugin','@cloudflare/workers-types','wrangler']) {
     assert.equal(all[removed], undefined, `${removed} should be removed`);
   }
-  assert.match(pkg.scripts.dev, /concurrently/);
-  assert.equal(pkg.scripts['dev:web'], 'vite --host 0.0.0.0');
-  assert.match(pkg.scripts['dev:api'], /tsx watch scripts\/local-api-server\.ts/);
+  assert.equal(pkg.scripts.dev, 'tsx watch scripts/local-dev-server.ts');
+  assert.equal(pkg.scripts['dev:web'], undefined);
+  assert.equal(pkg.scripts['dev:api'], undefined);
   assert.match(pkg.scripts.build, /vite build/);
   assert.equal(pkg.scripts.verify, 'npm test && npm run typecheck && npm run build');
-  assert.equal(typeof all.concurrently, 'string');
+  assert.equal(all.concurrently, undefined);
   assert.equal(typeof all.tsx, 'string');
   const viteConfig = await text('../../vite.config.ts');
   assert.match(viteConfig, /@vitejs\/plugin-react/);
   assert.equal(all['@netlify/vite-plugin'], undefined);
-  assert.doesNotMatch(viteConfig, /localFunctionBridge|vite-local-functions/);
-  assert.match(viteConfig, /proxy/);
-  assert.match(viteConfig, /['"]\/api['"]/);
-  assert.match(viteConfig, /127\.0\.0\.1:8787/);
-  const localApi = await text('../../scripts/local-api-server.ts');
-  assert.match(localApi, /createServer/);
-  assert.match(localApi, /loadEnvFile/);
-  assert.match(localApi, /LOCAL_API_PORT/);
-  assert.match(localApi, /8787/);
+  assert.doesNotMatch(viteConfig, /localFunctionBridge|vite-local-functions|proxy|8787/);
+  const localDev = await text('../../scripts/local-dev-server.ts');
+  assert.match(localDev, /createServer as createHttpServer/);
+  assert.match(localDev, /createServer as createViteServer/);
+  assert.match(localDev, /middlewareMode:\s*true/);
+  assert.match(localDev, /ws:\s*\{\s*server/);
+  assert.match(localDev, /pathname\.startsWith\(['"]\/api\/['"]\)/);
+  assert.match(localDev, /listen\(port, ['"]0\.0\.0\.0['"]/);
+  assert.match(localDev, /const port = Number\(process\.env\.PORT \|\| 5173\)/);
+  assert.doesNotMatch(localDev, /8787|LOCAL_API_PORT/);
+  await assert.rejects(access(new URL('../../scripts/local-api-server.ts', import.meta.url)));
   const api = await text('../../src/lib/api.ts');
   assert.match(api, /const functionsBase='\/api'/);
   const netlify = await text('../../netlify.toml');
   assert.match(netlify, /from = "\/api\/\*"[\s\S]*to = "\/\.netlify\/functions\/:splat"/);
   assert.ok(netlify.indexOf('from = "/api/*"') < netlify.indexOf('from = "/*"'), 'API redirect must precede SPA fallback');
   for (const fn of ['program','roster-import','schedule-import','match-import-url','match-import-file','coaches-edge-query','roster','schedule','matches','match-summary']) {
-    assert.match(localApi, new RegExp(`['\"]${fn}['\"]`));
+    assert.match(localDev, new RegExp(`['\"]${fn}['\"]`));
   }
   const main = await text('../../src/main.tsx');
   assert.match(main, /BrowserRouter/);
@@ -77,7 +79,7 @@ test('Vite node TypeScript config supports modern iterable syntax during build m
   assert.equal(config.compilerOptions.allowImportingTsExtensions, true);
   assert.equal(config.compilerOptions.noEmit, true);
   assert.equal(config.compilerOptions.target, 'ES2022');
-  assert.ok(config.include.includes('scripts/**/*.ts'), 'Vite local bridge must be included in node build project');
+  assert.ok(config.include.includes('scripts/**/*.ts'), 'Local development server must be included in node build project');
 });
 
 test('TypeScript build info files are ignored', async () => {

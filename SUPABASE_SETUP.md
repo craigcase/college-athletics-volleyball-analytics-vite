@@ -11,3 +11,7 @@
 ### StackBlitz local server
 
 Keep the server-only `SUPABASE_URL`, `SUPABASE_SECRET_KEY`, and `SUPABASE_EVIDENCE_BUCKET` values in StackBlitz's encrypted `.env`. The local API process loads `.env` with Node's built-in environment-file loader; only `VITE_*` values are exposed to browser code.
+
+### v0.3.7 local development
+
+`npm run dev` now runs the frontend and local API on the same port (5173). The local server loads `.env` when present and uses the server-only Supabase values for `/api/*`; Vite still exposes only `VITE_*` values to browser code.
