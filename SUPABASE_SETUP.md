@@ -19,3 +19,10 @@ Keep the server-only `SUPABASE_URL`, `SUPABASE_SECRET_KEY`, and `SUPABASE_EVIDEN
 ### v0.3.9 StackBlitz runtime
 
 `npm run dev` builds the browser client and then serves both the built app and `/api/*` from one plain Node server on port 5173. Vite is not running as a development server. The Node process loads server-only Supabase values from `.env` when present; browser-safe `VITE_*` values are embedded by the Vite build.
+
+
+### v0.4.0 user-token verification
+
+No new environment variable is required. The local and production API handlers verify each incoming Supabase user JWT against the Auth `/auth/v1/user` endpoint using `VITE_SUPABASE_PUBLISHABLE_KEY` as the `apikey`. `SUPABASE_SECRET_KEY` remains server-only and is used only by privileged database/storage clients.
+
+The repository includes `.env.example` with placeholders only. Keep the real `.env` private in StackBlitz/host environment storage and out of Git.

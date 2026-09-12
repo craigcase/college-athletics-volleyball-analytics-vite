@@ -1,6 +1,6 @@
 # College Athletics Consulting — Volleyball Analytics
 
-Current migration build **v0.3.9** uses a clean **Vite + React + TypeScript** frontend, **Supabase** for Postgres/Auth/Storage, and **Netlify Functions** for privileged production HTTP operations.
+Current migration build **v0.4.0** uses a clean **Vite + React + TypeScript** frontend, **Supabase** for Postgres/Auth/Storage, and **Netlify Functions** for privileged production HTTP operations.
 
 ## StackBlitz / local development
 
@@ -33,6 +33,8 @@ Server-side:
 - `SUPABASE_SECRET_KEY`
 - `SUPABASE_EVIDENCE_BUCKET=volleyball-evidence`
 
+The server verifies incoming user session JWTs against Supabase Auth using the project publishable key (`VITE_SUPABASE_PUBLISHABLE_KEY`). The secret key is reserved for privileged database/storage operations and is not used to authenticate user JWTs.
+
 Keep the server-side values in StackBlitz's encrypted environment for local development and in Netlify environment variables for production. Never commit real secrets.
 
 ## Supabase
@@ -46,3 +48,8 @@ Netlify remains the production deployment target. Browser calls use `/api/*`; `n
 ## Architecture boundary
 
 Deterministic TypeScript calculates statistics. Coach's Edge reads stored deterministic results and may explain them; it does not invent or calculate statistics itself.
+
+
+## v0.4.0 authentication boundary
+
+User access tokens are verified with `GET /auth/v1/user` using the publishable API key plus the user JWT. Privileged repositories continue to use the server-only secret key. This keeps user authentication and admin data access on separate credentials.

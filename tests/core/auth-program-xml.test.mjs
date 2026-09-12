@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { getCurrentUserFromSupabase } from '../../.core-dist/lib/auth/current-user.js';
+import { verifySupabaseAccessToken } from '../../.core-dist/lib/auth/supabase-verifier.js';
 import { validateProgramSetup } from '../../.core-dist/lib/program/validation.js';
 import { parseStructuredXml } from '../../.core-dist/lib/ingestion/match/xml.js';
 
@@ -10,6 +11,46 @@ test('Supabase auth mapping fails closed and normalizes verified user identity',
     id:'user-1', email:'coach@example.edu', name:'Pat Coach'
   });
   assert.equal(getCurrentUserFromSupabase({id:'user-2',email:null,user_metadata:{}}), null);
+});
+
+
+
+test('Supabase access-token verification uses the publishable API key and the user JWT', async () => {
+  let seen;
+  const fetchImpl = async (url, init) => {
+    seen = { url, init };
+    return new Response(JSON.stringify({ id: 'user-1', email: 'Coach@Example.edu', user_metadata: { full_name: 'Pat Coach' } }), {
+      status: 200,
+      headers: { 'content-type': 'application/json' },
+    });
+  };
+
+  const user = await verifySupabaseAccessToken('user-jwt', {
+    url: 'https://example.supabase.co/',
+    publishableKey: 'sb_publishable_test',
+    fetchImpl,
+  });
+
+  assert.equal(seen.url, 'https://example.supabase.co/auth/v1/user');
+  assert.equal(new Headers(seen.init.headers).get('apikey'), 'sb_publishable_test');
+  assert.equal(new Headers(seen.init.headers).get('authorization'), 'Bearer user-jwt');
+  assert.deepEqual(user, { id: 'user-1', email: 'Coach@Example.edu', user_metadata: { full_name: 'Pat Coach' } });
+});
+
+test('Supabase access-token verification fails closed on rejected or malformed responses', async () => {
+  const rejected = await verifySupabaseAccessToken('bad-jwt', {
+    url: 'https://example.supabase.co',
+    publishableKey: 'sb_publishable_test',
+    fetchImpl: async () => new Response(JSON.stringify({ message: 'invalid token' }), { status: 401 }),
+  });
+  assert.equal(rejected, null);
+
+  const malformed = await verifySupabaseAccessToken('jwt', {
+    url: 'https://example.supabase.co',
+    publishableKey: 'sb_publishable_test',
+    fetchImpl: async () => new Response(JSON.stringify({ email: 'missing-id@example.edu' }), { status: 200 }),
+  });
+  assert.equal(malformed, null);
 });
 
 test('program setup validation accepts required identity and rejects bad colors or blank names', () => {

@@ -40,6 +40,10 @@ test('runtime is Vite React + Supabase + Netlify with static single-port local d
   await assert.rejects(access(new URL('../../scripts/vite-local-functions.ts', import.meta.url)));
   const api = await text('../../src/lib/api.ts');
   assert.match(api, /const functionsBase='\/api'/);
+  const serverAuth = await text('../../netlify/functions/_shared/auth.ts');
+  assert.match(serverAuth, /verifySupabaseAccessToken/);
+  assert.match(serverAuth, /VITE_SUPABASE_PUBLISHABLE_KEY/);
+  assert.doesNotMatch(serverAuth, /getAdminClient/);
   const netlify = await text('../../netlify.toml');
   assert.match(netlify, /from = "\/api\/\*"[\s\S]*to = "\/\.netlify\/functions\/:splat"/);
   assert.ok(netlify.indexOf('from = "/api/*"') < netlify.indexOf('from = "/*"'), 'API redirect must precede SPA fallback');
@@ -88,4 +92,14 @@ test('Vite node TypeScript config supports modern iterable syntax during build m
 test('TypeScript build info files are ignored', async () => {
   const gitignore = await text('../../.gitignore');
   assert.match(gitignore, /^\*\.tsbuildinfo$/m);
+});
+
+
+test('safe Supabase environment template is packaged without real credentials', async () => {
+  const envExample = await text('../../.env.example');
+  assert.match(envExample, /^VITE_SUPABASE_URL=https:\/\/your-project\.supabase\.co$/m);
+  assert.match(envExample, /^VITE_SUPABASE_PUBLISHABLE_KEY=sb_publishable_your_key_here$/m);
+  assert.match(envExample, /^SUPABASE_URL=https:\/\/your-project\.supabase\.co$/m);
+  assert.match(envExample, /^SUPABASE_SECRET_KEY=sb_secret_your_key_here$/m);
+  assert.doesNotMatch(envExample, /eyJ[A-Za-z0-9_-]{20,}/);
 });

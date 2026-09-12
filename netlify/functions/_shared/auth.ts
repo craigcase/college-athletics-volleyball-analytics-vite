@@ -1,5 +1,30 @@
-import { getAdminClient } from '../../../db/client.js';
 import { getCurrentUserFromSupabase, type CurrentUser } from '../../../lib/auth/current-user.js';
+import { verifySupabaseAccessToken } from '../../../lib/auth/supabase-verifier.js';
 import { getActiveProgramForUser } from '../../../db/repositories/programs.js';
-export async function requireCurrentUser(request:Request):Promise<CurrentUser>{const header=request.headers.get('authorization')||'';const token=header.startsWith('Bearer ')?header.slice(7):'';if(!token)throw new Error('UNAUTHENTICATED');const {data,error}=await getAdminClient().auth.getUser(token);if(error)throw new Error('UNAUTHENTICATED');const user=getCurrentUserFromSupabase(data.user as any);if(!user)throw new Error('UNAUTHENTICATED');return user;}
-export async function requireProgramContext(request:Request){const user=await requireCurrentUser(request);const program=await getActiveProgramForUser(user);if(!program)throw new Error('PROGRAM_SETUP_REQUIRED');return{user,program};}
+
+function authVerifierConfig() {
+  const url = (process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL)?.trim();
+  const publishableKey = (
+    process.env.SUPABASE_PUBLISHABLE_KEY || process.env.VITE_SUPABASE_PUBLISHABLE_KEY
+  )?.trim();
+  if (!url || !publishableKey) throw new Error('SUPABASE_AUTH_NOT_CONFIGURED');
+  return { url, publishableKey };
+}
+
+export async function requireCurrentUser(request: Request): Promise<CurrentUser> {
+  const header = request.headers.get('authorization') || '';
+  const token = header.startsWith('Bearer ') ? header.slice(7).trim() : '';
+  if (!token) throw new Error('UNAUTHENTICATED');
+
+  const verified = await verifySupabaseAccessToken(token, authVerifierConfig());
+  const user = getCurrentUserFromSupabase(verified);
+  if (!user) throw new Error('UNAUTHENTICATED');
+  return user;
+}
+
+export async function requireProgramContext(request: Request) {
+  const user = await requireCurrentUser(request);
+  const program = await getActiveProgramForUser(user);
+  if (!program) throw new Error('PROGRAM_SETUP_REQUIRED');
+  return { user, program };
+}

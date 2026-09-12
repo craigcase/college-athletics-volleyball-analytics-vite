@@ -1,10 +1,10 @@
-# Migration verification — v0.3.9
+# Migration verification — v0.4.0
 
 - Clean runtime: Vite + React + TypeScript.
 - No Next.js, Sites, Cloudflare Workers, D1, R2, Wrangler, Vinext, or Sites auth runtime.
 - Supabase Postgres schema and evidence bucket migration retained.
 - Netlify Functions replace the six prior Next API routes and add read endpoints for roster, schedule, matches, and match summary.
-- Browser auth uses Supabase access tokens; server functions verify the token before program-scoped privileged access.
+- Browser auth uses Supabase access tokens; server functions verify the user JWT with Supabase Auth using the publishable API key before program-scoped privileged access. The secret key remains reserved for privileged data/storage operations.
 - Existing deterministic analytics, reconciliation, parsers, evidence provenance, sticky overrides, and regression fixtures retained.
 
 ## v0.3.1 StackBlitz build configuration
@@ -51,7 +51,7 @@
 
 ## v0.3.8 async API dispatch regression
 
-The local HTTP server request callback is asynchronous and explicitly awaits `handleApi(req, res, pathname)`. Core migration coverage rejects the old fire-and-forget `void handleApi(...)` dispatch so StackBlitz API requests stay attached until a response is written.
+v0.3.8 made the local HTTP callback await `handleApi(req, res, pathname)` and added a regression check against fire-and-forget dispatch. StackBlitz runtime testing still produced socket hang-ups, so v0.3.9 replaced the embedded-Vite runtime instead of treating the await change as the final fix.
 
 ## v0.3.7 single-port local development
 
@@ -70,3 +70,13 @@ The local HTTP server request callback is asynchronous and explicitly awaits `ha
 - Non-API traffic is served from `dist/` with React SPA fallback to `dist/index.html`.
 - Regression coverage rejects the previous embedded-Vite runtime patterns.
 - Acceptance check: `curl -i --max-time 5 http://127.0.0.1:5173/api/program` must return promptly, normally `401` with `{"error":"UNAUTHENTICATED"}` when no auth token is supplied.
+
+
+## v0.4.0 auth verification cleanup
+
+- Added a dedicated `lib/auth/supabase-verifier.ts` boundary for user JWT verification.
+- User JWT validation calls Supabase Auth `/auth/v1/user` with the publishable API key in `apikey` and the session JWT in `Authorization`.
+- `netlify/functions/_shared/auth.ts` no longer imports or uses `getAdminClient()` for user authentication.
+- The existing `SUPABASE_SECRET_KEY` admin client remains unchanged for privileged repositories and storage.
+- Added regression coverage for the exact Auth headers, rejected/malformed token responses, and the separation between user verification and the admin client.
+- Added a safe `.env.example` with placeholders only; no real credentials are packaged.
