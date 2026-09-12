@@ -54,3 +54,9 @@ There is **no new Supabase SQL migration** for v0.6.1. If `202609120001_user_sco
 ## v0.6.2 StackBlitz request scope
 
 StackBlitz local API requests no longer rely on Node AsyncLocalStorage. WebContainer requests are serialized and hold one explicit user-scoped Supabase client for the full request, including across browser-hosted network awaits. Local development remains secret-key-disabled. No new Supabase migration is required for v0.6.2.
+
+## v0.6.4 authenticated import token fix
+
+- Preserves the verified bearer token alongside the authenticated user so program-scoped imports can pass the same access token to the public-source fetch relay.
+- Fixes the `token is not defined` failure affecting schedule, matches, and import endpoints in v0.6.3.
+

@@ -213,7 +213,11 @@ test('authenticated public-source imports use the Supabase Edge fetch relay in S
   }
 
   const auth = await text('../../netlify/functions/_shared/auth.ts');
-  assert.match(auth, /return \{ user, program, accessToken: token \}/);
+  assert.match(auth, /requireAuthenticatedUser/);
+  assert.match(auth, /return \{ user, accessToken: token \}/);
+  assert.match(auth, /const \{ user, accessToken \} = await requireAuthenticatedUser\(request\)/);
+  assert.match(auth, /return \{ user, program, accessToken \}/);
+  assert.doesNotMatch(auth, /return \{ user, program, accessToken: token \}/);
 
   const edge = await text('../../supabase/functions/fetch-public-source/index.ts');
   assert.match(edge, /withSupabase/);

@@ -11,7 +11,9 @@ function authVerifierConfig() {
   return { url, publishableKey };
 }
 
-export async function requireCurrentUser(request: Request): Promise<CurrentUser> {
+export async function requireAuthenticatedUser(
+  request: Request,
+): Promise<{ user: CurrentUser; accessToken: string }> {
   const header = request.headers.get('authorization') || '';
   const token = header.startsWith('Bearer ') ? header.slice(7).trim() : '';
   if (!token) throw new Error('UNAUTHENTICATED');
@@ -19,12 +21,17 @@ export async function requireCurrentUser(request: Request): Promise<CurrentUser>
   const verified = await verifySupabaseAccessToken(token, authVerifierConfig());
   const user = getCurrentUserFromSupabase(verified);
   if (!user) throw new Error('UNAUTHENTICATED');
+  return { user, accessToken: token };
+}
+
+export async function requireCurrentUser(request: Request): Promise<CurrentUser> {
+  const { user } = await requireAuthenticatedUser(request);
   return user;
 }
 
 export async function requireProgramContext(request: Request) {
-  const user = await requireCurrentUser(request);
+  const { user, accessToken } = await requireAuthenticatedUser(request);
   const program = await getActiveProgramForUser(user);
   if (!program) throw new Error('PROGRAM_SETUP_REQUIRED');
-  return { user, program, accessToken: token };
+  return { user, program, accessToken };
 }
