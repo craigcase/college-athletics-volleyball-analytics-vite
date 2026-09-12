@@ -19,6 +19,9 @@ test('runtime is Vite React + Supabase + Netlify with no Next/Sites/Cloudflare d
   assert.equal(pkg.scripts.verify, 'npm test && npm run typecheck && npm run build');
   const viteConfig = await text('../../vite.config.ts');
   assert.match(viteConfig, /@vitejs\/plugin-react/);
+  assert.equal(typeof all['@netlify/vite-plugin'], 'string');
+  assert.match(viteConfig, /@netlify\/vite-plugin/);
+  assert.match(viteConfig, /netlify\(\)/);
   const main = await text('../../src/main.tsx');
   assert.match(main, /BrowserRouter/);
   const css = await text('../../src/styles.css');

@@ -30,3 +30,7 @@ Run `supabase/migrations/202609090001_initial.sql` in the Supabase SQL editor. I
 
 ## Architecture boundary
 Deterministic TypeScript calculates statistics. Coach's Edge reads stored deterministic results and may explain them; it does not invent or calculate statistics itself.
+
+## StackBlitz API development
+
+`npm run dev` uses the official Netlify Vite plugin to emulate Netlify Functions inside the Vite dev server. Calls to `/.netlify/functions/*` therefore work in StackBlitz without running a second server.

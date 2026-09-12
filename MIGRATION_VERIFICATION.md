@@ -18,3 +18,9 @@
 - Added `target: ES2022` to `tsconfig.node.json` so Netlify Functions and shared server/domain modules can use `Set`, `Map`, `matchAll`, and other modern iterables during `tsc -b`.
 - Added `*.tsbuildinfo` to `.gitignore` so TypeScript project-reference cache files do not appear as source changes.
 - Added regression coverage for both settings.
+
+## v0.3.3 StackBlitz Netlify Functions bridge
+
+- Added the official `@netlify/vite-plugin` so plain `vite dev` emulates `/.netlify/functions/*` during StackBlitz development.
+- Added regression coverage requiring the Netlify Vite plugin in both dependencies and `vite.config.ts`.
+- This removes the HTTP 404 on Create Program caused by Vite serving only the frontend.
