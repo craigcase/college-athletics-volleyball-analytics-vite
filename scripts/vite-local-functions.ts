@@ -1,7 +1,7 @@
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import type { Plugin, ViteDevServer } from 'vite';
 
-const prefix = '/.netlify/functions/';
+const prefix = '/api/';
 const handlers: Record<string, string> = {
   'program': '/netlify/functions/program.ts',
   'roster-import': '/netlify/functions/roster-import.ts',

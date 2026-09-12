@@ -1,6 +1,6 @@
 import { getSupabaseClient, supabaseConfigured } from './supabase';
 
-const functionsBase='/.netlify/functions';
+const functionsBase='/api';
 async function token(){
   if(!supabaseConfigured())throw new Error('Supabase is not configured yet.');
   const {data}=await getSupabaseClient().auth.getSession();

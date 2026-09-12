@@ -13,6 +13,7 @@
   },
   "include": [
     "vite.config.ts",
+    "scripts/**/*.ts",
     "netlify/functions/**/*.ts",
     "db/**/*.ts",
     "lib/**/*.ts"

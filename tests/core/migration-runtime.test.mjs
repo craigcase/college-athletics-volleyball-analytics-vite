@@ -22,7 +22,13 @@ test('runtime is Vite React + Supabase + Netlify with no Next/Sites/Cloudflare d
   assert.equal(all['@netlify/vite-plugin'], undefined);
   assert.match(viteConfig, /localFunctionBridge/);
   const bridge = await text('../../scripts/vite-local-functions.ts');
-  assert.match(bridge, /\.netlify\/functions/);
+  assert.match(bridge, /const prefix = '\/api\/'/);
+  assert.doesNotMatch(bridge, /const prefix = '\/\.netlify\/functions\/'/);
+  const api = await text('../../src/lib/api.ts');
+  assert.match(api, /const functionsBase='\/api'/);
+  const netlify = await text('../../netlify.toml');
+  assert.match(netlify, /from = "\/api\/\*"[\s\S]*to = "\/\.netlify\/functions\/:splat"/);
+  assert.ok(netlify.indexOf('from = "/api/*"') < netlify.indexOf('from = "/*"'), 'API redirect must precede SPA fallback');
   for (const fn of ['program','roster-import','schedule-import','match-import-url','match-import-file','coaches-edge-query','roster','schedule','matches','match-summary']) {
     assert.match(bridge, new RegExp(`['\"]${fn}['\"]`));
   }
@@ -62,6 +68,7 @@ test('Vite node TypeScript config supports modern iterable syntax during build m
   assert.equal(config.compilerOptions.allowImportingTsExtensions, true);
   assert.equal(config.compilerOptions.noEmit, true);
   assert.equal(config.compilerOptions.target, 'ES2022');
+  assert.ok(config.include.includes('scripts/**/*.ts'), 'Vite local bridge must be included in node build project');
 });
 
 test('TypeScript build info files are ignored', async () => {

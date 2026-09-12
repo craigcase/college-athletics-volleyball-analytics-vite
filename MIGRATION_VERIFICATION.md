@@ -31,3 +31,10 @@
 - Added `scripts/vite-local-functions.ts`, a Vite-only middleware bridge that invokes the existing Netlify Function handlers at `/.netlify/functions/*` during local development.
 - Production deployment is unchanged: Netlify still deploys the same `netlify/functions/*.ts` handlers from `netlify.toml`.
 - Local server-only Supabase values are loaded from `.env` into the Vite server process; only `VITE_*` variables are exposed to browser code.
+
+## v0.3.5 StackBlitz API path isolation
+
+- Local development now uses `/api/*` instead of the Netlify-reserved `/.netlify/functions/*` path.
+- Vite middleware serves `/api/*` directly in StackBlitz.
+- Netlify production redirects `/api/*` to the corresponding Netlify Function before the SPA fallback.
+- `scripts/**/*.ts` is included in the node TypeScript build project so the local bridge is verified by `tsc -b`.

@@ -38,3 +38,7 @@ Deterministic TypeScript calculates statistics. Coach's Edge reads stored determ
 ### StackBlitz local API development
 
 `npm run dev` uses a small Vite middleware bridge for `/.netlify/functions/*`, so StackBlitz can test the full app without running Netlify CLI or Netlify's local emulator. Production still deploys the same handlers as Netlify Functions.
+
+## Local API routing
+
+StackBlitz development uses `/api/*`, handled directly by the Vite local function bridge. Production keeps the same browser-facing `/api/*` URLs; Netlify redirects them to `/.netlify/functions/*`. This keeps Netlify-specific paths out of local development.
