@@ -1,4 +1,4 @@
-import { getAdminClient } from '../client';
+import { getAdminClient, hasUserDbScope } from '../client';
 import { assertNoError } from '../supabase-utils';
 import { id, nowIso } from '../../lib/ids';
 import type { CurrentUser } from '../../lib/auth/current-user';
@@ -43,6 +43,36 @@ export async function getActiveProgramForUser(user: CurrentUser | string): Promi
 export async function createProgram(input: ProgramSetupInput, user: CurrentUser): Promise<ProgramContext> {
   const db=getAdminClient();
   if(await getActiveProgramForUser(user))throw new Error('ACTIVE_PROGRAM_EXISTS');
+
+  if (hasUserDbScope()) {
+    const result = await db.rpc('create_volleyball_program', {
+      p_school_abbreviation: input.schoolAbbreviation,
+      p_team_name: input.teamName,
+      p_primary_color: input.primaryColor,
+      p_secondary_color: input.secondaryColor,
+      p_accent_color: input.accentColor,
+      p_season_year: input.seasonYear,
+    });
+    if (result.error) {
+      if (result.error.message?.includes('ACTIVE_PROGRAM_EXISTS')) throw new Error('ACTIVE_PROGRAM_EXISTS');
+      assertNoError(result.error, 'Create program');
+    }
+    const row = result.data as Record<string, unknown> | null;
+    if (!row) throw new Error('CREATE_PROGRAM_NO_RESULT');
+    return {
+      programId: String(row.programId),
+      seasonId: String(row.seasonId),
+      seasonYear: Number(row.seasonYear),
+      teamId: String(row.teamId),
+      schoolAbbreviation: String(row.schoolAbbreviation),
+      teamName: String(row.teamName),
+      primaryColor: String(row.primaryColor),
+      secondaryColor: String(row.secondaryColor),
+      accentColor: String(row.accentColor),
+      role: 'owner',
+    };
+  }
+
   const teamId=id('team'),programId=id('program'),seasonId=id('season'),now=nowIso();
   try{
     for(const [context,table,row] of [

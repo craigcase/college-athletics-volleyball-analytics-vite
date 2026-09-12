@@ -1,8 +1,8 @@
 # College Athletics Consulting — Volleyball Analytics
 
-Current migration build **v0.4.0** uses a clean **Vite + React + TypeScript** frontend, **Supabase** for Postgres/Auth/Storage, and **Netlify Functions** for privileged production HTTP operations.
+Current migration build **v0.6.0** restores the fast development loop: **GitHub → StackBlitz → guided testing**. StackBlitz runs the React app and the local API on one port, but database/storage access is scoped to the signed-in Supabase user through Row Level Security. No Supabase secret key is required for local development.
 
-## StackBlitz / local development
+## StackBlitz development
 
 ```bash
 npm install
@@ -10,46 +10,32 @@ npm run verify
 npm run dev
 ```
 
-`npm run dev` first builds the Vite/React client into `dist/`, then starts one plain Node server on port **5173**. That server handles `/api/*` with the same handler modules used by Netlify in production and serves the built React app for every other request. Vite is build-only locally: there is no Vite dev server, Vite middleware, Netlify CLI, Netlify Vite plugin, second API port, or Vite proxy at runtime.
+`npm run dev` builds the Vite client into `dist/`, then starts one local server on port **5173**. `/api/*` uses the same application handlers as production, but each authenticated local request creates a Supabase client with the project publishable key plus that user's JWT. All authorization is enforced by Postgres/Storage RLS.
 
-A quick local API check is:
+Local `.env` needs only:
 
-```bash
-curl -i --max-time 5 http://127.0.0.1:5173/api/program
+```text
+VITE_SUPABASE_URL=...
+VITE_SUPABASE_PUBLISHABLE_KEY=...
 ```
 
-Without an auth token, the expected response is a quick `401` with `{"error":"UNAUTHENTICATED"}`.
+Do not put `SUPABASE_SECRET_KEY` in StackBlitz.
 
-Without Supabase browser environment variables, the app intentionally renders a backend-setup screen instead of crashing.
+## One-time Supabase update for v0.6.0
 
-## Environment variables
+The existing database was created with fail-closed RLS and no browser/user policies. Run these migrations in order in Supabase SQL Editor:
 
-Browser-safe:
-- `VITE_SUPABASE_URL`
-- `VITE_SUPABASE_PUBLISHABLE_KEY`
+1. `supabase/migrations/202609090001_initial.sql` — already applied on existing projects.
+2. `supabase/migrations/202609120001_user_scoped_rls.sql` — new in v0.6.0.
 
-Server-side:
-- `SUPABASE_URL`
-- `SUPABASE_SECRET_KEY`
-- `SUPABASE_EVIDENCE_BUCKET=volleyball-evidence`
+The second migration adds user-scoped RLS, Storage policies, and the authenticated `create_volleyball_program` RPC used to bootstrap a coach's first program safely.
 
-The server verifies incoming user session JWTs against Supabase Auth using the project publishable key (`VITE_SUPABASE_PUBLISHABLE_KEY`). The secret key is reserved for privileged database/storage operations and is not used to authenticate user JWTs.
+## Architecture
 
-Keep the server-side values in StackBlitz's encrypted environment for local development and in Netlify environment variables for production. Never commit real secrets.
+- Vite + React + TypeScript frontend
+- Supabase Auth + Postgres + Storage
+- Deterministic TypeScript analytics
+- One local StackBlitz server for guided testing
+- Netlify remains an optional production hosting/serverless target, not part of the ordinary development loop
 
-## Supabase
-
-Run `supabase/migrations/202609090001_initial.sql` in the Supabase SQL editor. It creates the canonical volleyball schema and the `volleyball-evidence` storage bucket.
-
-## Production deployment
-
-Netlify remains the production deployment target. Browser calls use `/api/*`; `netlify.toml` redirects those requests to `/.netlify/functions/*` before the SPA fallback.
-
-## Architecture boundary
-
-Deterministic TypeScript calculates statistics. Coach's Edge reads stored deterministic results and may explain them; it does not invent or calculate statistics itself.
-
-
-## v0.4.0 authentication boundary
-
-User access tokens are verified with `GET /auth/v1/user` using the publishable API key plus the user JWT. Privileged repositories continue to use the server-only secret key. This keeps user authentication and admin data access on separate credentials.
+Coach's Edge reads stored deterministic analytics. It does not invent or calculate statistics with an LLM.

@@ -103,3 +103,29 @@ test('safe Supabase environment template is packaged without real credentials', 
   assert.match(envExample, /^SUPABASE_SECRET_KEY=sb_secret_your_key_here$/m);
   assert.doesNotMatch(envExample, /eyJ[A-Za-z0-9_-]{20,}/);
 });
+
+
+test('local StackBlitz API uses authenticated user-scoped Supabase access instead of the secret key', async () => {
+  const dbClient = await text('../../db/client.ts');
+  assert.match(dbClient, /AsyncLocalStorage/);
+  assert.match(dbClient, /runWithUserAccessToken/);
+  assert.match(dbClient, /VITE_SUPABASE_PUBLISHABLE_KEY/);
+  assert.match(dbClient, /Authorization/);
+  const localDev = await text('../../scripts/local-dev-server.ts');
+  assert.match(localDev, /runWithUserAccessToken/);
+  assert.match(localDev, /authorization/i);
+  assert.doesNotMatch(localDev, /SUPABASE_SECRET_KEY/);
+});
+
+test('user-scoped Supabase migration bootstraps program creation and RLS access', async () => {
+  const sql = await text('../../supabase/migrations/202609120001_user_scoped_rls.sql');
+  assert.match(sql, /create schema if not exists private/i);
+  assert.match(sql, /current_user_program_ids/i);
+  assert.match(sql, /create_volleyball_program/i);
+  assert.match(sql, /security definer/i);
+  assert.match(sql, /set search_path = ''/i);
+  assert.match(sql, /grant execute on function public\.create_volleyball_program/i);
+  assert.match(sql, /create policy[\s\S]*programs/i);
+  assert.match(sql, /create policy[\s\S]*storage\.objects/i);
+  assert.match(sql, /grant select, insert, update, delete/i);
+});

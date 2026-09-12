@@ -12,6 +12,7 @@ import roster from '../netlify/functions/roster.js';
 import schedule from '../netlify/functions/schedule.js';
 import matches from '../netlify/functions/matches.js';
 import matchSummary from '../netlify/functions/match-summary.js';
+import { runWithUserAccessToken } from '../db/client.js';
 
 try {
   loadEnvFile('.env');
@@ -107,7 +108,12 @@ async function handleApi(req: IncomingMessage, res: ServerResponse, pathname: st
   }
 
   try {
-    const response = await handler(await toRequest(req));
+    const request = await toRequest(req);
+    const authorization = request.headers.get('authorization') || '';
+    const accessToken = authorization.startsWith('Bearer ') ? authorization.slice(7).trim() : '';
+    const response = accessToken
+      ? await runWithUserAccessToken(accessToken, () => handler(request))
+      : await handler(request);
     if (!(response instanceof Response)) {
       writeJson(res, 500, { error: `Local API function ${functionName} did not return a Response.` });
       return;

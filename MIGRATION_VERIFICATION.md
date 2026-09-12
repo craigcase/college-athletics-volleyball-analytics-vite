@@ -1,82 +1,34 @@
-# Migration verification — v0.4.0
+# Migration Verification — v0.6.0
 
-- Clean runtime: Vite + React + TypeScript.
-- No Next.js, Sites, Cloudflare Workers, D1, R2, Wrangler, Vinext, or Sites auth runtime.
-- Supabase Postgres schema and evidence bucket migration retained.
-- Netlify Functions replace the six prior Next API routes and add read endpoints for roster, schedule, matches, and match summary.
-- Browser auth uses Supabase access tokens; server functions verify the user JWT with Supabase Auth using the publishable API key before program-scoped privileged access. The secret key remains reserved for privileged data/storage operations.
-- Existing deterministic analytics, reconciliation, parsers, evidence provenance, sticky overrides, and regression fixtures retained.
+## Local runtime
 
-## v0.3.1 StackBlitz build configuration
+- One local server on port 5173.
+- Vite builds the frontend; Node serves `dist/` and `/api/*`.
+- Local API requests are wrapped in `runWithUserAccessToken(...)`.
+- User-scoped Supabase clients use the publishable key plus the signed-in user's bearer token.
+- The StackBlitz path does not require or read `SUPABASE_SECRET_KEY` for authenticated requests.
 
-- Added `noEmit: true` to `tsconfig.node.json` so `allowImportingTsExtensions` is valid during `tsc -b`.
-- Added regression coverage for the Vite node TypeScript build configuration.
+## Supabase
 
+- Initial schema remains `202609090001_initial.sql`.
+- New migration `202609120001_user_scoped_rls.sql` adds authenticated RLS policies, Storage policies, private membership helper functions, explicit Data API grants, and `create_volleyball_program(...)`.
+- Program creation uses the RPC when running under a user-scoped request.
+- Existing privileged server fallback remains available only outside the local user-scoped path for later production use.
 
-## v0.3.2 TypeScript target fix
+## Verification commands
 
-- Added `target: ES2022` to `tsconfig.node.json` so Netlify Functions and shared server/domain modules can use `Set`, `Map`, `matchAll`, and other modern iterables during `tsc -b`.
-- Added `*.tsbuildinfo` to `.gitignore` so TypeScript project-reference cache files do not appear as source changes.
-- Added regression coverage for both settings.
+```bash
+npm install
+npm run verify
+npm run dev
+```
 
-## v0.3.3 StackBlitz Netlify Functions bridge
+Unauthenticated smoke test:
 
-- Added the official `@netlify/vite-plugin` so plain `vite dev` emulates `/.netlify/functions/*` during StackBlitz development.
-- Added regression coverage requiring the Netlify Vite plugin in both dependencies and `vite.config.ts`.
-- This removes the HTTP 404 on Create Program caused by Vite serving only the frontend.
+```bash
+curl -i --max-time 5 http://127.0.0.1:5173/api/program
+```
 
-## v0.3.4 StackBlitz local API bridge
+Expected: `401 Unauthorized` with `{"error":"UNAUTHENTICATED"}`.
 
-- Removed the Netlify Vite dev plugin from the StackBlitz development path.
-- Added `scripts/vite-local-functions.ts`, a Vite-only middleware bridge that invokes the existing Netlify Function handlers at `/.netlify/functions/*` during local development.
-- Production deployment is unchanged: Netlify still deploys the same `netlify/functions/*.ts` handlers from `netlify.toml`.
-- Local server-only Supabase values are loaded from `.env` into the Vite server process; only `VITE_*` variables are exposed to browser code.
-
-## v0.3.5 StackBlitz API path isolation
-
-- Local development now uses `/api/*` instead of the Netlify-reserved `/.netlify/functions/*` path.
-- Vite middleware serves `/api/*` directly in StackBlitz.
-- Netlify production redirects `/api/*` to the corresponding Netlify Function before the SPA fallback.
-- `scripts/**/*.ts` is included in the node TypeScript build project so the local bridge is verified by `tsc -b`.
-
-
-## v0.3.6 StackBlitz local API server
-
-- Replaced the Vite `ssrLoadModule()` middleware bridge with a dedicated local API server on port 8787.
-- `npm run dev` starts both the API server and Vite together via `concurrently`.
-- Vite proxies `/api/*` to `http://127.0.0.1:8787`; browser code remains same-origin.
-- The local API server imports the existing Netlify handlers directly, so local and production request logic stay aligned.
-- Production remains unchanged: Netlify redirects `/api/*` to deployed Netlify Functions.
-- Acceptance check: `curl -i http://localhost:5173/api/program` should return quickly (typically `401` without an auth token), never hang or return Vite's SPA 404.
-
-## v0.3.8 async API dispatch regression
-
-v0.3.8 made the local HTTP callback await `handleApi(req, res, pathname)` and added a regression check against fire-and-forget dispatch. StackBlitz runtime testing still produced socket hang-ups, so v0.3.9 replaced the embedded-Vite runtime instead of treating the await change as the final fix.
-
-## v0.3.7 single-port local development
-
-- Replaced the two-process Vite + port-8787 API arrangement with one local development server on port 5173.
-- `/api/*` is handled directly by the existing server handler modules; all non-API traffic is delegated to Vite middleware.
-- Removed the Vite proxy, `concurrently`, `dev:api`, `dev:web`, and `scripts/local-api-server.ts`.
-- Netlify production routing remains unchanged.
-- Acceptance check: `curl -i --max-time 5 http://127.0.0.1:5173/api/program` returns promptly, normally `401` without an auth token.
-
-## v0.3.9 static local runtime
-
-- Vite is build-only during StackBlitz local development.
-- `npm run dev` runs `vite build` and then one Node HTTP server on port 5173.
-- The local runtime contains no Vite middleware mode, proxy, SSR module loading, or second API port.
-- `/api/*` invokes the same handler modules used by Netlify production.
-- Non-API traffic is served from `dist/` with React SPA fallback to `dist/index.html`.
-- Regression coverage rejects the previous embedded-Vite runtime patterns.
-- Acceptance check: `curl -i --max-time 5 http://127.0.0.1:5173/api/program` must return promptly, normally `401` with `{"error":"UNAUTHENTICATED"}` when no auth token is supplied.
-
-
-## v0.4.0 auth verification cleanup
-
-- Added a dedicated `lib/auth/supabase-verifier.ts` boundary for user JWT verification.
-- User JWT validation calls Supabase Auth `/auth/v1/user` with the publishable API key in `apikey` and the session JWT in `Authorization`.
-- `netlify/functions/_shared/auth.ts` no longer imports or uses `getAdminClient()` for user authentication.
-- The existing `SUPABASE_SECRET_KEY` admin client remains unchanged for privileged repositories and storage.
-- Added regression coverage for the exact Auth headers, rejected/malformed token responses, and the separation between user verification and the admin client.
-- Added a safe `.env.example` with placeholders only; no real credentials are packaged.
+The real acceptance test is signing in through the Preview and completing **Create Program** after the new Supabase migration is applied.

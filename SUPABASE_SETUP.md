@@ -1,28 +1,34 @@
-# Supabase setup
+# Supabase setup — v0.6.0
 
-1. Create a Supabase project.
-2. Open SQL Editor and run `supabase/migrations/202609090001_initial.sql`.
-3. In StackBlitz encrypted environment variables add `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY`.
-4. In Netlify environment variables add `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_URL`, `SUPABASE_SECRET_KEY`, and `SUPABASE_EVIDENCE_BUCKET=volleyball-evidence`.
-5. Enable email/password auth in Supabase Authentication.
-6. Deploy through Netlify. Privileged roster/schedule/match imports run only through Netlify Functions using the server-only secret key.
+## Existing project
 
+1. Keep the existing Supabase project and existing `202609090001_initial.sql` schema.
+2. Open Supabase **SQL Editor**.
+3. Create a new query and paste the full contents of `supabase/migrations/202609120001_user_scoped_rls.sql`.
+4. Run it once. The migration is idempotent and can be re-run if necessary.
+5. In StackBlitz `.env`, keep only the browser-safe development values:
 
-### StackBlitz local server
+```text
+VITE_SUPABASE_URL=<your project URL>
+VITE_SUPABASE_PUBLISHABLE_KEY=<your publishable key>
+```
 
-Keep the server-only `SUPABASE_URL`, `SUPABASE_SECRET_KEY`, and `SUPABASE_EVIDENCE_BUCKET` values in StackBlitz's encrypted `.env`. The local API process loads `.env` with Node's built-in environment-file loader; only `VITE_*` values are exposed to browser code.
+`SUPABASE_SECRET_KEY` is not used by the StackBlitz development path and should be removed from StackBlitz after v0.6.0 is installed.
 
-### v0.3.8 local development
+## What the new migration does
 
-`npm run dev` now runs the frontend and local API on the same port (5173). The local server loads `.env` when present and uses the server-only Supabase values for `/api/*`; Vite still exposes only `VITE_*` values to browser code.
+- Keeps RLS enabled on all canonical/evidence/analytics tables.
+- Grants authenticated users access only to programs where they have an active membership.
+- Adds helper functions in a private schema for program/team/player/match scope.
+- Adds an authenticated `create_volleyball_program(...)` RPC to create the initial team, program, season, owner membership, and activity row atomically.
+- Adds private Storage policies for `volleyball-evidence` paths under `programs/<program_id>/...`.
 
-### v0.3.9 StackBlitz runtime
+## Normal workflow after this migration
 
-`npm run dev` builds the browser client and then serves both the built app and `/api/*` from one plain Node server on port 5173. Vite is not running as a development server. The Node process loads server-only Supabase values from `.env` when present; browser-safe `VITE_*` values are embedded by the Vite build.
+1. Push a code build to GitHub.
+2. Refresh StackBlitz.
+3. Run `npm run verify`.
+4. Run `npm run dev`.
+5. Test the app in StackBlitz.
 
-
-### v0.4.0 user-token verification
-
-No new environment variable is required. The local and production API handlers verify each incoming Supabase user JWT against the Auth `/auth/v1/user` endpoint using `VITE_SUPABASE_PUBLISHABLE_KEY` as the `apikey`. `SUPABASE_SECRET_KEY` remains server-only and is used only by privileged database/storage clients.
-
-The repository includes `.env.example` with placeholders only. Keep the real `.env` private in StackBlitz/host environment storage and out of Git.
+Netlify is not required for the ordinary development/test loop.
