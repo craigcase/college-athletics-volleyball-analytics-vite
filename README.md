@@ -1,5 +1,9 @@
 # College Athletics Consulting — Volleyball Analytics
 
+## v0.6.3 public-source Edge fetch relay
+
+StackBlitz URL imports now use one authenticated Supabase Edge Function (`fetch-public-source`) when the WebContainer cannot act as a normal internet-facing server. The relay only retrieves validated public HTTP(S) evidence and returns the bytes to the existing parser/persistence pipeline; roster, schedule, match reconciliation, analytics, and database writes remain in the normal application code. This is a one-time Supabase deployment and does not change the regular GitHub → refresh StackBlitz → guided-test workflow. See `SUPABASE_EDGE_FUNCTION_SETUP.md`.
+
 Current migration build **v0.6.1** restores the fast development loop: **GitHub → StackBlitz → guided testing**. StackBlitz runs the React app and the local API on one port, but database/storage access is scoped to the signed-in Supabase user through Row Level Security. No Supabase secret key is required for local development.
 
 ## StackBlitz development

@@ -192,3 +192,36 @@ test('StackBlitz user database scope survives async network boundaries without A
   assert.match(dbClient, /finally\s*\{[\s\S]*localUserScope = undefined[\s\S]*release\(\)/);
   assert.match(dbClient, /return await work\(\)/);
 });
+
+
+test('authenticated public-source imports use the Supabase Edge fetch relay in StackBlitz', async () => {
+  const fetchSource = await text('../../lib/ingestion/fetch-source.ts');
+  assert.match(fetchSource, /fetch-public-source/);
+  assert.match(fetchSource, /SUPABASE_DB_ACCESS_MODE/);
+  assert.match(fetchSource, /Authorization/);
+  assert.match(fetchSource, /apikey/);
+  assert.match(fetchSource, /x-source-url/);
+
+  for (const path of [
+    '../../netlify/functions/roster-import.ts',
+    '../../netlify/functions/schedule-import.ts',
+    '../../netlify/functions/match-import-url.ts',
+  ]) {
+    const source = await text(path);
+    assert.match(source, /accessToken/);
+    assert.match(source, /fetchEvidenceUrl\([^)]*accessToken/);
+  }
+
+  const auth = await text('../../netlify/functions/_shared/auth.ts');
+  assert.match(auth, /return \{ user, program, accessToken: token \}/);
+
+  const edge = await text('../../supabase/functions/fetch-public-source/index.ts');
+  assert.match(edge, /withSupabase/);
+  assert.match(edge, /auth:\s*['"]user['"]/);
+  assert.match(edge, /Only HTTP\(S\) sources are allowed/);
+  assert.match(edge, /Private or local network destinations are not allowed/);
+  assert.match(edge, /Too many redirects/);
+  assert.match(edge, /25 \* 1024 \* 1024/);
+  assert.match(edge, /x-source-url/);
+  assert.match(edge, /x-source-content-type/);
+});

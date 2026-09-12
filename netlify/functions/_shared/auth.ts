@@ -26,5 +26,5 @@ export async function requireProgramContext(request: Request) {
   const user = await requireCurrentUser(request);
   const program = await getActiveProgramForUser(user);
   if (!program) throw new Error('PROGRAM_SETUP_REQUIRED');
-  return { user, program };
+  return { user, program, accessToken: token };
 }

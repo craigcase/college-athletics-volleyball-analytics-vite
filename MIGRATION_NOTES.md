@@ -1,5 +1,9 @@
 # Migration Notes — v0.6.1
 
+## v0.6.3 public-source Edge fetch relay
+
+StackBlitz URL imports now use one authenticated Supabase Edge Function (`fetch-public-source`) when the WebContainer cannot act as a normal internet-facing server. The relay only retrieves validated public HTTP(S) evidence and returns the bytes to the existing parser/persistence pipeline; roster, schedule, match reconciliation, analytics, and database writes remain in the normal application code. This is a one-time Supabase deployment and does not change the regular GitHub → refresh StackBlitz → guided-test workflow. See `SUPABASE_EDGE_FUNCTION_SETUP.md`.
+
 v0.6.1 fixes the StackBlitz request-scope regression discovered after the v0.6.0 RLS migration.
 
 The local API wrapper and every database repository now import the same request-scoped Supabase client module using canonical `.js` ESM specifiers. This keeps the signed-in user's `AsyncLocalStorage` database scope intact from the HTTP request wrapper through repository calls.
