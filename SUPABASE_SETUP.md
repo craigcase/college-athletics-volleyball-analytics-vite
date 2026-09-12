@@ -6,3 +6,8 @@
 4. In Netlify environment variables add `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_URL`, `SUPABASE_SECRET_KEY`, and `SUPABASE_EVIDENCE_BUCKET=volleyball-evidence`.
 5. Enable email/password auth in Supabase Authentication.
 6. Deploy through Netlify. Privileged roster/schedule/match imports run only through Netlify Functions using the server-only secret key.
+
+
+### StackBlitz local server
+
+Keep the server-only `SUPABASE_URL`, `SUPABASE_SECRET_KEY`, and `SUPABASE_EVIDENCE_BUCKET` values in StackBlitz's encrypted `.env`. The local API process loads `.env` with Node's built-in environment-file loader; only `VITE_*` values are exposed to browser code.

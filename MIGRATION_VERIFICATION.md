@@ -38,3 +38,13 @@
 - Vite middleware serves `/api/*` directly in StackBlitz.
 - Netlify production redirects `/api/*` to the corresponding Netlify Function before the SPA fallback.
 - `scripts/**/*.ts` is included in the node TypeScript build project so the local bridge is verified by `tsc -b`.
+
+
+## v0.3.6 StackBlitz local API server
+
+- Replaced the Vite `ssrLoadModule()` middleware bridge with a dedicated local API server on port 8787.
+- `npm run dev` starts both the API server and Vite together via `concurrently`.
+- Vite proxies `/api/*` to `http://127.0.0.1:8787`; browser code remains same-origin.
+- The local API server imports the existing Netlify handlers directly, so local and production request logic stay aligned.
+- Production remains unchanged: Netlify redirects `/api/*` to deployed Netlify Functions.
+- Acceptance check: `curl -i http://localhost:5173/api/program` should return quickly (typically `401` without an auth token), never hang or return Vite's SPA 404.
