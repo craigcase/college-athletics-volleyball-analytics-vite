@@ -1,32 +1,32 @@
-# React + TypeScript + Vite
+# College Athletics Consulting — Volleyball Analytics
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Migration build **v0.3.0** replaces the abandoned Sites/Next runtime with a clean **Vite + React + TypeScript** frontend, **Supabase** for Postgres/Auth/Storage, and **Netlify Functions** for privileged ingestion and analytics access.
 
-Currently, two official plugins are available:
+## Local / StackBlitz frontend
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run verify
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Without Supabase browser environment variables, the app intentionally renders a backend-setup screen instead of crashing.
+
+## Environment variables
+
+Browser-safe:
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_PUBLISHABLE_KEY`
+
+Netlify Functions only:
+- `SUPABASE_URL`
+- `SUPABASE_SECRET_KEY`
+- `SUPABASE_EVIDENCE_BUCKET=volleyball-evidence`
+
+Never commit real secrets.
+
+## Supabase
+Run `supabase/migrations/202609090001_initial.sql` in the Supabase SQL editor. It creates the canonical volleyball schema and the `volleyball-evidence` storage bucket.
+
+## Architecture boundary
+Deterministic TypeScript calculates statistics. Coach's Edge reads stored deterministic results and may explain them; it does not invent or calculate statistics itself.

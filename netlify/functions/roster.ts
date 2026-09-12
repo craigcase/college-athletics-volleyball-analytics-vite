@@ -1,0 +1,2 @@
+import { listRoster } from '../../db/repositories/roster.js';import { requireProgramContext } from './_shared/auth.js';import { json,message,statusFor } from './_shared/http.js';
+export default async(request:Request)=>{try{const{program}=await requireProgramContext(request);return json({roster:await listRoster(program.programId,program.seasonId)});}catch(e){const m=message(e,'Roster read failed.');return json({error:m},statusFor(m));}}

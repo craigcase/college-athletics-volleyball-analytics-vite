@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "outDir": ".core-dist",
+    "rootDir": ".",
+    "declaration": false,
+    "sourceMap": false,
+    "types": []
+  },
+  "include": [
+    "lib/core/**/*.ts",
+    "lib/analytics/**/*.ts",
+    "lib/capabilities/**/*.ts",
+    "lib/coaches-edge/**/*.ts",
+    "lib/ingestion/**/*.ts",
+    "lib/validation/**/*.ts",
+    "scripts/core-test-entry.ts",
+    "lib/auth/**/*.ts",
+    "lib/program/**/*.ts"
+  ],
+  "exclude": [
+    "lib/ingestion/fetch-source.ts",
+    "lib/ingestion/storage.ts",
+    "lib/auth/program-context.ts",
+    "lib/auth/server-current-user.ts"
+  ]
+}

@@ -1,0 +1,2 @@
+import { listMatches } from '../../db/repositories/schedule.js';import { requireProgramContext } from './_shared/auth.js';import { json,message,statusFor } from './_shared/http.js';
+export default async(request:Request)=>{try{const{program}=await requireProgramContext(request);return json({matches:await listMatches(program.programId,program.seasonId)});}catch(e){const m=message(e,'Matches read failed.');return json({error:m},statusFor(m));}}
