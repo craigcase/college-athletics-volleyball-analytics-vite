@@ -37,3 +37,7 @@ Netlify is not required for the ordinary development/test loop.
 ## v0.6.1 note
 
 There is no new database migration for v0.6.1. If `202609120001_user_scoped_rls.sql` has already been run successfully, do not create or run another SQL query for this code fix.
+
+## v0.6.2 StackBlitz request scope
+
+StackBlitz local API requests no longer rely on Node AsyncLocalStorage. WebContainer requests are serialized and hold one explicit user-scoped Supabase client for the full request, including across browser-hosted network awaits. Local development remains secret-key-disabled. No new Supabase migration is required for v0.6.2.

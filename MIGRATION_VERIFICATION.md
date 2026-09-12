@@ -37,3 +37,7 @@ curl -i --max-time 5 http://127.0.0.1:5173/api/program
 Expected: `401 Unauthorized` with `{"error":"UNAUTHENTICATED"}`.
 
 The acceptance test is signing in through the Preview and completing **Create Program** without a secret-key browser error.
+
+## v0.6.2 StackBlitz request scope
+
+StackBlitz local API requests no longer rely on Node AsyncLocalStorage. WebContainer requests are serialized and hold one explicit user-scoped Supabase client for the full request, including across browser-hosted network awaits. Local development remains secret-key-disabled. No new Supabase migration is required for v0.6.2.

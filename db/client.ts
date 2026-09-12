@@ -1,4 +1,3 @@
-import { AsyncLocalStorage } from 'node:async_hooks';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 
 type RequestDbScope = {
@@ -9,7 +8,8 @@ type RequestDbScope = {
   client?: SupabaseClient;
 };
 
-const requestDb = new AsyncLocalStorage<RequestDbScope>();
+let localUserScope: RequestDbScope | undefined;
+let localRequestQueue: Promise<void> = Promise.resolve();
 let adminClient: SupabaseClient | undefined;
 
 function firstConfigured(...values: Array<string | undefined>) {
@@ -31,25 +31,49 @@ function userScopedConfig(accessToken: string): RequestDbScope {
   };
 }
 
-export function runWithUserAccessToken<T>(accessToken: string, work: () => T): T {
-  return requestDb.run(userScopedConfig(accessToken), work);
+function scopedClient(scope: RequestDbScope) {
+  if (!scope.client) {
+    scope.client = createClient(scope.url, scope.publishableKey, {
+      global: { headers: { Authorization: `Bearer ${scope.accessToken}` } },
+      auth: { autoRefreshToken: false, persistSession: false, detectSessionInUrl: false },
+    });
+  }
+  return scope.client;
+}
+
+/**
+ * StackBlitz WebContainers do not reliably preserve Node async request context
+ * across browser-hosted network awaits. Local API requests are therefore
+ * serialized and use one explicit module-local user scope for the duration
+ * of each request. This helper is only used by scripts/local-dev-server.ts.
+ */
+export async function runWithUserAccessToken<T>(
+  accessToken: string,
+  work: () => T | Promise<T>,
+): Promise<T> {
+  const scope = userScopedConfig(accessToken);
+  const previousRequest = localRequestQueue;
+  let release!: () => void;
+  localRequestQueue = new Promise<void>(resolve => {
+    release = resolve;
+  });
+
+  await previousRequest;
+  localUserScope = scope;
+  try {
+    return await work();
+  } finally {
+    localUserScope = undefined;
+    release();
+  }
 }
 
 export function hasUserDbScope() {
-  return Boolean(requestDb.getStore());
+  return Boolean(localUserScope);
 }
 
 export function getAdminClient() {
-  const scope = requestDb.getStore();
-  if (scope) {
-    if (!scope.client) {
-      scope.client = createClient(scope.url, scope.publishableKey, {
-        global: { headers: { Authorization: `Bearer ${scope.accessToken}` } },
-        auth: { autoRefreshToken: false, persistSession: false, detectSessionInUrl: false },
-      });
-    }
-    return scope.client;
-  }
+  if (localUserScope) return scopedClient(localUserScope);
 
   if (process.env.SUPABASE_DB_ACCESS_MODE === 'user-scoped-only') {
     throw new Error('SUPABASE_REQUEST_NOT_SCOPED');
@@ -66,5 +90,5 @@ export function getAdminClient() {
 }
 
 export function getEvidenceBucket() {
-  return requestDb.getStore()?.evidenceBucket || process.env.SUPABASE_EVIDENCE_BUCKET?.trim() || 'volleyball-evidence';
+  return localUserScope?.evidenceBucket || process.env.SUPABASE_EVIDENCE_BUCKET?.trim() || 'volleyball-evidence';
 }

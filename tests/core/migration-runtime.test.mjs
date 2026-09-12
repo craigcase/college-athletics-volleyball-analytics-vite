@@ -107,7 +107,9 @@ test('safe Supabase environment template is packaged without real credentials', 
 
 test('local StackBlitz API uses authenticated user-scoped Supabase access instead of the secret key', async () => {
   const dbClient = await text('../../db/client.ts');
-  assert.match(dbClient, /AsyncLocalStorage/);
+  assert.doesNotMatch(dbClient, /AsyncLocalStorage/);
+  assert.match(dbClient, /localUserScope/);
+  assert.match(dbClient, /localRequestQueue/);
   assert.match(dbClient, /runWithUserAccessToken/);
   assert.match(dbClient, /VITE_SUPABASE_PUBLISHABLE_KEY/);
   assert.match(dbClient, /Authorization/);
@@ -177,4 +179,16 @@ test('StackBlitz local runtime cannot fall back to the Supabase secret client', 
   const modeGuard = dbClient.indexOf('SUPABASE_DB_ACCESS_MODE');
   const secretRead = dbClient.indexOf('SUPABASE_SECRET_KEY');
   assert.ok(modeGuard >= 0 && secretRead >= 0 && modeGuard < secretRead, 'user-scoped-only guard must run before reading the secret key');
+});
+
+
+test('StackBlitz user database scope survives async network boundaries without AsyncLocalStorage', async () => {
+  const dbClient = await text('../../db/client.ts');
+  assert.doesNotMatch(dbClient, /AsyncLocalStorage/);
+  assert.match(dbClient, /let localUserScope/);
+  assert.match(dbClient, /let localRequestQueue/);
+  assert.match(dbClient, /await previousRequest/);
+  assert.match(dbClient, /localUserScope = scope/);
+  assert.match(dbClient, /finally\s*\{[\s\S]*localUserScope = undefined[\s\S]*release\(\)/);
+  assert.match(dbClient, /return await work\(\)/);
 });

@@ -46,3 +46,7 @@ Coach's Edge reads stored deterministic analytics. It does not invent or calcula
 v0.6.1 normalizes every import of the request-scoped Supabase database client to the same ESM module path (`db/client.js`). This prevents StackBlitz/tsx from creating separate module instances where the API wrapper sets an `AsyncLocalStorage` scope in one instance but a repository reads from another. Local development also forces `SUPABASE_DB_ACCESS_MODE=user-scoped-only` and removes `SUPABASE_SECRET_KEY` from the running process before requests are handled.
 
 There is **no new Supabase SQL migration** for v0.6.1. If `202609120001_user_scoped_rls.sql` already returned `Success. No rows returned`, move directly to code verification and Program Setup testing.
+
+## v0.6.2 StackBlitz request scope
+
+StackBlitz local API requests no longer rely on Node AsyncLocalStorage. WebContainer requests are serialized and hold one explicit user-scoped Supabase client for the full request, including across browser-hosted network awaits. Local development remains secret-key-disabled. No new Supabase migration is required for v0.6.2.
