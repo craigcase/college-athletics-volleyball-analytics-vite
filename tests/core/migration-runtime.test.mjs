@@ -19,9 +19,13 @@ test('runtime is Vite React + Supabase + Netlify with no Next/Sites/Cloudflare d
   assert.equal(pkg.scripts.verify, 'npm test && npm run typecheck && npm run build');
   const viteConfig = await text('../../vite.config.ts');
   assert.match(viteConfig, /@vitejs\/plugin-react/);
-  assert.equal(typeof all['@netlify/vite-plugin'], 'string');
-  assert.match(viteConfig, /@netlify\/vite-plugin/);
-  assert.match(viteConfig, /netlify\(\)/);
+  assert.equal(all['@netlify/vite-plugin'], undefined);
+  assert.match(viteConfig, /localFunctionBridge/);
+  const bridge = await text('../../scripts/vite-local-functions.ts');
+  assert.match(bridge, /\.netlify\/functions/);
+  for (const fn of ['program','roster-import','schedule-import','match-import-url','match-import-file','coaches-edge-query','roster','schedule','matches','match-summary']) {
+    assert.match(bridge, new RegExp(`['\"]${fn}['\"]`));
+  }
   const main = await text('../../src/main.tsx');
   assert.match(main, /BrowserRouter/);
   const css = await text('../../src/styles.css');

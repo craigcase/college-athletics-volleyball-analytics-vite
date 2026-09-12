@@ -34,3 +34,7 @@ Deterministic TypeScript calculates statistics. Coach's Edge reads stored determ
 ## StackBlitz API development
 
 `npm run dev` uses the official Netlify Vite plugin to emulate Netlify Functions inside the Vite dev server. Calls to `/.netlify/functions/*` therefore work in StackBlitz without running a second server.
+
+### StackBlitz local API development
+
+`npm run dev` uses a small Vite middleware bridge for `/.netlify/functions/*`, so StackBlitz can test the full app without running Netlify CLI or Netlify's local emulator. Production still deploys the same handlers as Netlify Functions.
