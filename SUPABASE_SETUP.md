@@ -15,3 +15,7 @@ Keep the server-only `SUPABASE_URL`, `SUPABASE_SECRET_KEY`, and `SUPABASE_EVIDEN
 ### v0.3.8 local development
 
 `npm run dev` now runs the frontend and local API on the same port (5173). The local server loads `.env` when present and uses the server-only Supabase values for `/api/*`; Vite still exposes only `VITE_*` values to browser code.
+
+### v0.3.9 StackBlitz runtime
+
+`npm run dev` builds the browser client and then serves both the built app and `/api/*` from one plain Node server on port 5173. Vite is not running as a development server. The Node process loads server-only Supabase values from `.env` when present; browser-safe `VITE_*` values are embedded by the Vite build.

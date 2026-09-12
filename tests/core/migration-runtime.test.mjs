@@ -4,7 +4,7 @@ import { readFile, access } from 'node:fs/promises';
 
 const text = async path => readFile(new URL(path, import.meta.url), 'utf8');
 
-test('runtime is Vite React + Supabase + Netlify with no Next/Sites/Cloudflare dependency', async () => {
+test('runtime is Vite React + Supabase + Netlify with static single-port local development', async () => {
   const pkg = JSON.parse(await text('../../package.json'));
   const all = {...pkg.dependencies, ...pkg.devDependencies};
   assert.equal(typeof all.vite, 'string');
@@ -14,7 +14,8 @@ test('runtime is Vite React + Supabase + Netlify with no Next/Sites/Cloudflare d
   for (const removed of ['next','@supabase/ssr','vinext','@openai/sites-vite-plugin','@cloudflare/vite-plugin','@cloudflare/workers-types','wrangler']) {
     assert.equal(all[removed], undefined, `${removed} should be removed`);
   }
-  assert.equal(pkg.scripts.dev, 'tsx watch scripts/local-dev-server.ts');
+  assert.equal(pkg.scripts.dev, 'npm run build:client && tsx scripts/local-dev-server.ts');
+  assert.equal(pkg.scripts['build:client'], 'vite build');
   assert.equal(pkg.scripts['dev:web'], undefined);
   assert.equal(pkg.scripts['dev:api'], undefined);
   assert.match(pkg.scripts.build, /vite build/);
@@ -27,24 +28,23 @@ test('runtime is Vite React + Supabase + Netlify with no Next/Sites/Cloudflare d
   assert.doesNotMatch(viteConfig, /localFunctionBridge|vite-local-functions|proxy|8787/);
   const localDev = await text('../../scripts/local-dev-server.ts');
   assert.match(localDev, /createServer as createHttpServer/);
-  assert.match(localDev, /createServer as createViteServer/);
-  assert.match(localDev, /middlewareMode:\s*true/);
-  assert.match(localDev, /ws:\s*\{\s*server/);
+  assert.match(localDev, /node:fs\/promises/);
+  assert.match(localDev, /node:path/);
   assert.match(localDev, /pathname\.startsWith\(['"]\/api\/['"]\)/);
-  assert.match(localDev, /createHttpServer\(async \(req, res\) =>/);
-  assert.match(localDev, /await handleApi\(req, res, pathname\)/);
-  assert.doesNotMatch(localDev, /void handleApi\(req, res, pathname\)/);
+  assert.match(localDev, /dist/);
+  assert.match(localDev, /index\.html/);
   assert.match(localDev, /listen\(port, ['"]0\.0\.0\.0['"]/);
   assert.match(localDev, /const port = Number\(process\.env\.PORT \|\| 5173\)/);
-  assert.doesNotMatch(localDev, /8787|LOCAL_API_PORT/);
+  assert.doesNotMatch(localDev, /createViteServer|middlewareMode|vite\.middlewares|ssrFixStacktrace|ws:\s*\{|8787|LOCAL_API_PORT/);
   await assert.rejects(access(new URL('../../scripts/local-api-server.ts', import.meta.url)));
+  await assert.rejects(access(new URL('../../scripts/vite-local-functions.ts', import.meta.url)));
   const api = await text('../../src/lib/api.ts');
   assert.match(api, /const functionsBase='\/api'/);
   const netlify = await text('../../netlify.toml');
   assert.match(netlify, /from = "\/api\/\*"[\s\S]*to = "\/\.netlify\/functions\/:splat"/);
   assert.ok(netlify.indexOf('from = "/api/*"') < netlify.indexOf('from = "/*"'), 'API redirect must precede SPA fallback');
   for (const fn of ['program','roster-import','schedule-import','match-import-url','match-import-file','coaches-edge-query','roster','schedule','matches','match-summary']) {
-    assert.match(localDev, new RegExp(`['\"]${fn}['\"]`));
+    assert.match(localDev, new RegExp(`['"]${fn}['"]`));
   }
   const main = await text('../../src/main.tsx');
   assert.match(main, /BrowserRouter/);

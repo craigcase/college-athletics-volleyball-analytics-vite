@@ -1,13 +1,14 @@
 {
   "name": "college-athletics-volleyball-analytics-vite",
-  "version": "0.3.8",
+  "version": "0.3.9",
   "private": true,
   "type": "module",
   "engines": {
     "node": ">=22.13.0"
   },
   "scripts": {
-    "dev": "tsx watch scripts/local-dev-server.ts",
+    "dev": "npm run build:client && tsx scripts/local-dev-server.ts",
+    "build:client": "vite build",
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 0.0.0.0",
     "typecheck": "tsc --noEmit",

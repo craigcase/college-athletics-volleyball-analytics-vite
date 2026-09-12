@@ -16,3 +16,7 @@ StackBlitz WebContainers require the custom HTTP request callback to remain atta
 ### v0.3.7 single-port StackBlitz development
 
 Local development now uses one Node HTTP server on port 5173. The server handles `/api/*` directly with the existing production handler modules and delegates all other traffic to Vite middleware. The separate port-8787 API process and Vite proxy are removed. Netlify remains production-only.
+
+### v0.3.9 static single-port StackBlitz runtime
+
+After repeated WebContainer failures at the Vite/server boundary, local development no longer embeds Vite at runtime. `npm run dev` builds the React client into `dist/` and then starts one plain Node HTTP server on port 5173. `/api/*` is dispatched directly to the existing production handler modules; frontend assets and SPA routes are served from `dist/`. The API adapter is based on the standalone v0.3.6 server path that already returned the expected unauthenticated response. Netlify production behavior is unchanged.

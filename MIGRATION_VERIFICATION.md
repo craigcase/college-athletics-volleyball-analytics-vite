@@ -1,4 +1,4 @@
-# Migration verification — v0.3.2
+# Migration verification — v0.3.9
 
 - Clean runtime: Vite + React + TypeScript.
 - No Next.js, Sites, Cloudflare Workers, D1, R2, Wrangler, Vinext, or Sites auth runtime.
@@ -60,3 +60,13 @@ The local HTTP server request callback is asynchronous and explicitly awaits `ha
 - Removed the Vite proxy, `concurrently`, `dev:api`, `dev:web`, and `scripts/local-api-server.ts`.
 - Netlify production routing remains unchanged.
 - Acceptance check: `curl -i --max-time 5 http://127.0.0.1:5173/api/program` returns promptly, normally `401` without an auth token.
+
+## v0.3.9 static local runtime
+
+- Vite is build-only during StackBlitz local development.
+- `npm run dev` runs `vite build` and then one Node HTTP server on port 5173.
+- The local runtime contains no Vite middleware mode, proxy, SSR module loading, or second API port.
+- `/api/*` invokes the same handler modules used by Netlify production.
+- Non-API traffic is served from `dist/` with React SPA fallback to `dist/index.html`.
+- Regression coverage rejects the previous embedded-Vite runtime patterns.
+- Acceptance check: `curl -i --max-time 5 http://127.0.0.1:5173/api/program` must return promptly, normally `401` with `{"error":"UNAUTHENTICATED"}` when no auth token is supplied.

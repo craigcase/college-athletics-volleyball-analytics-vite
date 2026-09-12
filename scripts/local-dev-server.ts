@@ -1,6 +1,7 @@
 import { createServer as createHttpServer, type IncomingMessage, type ServerResponse } from 'node:http';
+import { readFile, stat } from 'node:fs/promises';
+import { extname, resolve, sep } from 'node:path';
 import { loadEnvFile } from 'node:process';
-import { createServer as createViteServer, type ViteDevServer } from 'vite';
 import program from '../netlify/functions/program.js';
 import rosterImport from '../netlify/functions/roster-import.js';
 import scheduleImport from '../netlify/functions/schedule-import.js';
@@ -34,7 +35,27 @@ const handlers: Record<string, Handler> = {
 };
 
 const port = Number(process.env.PORT || 5173);
-let vite: ViteDevServer | undefined;
+const distDir = resolve(process.cwd(), 'dist');
+const indexFile = resolve(distDir, 'index.html');
+
+const contentTypes: Record<string, string> = {
+  '.html': 'text/html; charset=utf-8',
+  '.js': 'text/javascript; charset=utf-8',
+  '.mjs': 'text/javascript; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
+  '.json': 'application/json; charset=utf-8',
+  '.svg': 'image/svg+xml',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.gif': 'image/gif',
+  '.webp': 'image/webp',
+  '.ico': 'image/x-icon',
+  '.woff': 'font/woff',
+  '.woff2': 'font/woff2',
+  '.txt': 'text/plain; charset=utf-8',
+  '.map': 'application/json; charset=utf-8',
+};
 
 async function readBody(req: IncomingMessage): Promise<Buffer | undefined> {
   if (req.method === 'GET' || req.method === 'HEAD') return undefined;
@@ -70,9 +91,11 @@ async function writeResponse(response: Response, res: ServerResponse) {
 }
 
 function writeJson(res: ServerResponse, status: number, payload: unknown) {
+  const body = Buffer.from(JSON.stringify(payload));
   res.statusCode = status;
   res.setHeader('content-type', 'application/json; charset=utf-8');
-  res.end(JSON.stringify(payload));
+  res.setHeader('content-length', String(body.length));
+  res.end(body);
 }
 
 async function handleApi(req: IncomingMessage, res: ServerResponse, pathname: string) {
@@ -92,47 +115,98 @@ async function handleApi(req: IncomingMessage, res: ServerResponse, pathname: st
     await writeResponse(response, res);
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Local API request failed.';
-    console.error(`[local-dev] ${message}`);
-    writeJson(res, 500, { error: message });
+    console.error(`[local-dev] API ${functionName}: ${message}`);
+    if (!res.headersSent) writeJson(res, 500, { error: message });
+    else res.end();
   }
 }
 
+function resolveStaticPath(pathname: string): string | undefined {
+  let decoded: string;
+  try {
+    decoded = decodeURIComponent(pathname);
+  } catch {
+    return undefined;
+  }
+
+  const relativePath = decoded.replace(/^\/+/, '');
+  const candidate = resolve(distDir, relativePath || 'index.html');
+  if (candidate !== distDir && !candidate.startsWith(`${distDir}${sep}`)) return undefined;
+  return candidate;
+}
+
+async function isFile(path: string): Promise<boolean> {
+  try {
+    return (await stat(path)).isFile();
+  } catch {
+    return false;
+  }
+}
+
+async function sendFile(req: IncomingMessage, res: ServerResponse, filePath: string) {
+  const body = await readFile(filePath);
+  const extension = extname(filePath).toLowerCase();
+  res.statusCode = 200;
+  res.setHeader('content-type', contentTypes[extension] || 'application/octet-stream');
+  res.setHeader('content-length', String(body.length));
+  res.setHeader('cache-control', 'no-store');
+  if (req.method === 'HEAD') res.end();
+  else res.end(body);
+}
+
+async function handleFrontend(req: IncomingMessage, res: ServerResponse, pathname: string) {
+  if (req.method !== 'GET' && req.method !== 'HEAD') {
+    writeJson(res, 405, { error: 'Method not allowed.' });
+    return;
+  }
+
+  const candidate = resolveStaticPath(pathname);
+  if (!candidate) {
+    writeJson(res, 400, { error: 'Invalid local frontend path.' });
+    return;
+  }
+
+  if (await isFile(candidate)) {
+    await sendFile(req, res, candidate);
+    return;
+  }
+
+  if (extname(pathname)) {
+    writeJson(res, 404, { error: 'Local frontend asset not found.' });
+    return;
+  }
+
+  if (!(await isFile(indexFile))) {
+    writeJson(res, 503, { error: 'Local frontend build is missing. Run npm run dev to rebuild dist/.' });
+    return;
+  }
+
+  await sendFile(req, res, indexFile);
+}
+
 const server = createHttpServer(async (req, res) => {
-  const pathname = new URL(req.url || '/', `http://127.0.0.1:${port}`).pathname;
-  if (pathname.startsWith('/api/')) {
-    await handleApi(req, res, pathname);
-    return;
+  try {
+    const pathname = new URL(req.url || '/', `http://127.0.0.1:${port}`).pathname;
+    if (pathname.startsWith('/api/')) {
+      await handleApi(req, res, pathname);
+      return;
+    }
+    await handleFrontend(req, res, pathname);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Local request failed.';
+    console.error(`[local-dev] ${message}`);
+    if (!res.headersSent) writeJson(res, 500, { error: message });
+    else res.end();
   }
-
-  if (!vite) {
-    writeJson(res, 503, { error: 'Vite dev middleware is still starting.' });
-    return;
-  }
-
-  vite.middlewares(req, res, error => {
-    if (!error || res.writableEnded) return;
-    vite?.ssrFixStacktrace(error);
-    console.error(error);
-    writeJson(res, 500, { error: 'Local frontend request failed.' });
-  });
-});
-
-vite = await createViteServer({
-  server: {
-    middlewareMode: true,
-    ws: { server },
-  },
-  appType: 'spa',
 });
 
 server.listen(port, '0.0.0.0', () => {
-  console.log(`[local-dev] app + API listening on http://localhost:${port}`);
+  console.log(`[local-dev] static app + API listening on http://localhost:${port}`);
 });
 
-const shutdown = async () => {
-  await vite?.close();
+const shutdown = () => {
   server.close(() => process.exit(0));
 };
 
-process.once('SIGINT', () => void shutdown());
-process.once('SIGTERM', () => void shutdown());
+process.once('SIGINT', shutdown);
+process.once('SIGTERM', shutdown);

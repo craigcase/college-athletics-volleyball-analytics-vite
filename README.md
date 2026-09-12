@@ -1,6 +1,6 @@
 # College Athletics Consulting — Volleyball Analytics
 
-Current migration build **v0.3.8** uses a clean **Vite + React + TypeScript** frontend, **Supabase** for Postgres/Auth/Storage, and **Netlify Functions** for privileged production HTTP operations.
+Current migration build **v0.3.9** uses a clean **Vite + React + TypeScript** frontend, **Supabase** for Postgres/Auth/Storage, and **Netlify Functions** for privileged production HTTP operations.
 
 ## StackBlitz / local development
 
@@ -10,7 +10,7 @@ npm run verify
 npm run dev
 ```
 
-`npm run dev` starts one local development server on port **5173**. That server handles `/api/*` with the same handler modules used by Netlify in production and serves the Vite/React app for every other request. There is no Netlify CLI, Netlify Vite plugin, second API port, or Vite proxy in local development.
+`npm run dev` first builds the Vite/React client into `dist/`, then starts one plain Node server on port **5173**. That server handles `/api/*` with the same handler modules used by Netlify in production and serves the built React app for every other request. Vite is build-only locally: there is no Vite dev server, Vite middleware, Netlify CLI, Netlify Vite plugin, second API port, or Vite proxy at runtime.
 
 A quick local API check is:
 
