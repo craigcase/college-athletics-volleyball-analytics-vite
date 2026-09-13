@@ -1,5 +1,14 @@
 # College Athletics Consulting — Volleyball Analytics
 
+
+## v0.6.5 Coach's Edge product hardening
+
+- Displays hitting percentage in volleyball-native notation such as `.153` instead of `15.3%`.
+- Expands current-match Coach's Edge questions across the six Analytics Engine 1.0.0 metrics: hitting percentage, kills, attack errors, attack attempts, aces, and service errors.
+- Supports our-team, opponent-only, and team-vs-opponent natural-language questions without calculating outside persisted deterministic metrics.
+- Distinguishes missing rotation evidence from rotation evidence that exists but is not yet supported by the Coach's Edge resolver.
+- Replaces developer-facing query-vocabulary language with coach-facing explanations.
+
 ## v0.6.3 public-source Edge fetch relay
 
 StackBlitz URL imports now use one authenticated Supabase Edge Function (`fetch-public-source`) when the WebContainer cannot act as a normal internet-facing server. The relay only retrieves validated public HTTP(S) evidence and returns the bytes to the existing parser/persistence pipeline; roster, schedule, match reconciliation, analytics, and database writes remain in the normal application code. This is a one-time Supabase deployment and does not change the regular GitHub → refresh StackBlitz → guided-test workflow. See `SUPABASE_EDGE_FUNCTION_SETUP.md`.

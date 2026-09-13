@@ -21,3 +21,14 @@ test('an existing roster clearly offers a refresh rather than destructive replac
   assert.match(page,/Refresh Roster/);
   assert.match(page,/Updates existing players without deleting identities, photos, or staff corrections\./);
 });
+
+test('Coach Edge UI uses coach-facing shortcut guidance rather than developer roadmap language', async () => {
+  const input=await readFile(new URL('../../src/components/CoachesEdgeInput.tsx',import.meta.url),'utf8');
+  assert.doesNotMatch(input,/broader resolver support/i);
+  assert.match(input,/@/);
+  assert.match(input,/#/);
+  assert.match(input,/\/home/);
+  assert.match(input,/\/away/);
+  assert.match(input,/\/neutral/);
+  assert.match(input,/normal coaching language/i);
+});
