@@ -18,15 +18,15 @@ test('natural language becomes a structured hitting-percentage comparison query'
 
 test('resolver supports the six implemented deterministic match metrics with natural subjects', () => {
   const cases = [
-    ['How many kills did we have?', 'kills', ['our_team']],
-    ['How many aces did Mayville have?', 'aces', ['opponent']],
-    ['Who had more attack errors?', 'attack_errors', ['our_team', 'opponent']],
-    ['What were our attack attempts?', 'attack_attempts', ['our_team']],
-    ['Compare our service errors to Mayville.', 'service_errors', ['our_team', 'opponent']],
-    ['What was our hitting percentage?', 'hitting_percentage', ['our_team']],
+    ['How many kills did we have?', 'kills', ['our_team'], undefined],
+    ['How many aces did Mayville have?', 'aces', ['opponent'], undefined],
+    ['Who had more attack errors?', 'attack_errors', ['our_team', 'opponent'], 'more'],
+    ['What were our attack attempts?', 'attack_attempts', ['our_team'], undefined],
+    ['Compare our service errors to Mayville.', 'service_errors', ['our_team', 'opponent'], undefined],
+    ['What was our hitting percentage?', 'hitting_percentage', ['our_team'], undefined],
   ];
 
-  for (const [question, metric, subjects] of cases) {
+  for (const [question, metric, subjects, comparison] of cases) {
     const result = resolveCoachQuestion(question, context);
     assert.equal(result.status, 'resolved', question);
     assert.deepEqual(result.query, {
@@ -34,6 +34,7 @@ test('resolver supports the six implemented deterministic match metrics with nat
       scope: { matchId: 'match-1' },
       metric,
       subjects,
+      ...(comparison ? { comparison } : {}),
     }, question);
   }
 });
@@ -145,5 +146,84 @@ test('presentation uses volleyball notation and evidence-aware coach-facing lang
   assert.equal(
     presentation.insufficientEvidenceMessage({ intent: 'compare_metric', scope: { matchId: 'match-1' }, metric: 'aces', subjects: ['our_team','opponent'] }),
     'The current evidence doesn’t include enough ace data to answer that question.'
+  );
+});
+
+
+test('resolver routes finding questions to deterministic stored findings', () => {
+  assert.deepEqual(
+    resolveCoachQuestion('Where did we have the biggest statistical edge against Mayville?', context),
+    {
+      status: 'resolved',
+      query: { intent: 'top_finding', scope: { matchId: 'match-1' }, findingSide: 'our_team' }
+    }
+  );
+  assert.deepEqual(
+    resolveCoachQuestion("What was Mayville's strongest advantage?", context),
+    {
+      status: 'resolved',
+      query: { intent: 'top_finding', scope: { matchId: 'match-1' }, findingSide: 'opponent' }
+    }
+  );
+  assert.deepEqual(
+    resolveCoachQuestion('What stood out in this match?', context),
+    {
+      status: 'resolved',
+      query: { intent: 'top_finding', scope: { matchId: 'match-1' }, findingSide: 'either' }
+    }
+  );
+});
+
+test('finding executor returns the highest ranked stored finding for the requested side', () => {
+  const result = executeAnalyticsQuery(
+    { intent: 'top_finding', scope: { matchId: 'match-1' }, findingSide: 'our_team' },
+    [
+      { matchId: 'match-1', subject: 'our_team', metric: 'kills', value: 51, engineVersion: '1.0.0' },
+      { matchId: 'match-1', subject: 'opponent', metric: 'kills', value: 46, engineVersion: '1.0.0' },
+    ],
+    [
+      { matchId: 'match-1', side: 'our_team', metric: 'aces', direction: 'our_advantage', magnitude: 2, rankScore: 1.5, ourValue: 8, opponentValue: 6, engineVersion: '1.0.0' },
+      { matchId: 'match-1', side: 'our_team', metric: 'kills', direction: 'our_advantage', magnitude: 5, rankScore: 3.75, ourValue: 51, opponentValue: 46, engineVersion: '1.0.0' },
+      { matchId: 'match-1', side: 'opponent', metric: 'service_errors', direction: 'opponent_advantage', magnitude: 3, rankScore: 2.25, ourValue: 7, opponentValue: 4, engineVersion: '1.0.0' },
+    ]
+  );
+  assert.equal(result.status, 'answered');
+  assert.equal(result.finding?.metric, 'kills');
+  assert.deepEqual(result.numbers, [51, 46]);
+});
+
+test('resolver recognizes natural tactical prescription phrasing', () => {
+  for (const question of [
+    'Who should we serve against Mayville?',
+    'Where should we serve against Mayville?',
+    'Who should we attack against Mayville?',
+    'Who should we target?',
+  ]) {
+    const result = resolveCoachQuestion(question, context);
+    assert.equal(result.status, 'unsupported', question);
+    assert.equal(result.reasonCode, 'prescriptive', question);
+  }
+});
+
+test('more and fewer comparison language is retained so presentation can answer the question directly', async () => {
+  const more = resolveCoachQuestion('Who had more attack errors?', context);
+  assert.equal(more.status, 'resolved');
+  assert.equal(more.query.comparison, 'more');
+
+  const presentation = await import('../../.core-dist/lib/coaches-edge/presentation.js');
+  assert.equal(
+    presentation.formatCoachAnswer(more.query, [25, 28], 'Mayville State University'),
+    'Mayville State University had more attack errors, 28 to our 25.'
+  );
+});
+
+test('finding presentation explains the promoted deterministic finding without inventing a conclusion', async () => {
+  const presentation = await import('../../.core-dist/lib/coaches-edge/presentation.js');
+  assert.equal(
+    presentation.formatFindingAnswer(
+      { matchId:'match-1', side:'our_team', metric:'kills', direction:'our_advantage', magnitude:5, rankScore:3.75, ourValue:51, opponentValue:46, engineVersion:'1.0.0' },
+      'Mayville State University'
+    ),
+    'Our strongest promoted statistical edge was kills: 51 to 46, a 5-kill advantage.'
   );
 });

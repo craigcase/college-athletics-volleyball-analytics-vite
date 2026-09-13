@@ -229,3 +229,17 @@ test('authenticated public-source imports use the Supabase Edge fetch relay in S
   assert.match(edge, /x-source-url/);
   assert.match(edge, /x-source-content-type/);
 });
+
+
+test('program identity settings migration adds school name and update audit support', async () => {
+  const sql = await text('../../supabase/migrations/202609130001_program_identity_settings.sql');
+  assert.match(sql, /add column if not exists school_name text/i);
+  assert.match(sql, /create_volleyball_program/i);
+  assert.match(sql, /p_school_name/i);
+  const programFn = await text('../../netlify/functions/program.ts');
+  assert.match(programFn, /PATCH/);
+  assert.match(programFn, /updateProgramIdentity/);
+  const repo = await text('../../db/repositories/programs.ts');
+  assert.match(repo, /program\.identity_updated/);
+  assert.match(repo, /school_name/);
+});

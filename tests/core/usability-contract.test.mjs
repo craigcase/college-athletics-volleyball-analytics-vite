@@ -32,3 +32,30 @@ test('Coach Edge UI uses coach-facing shortcut guidance rather than developer ro
   assert.match(input,/\/neutral/);
   assert.match(input,/normal coaching language/i);
 });
+
+
+test('program settings are available from the main app and keep season year out of ordinary identity editing', async () => {
+  const shell=await readFile(new URL('../../src/components/AppShell.tsx',import.meta.url),'utf8');
+  const app=await readFile(new URL('../../src/App.tsx',import.meta.url),'utf8');
+  const page=await readFile(new URL('../../src/pages/ProgramSettingsPage.tsx',import.meta.url),'utf8');
+  assert.match(shell,/Program Settings/);
+  assert.match(app,/\/settings/);
+  assert.match(page,/Full university name/);
+  assert.match(page,/School abbreviation/);
+  assert.match(page,/Mascot \/ team name/);
+  assert.match(page,/Primary color/);
+  assert.match(page,/Secondary color/);
+  assert.match(page,/Accent color/);
+  assert.doesNotMatch(page,/Season year/);
+  assert.match(page,/primary app identity/i);
+});
+
+test('a program lookup failure is not treated as no program', async () => {
+  const provider=await readFile(new URL('../../src/lib/program.tsx',import.meta.url),'utf8');
+  const app=await readFile(new URL('../../src/App.tsx',import.meta.url),'utf8');
+  assert.match(provider,/error:string\|null/);
+  assert.match(provider,/setError/);
+  assert.doesNotMatch(provider,/catch\s*\{\s*setProgram\(null\)/);
+  assert.match(app,/ProgramLoadError/);
+  assert.match(app,/Retry/);
+});

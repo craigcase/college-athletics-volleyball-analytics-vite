@@ -4,7 +4,7 @@ import { useAuth } from '../lib/auth';
 import type { ProgramContext } from '../lib/types';
 
 const nav=[
-  ['Matches','/matches',true],['Rotations','#',false],['Players','#',false],['Probability','#',false],['Scouting','#',false],["Coach's Edge",'/coaches-edge',true],['Roster','/roster',true],['Schedule','/schedule',true],
+  ['Matches','/matches',true],['Rotations','#',false],['Players','#',false],['Probability','#',false],['Scouting','#',false],["Coach's Edge",'/coaches-edge',true],['Roster','/roster',true],['Schedule','/schedule',true],['Program Settings','/settings',true],
 ] as const;
 export function AppShell({children,program}:{children:ReactNode;program:ProgramContext}){
  const {signOut}=useAuth();

@@ -1,6 +1,6 @@
 export type ProgramContext = {
   programId:string; seasonId:string; seasonYear:number; teamId:string;
-  schoolAbbreviation:string; teamName:string; primaryColor:string; secondaryColor:string; accentColor:string;
+  schoolName:string|null; schoolAbbreviation:string; teamName:string; primaryColor:string; secondaryColor:string; accentColor:string;
   role:'owner'|'staff'|'player';
 };
 export type RosterRow={id:string;number?:string|null;name:string;officialPosition?:string|null;classYear?:string|null;height?:string|null;hometown?:string|null;previousSchool?:string|null;imageUrl?:string|null};

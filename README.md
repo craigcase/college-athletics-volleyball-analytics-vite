@@ -1,6 +1,17 @@
 # College Athletics Consulting — Volleyball Analytics
 
 
+## v0.6.6 Coach's Edge findings + Program Settings
+
+- Connects Coach's Edge to persisted deterministic `match_findings` so questions such as “Where did we have the biggest statistical edge?” can use the ranked finding already stored for the canonical match.
+- Improves direct comparison language and broadens natural tactical/personnel prescription guards.
+- Adds Program Settings for full university name, school abbreviation, mascot/team name, and school colors.
+- Keeps app branding centered on abbreviation, mascot, and colors; abbreviation and mascot are normalized to uppercase.
+- Adds full university name as a preserved team alias for future public-source matching.
+- Corrects finding direction for service errors so fewer service errors is treated as the advantage.
+
+**Database update required:** apply `supabase/migrations/202609130001_program_identity_settings.sql` before testing Program Settings. Existing programs remain valid; `school_name` starts blank until the owner saves settings.
+
 ## v0.6.5 Coach's Edge product hardening
 
 - Displays hitting percentage in volleyball-native notation such as `.153` instead of `15.3%`.
@@ -13,7 +24,7 @@
 
 StackBlitz URL imports now use one authenticated Supabase Edge Function (`fetch-public-source`) when the WebContainer cannot act as a normal internet-facing server. The relay only retrieves validated public HTTP(S) evidence and returns the bytes to the existing parser/persistence pipeline; roster, schedule, match reconciliation, analytics, and database writes remain in the normal application code. This is a one-time Supabase deployment and does not change the regular GitHub → refresh StackBlitz → guided-test workflow. See `SUPABASE_EDGE_FUNCTION_SETUP.md`.
 
-Current migration build **v0.6.1** restores the fast development loop: **GitHub → StackBlitz → guided testing**. StackBlitz runs the React app and the local API on one port, but database/storage access is scoped to the signed-in Supabase user through Row Level Security. No Supabase secret key is required for local development.
+The current architecture preserves the fast development loop: **GitHub → StackBlitz → guided testing**. StackBlitz runs the React app and the local API on one port, but database/storage access is scoped to the signed-in Supabase user through Row Level Security. No Supabase secret key is required for local development.
 
 ## StackBlitz development
 
@@ -40,8 +51,9 @@ The existing database was created with fail-closed RLS and no browser/user polic
 
 1. `supabase/migrations/202609090001_initial.sql` — already applied on existing projects.
 2. `supabase/migrations/202609120001_user_scoped_rls.sql` — introduced in v0.6.0 and still required.
+3. `supabase/migrations/202609130001_program_identity_settings.sql` — introduced in v0.6.6; adds full university name and the expanded authenticated program-creation contract.
 
-The second migration adds user-scoped RLS, Storage policies, and the authenticated `create_volleyball_program` RPC used to bootstrap a coach's first program safely.
+The RLS migration adds user-scoped RLS, Storage policies, and authenticated program bootstrap. The v0.6.6 identity migration extends that bootstrap without changing the authorization model.
 
 ## Architecture
 

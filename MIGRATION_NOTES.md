@@ -1,3 +1,8 @@
+
+## v0.6.6 Program identity settings
+
+Apply `supabase/migrations/202609130001_program_identity_settings.sql` after the v0.6.0 RLS migration. It adds nullable `programs.school_name` for existing programs and adds a seven-argument authenticated `create_volleyball_program` overload for new programs. Existing program data is preserved; owners can populate the full university name from Program Settings.
+
 # Migration Notes — v0.6.1
 
 ## v0.6.3 public-source Edge fetch relay

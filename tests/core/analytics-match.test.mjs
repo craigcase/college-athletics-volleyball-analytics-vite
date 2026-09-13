@@ -32,3 +32,12 @@ test('finding ranker can return fewer than five rather than filling weak slots',
   assert.equal(findings[0].metric, 'hitting_percentage');
   assert.equal(findings[0].direction, 'our_advantage');
 });
+
+test('finding direction treats fewer service errors as the advantage', () => {
+  const findings = rankMatchFindings([
+    { matchId:'m1', subject:'our_team', metric:'service_errors', value:4, engineVersion:'1.0.0', canonicalRevision:1 },
+    { matchId:'m1', subject:'opponent', metric:'service_errors', value:7, engineVersion:'1.0.0', canonicalRevision:1 },
+  ]);
+  assert.equal(findings.length, 1);
+  assert.equal(findings[0].direction, 'our_advantage');
+});

@@ -6,7 +6,7 @@ import { calculateMatchAnalytics } from '../../lib/analytics/match';
 import { rankMatchFindings } from '../../lib/analytics/findings';
 import { reconcileField } from '../../lib/ingestion/reconcile';
 import type { EvidenceObservation } from '../../lib/ingestion/types';
-import type { StoredMetric } from '../../lib/coaches-edge/types';
+import type { StoredFinding, StoredMetric } from '../../lib/coaches-edge/types';
 
 const numericFields=['kills','attack_errors','attack_attempts','assists','aces','service_errors','digs','blocks','reception_errors'] as const;
 
@@ -73,6 +73,39 @@ export async function getStoredMetrics(matchId:string):Promise<StoredMetric[]>{
   const result=await db.from('match_metric_results').select('match_id,subject,metric_code,value,denominator,engine_version').eq('match_id',matchId).eq('canonical_revision',(match.data as any).canonical_revision);
   assertNoError(result.error,'Read stored metrics');
   return ((result.data??[]) as any[]).map(r=>({matchId:r.match_id,subject:r.subject,metric:r.metric_code,value:r.value,opportunities:r.denominator,engineVersion:r.engine_version}));
+}
+
+
+
+export async function getStoredFindings(matchId:string):Promise<StoredFinding[]> {
+  const db=getAdminClient();
+  const match=await db.from('matches').select('canonical_revision').eq('id',matchId).maybeSingle();
+  assertNoError(match.error,'Read finding revision');
+  if(!match.data)return[];
+  const result=await db.from('match_findings')
+    .select('match_id,side,metric_code,direction,magnitude,opportunities,rank_score,evidence_json,engine_version')
+    .eq('match_id',matchId)
+    .eq('canonical_revision',(match.data as any).canonical_revision)
+    .order('rank_score',{ascending:false});
+  assertNoError(result.error,'Read stored findings');
+  return ((result.data??[]) as any[]).flatMap(row=>{
+    let evidence:any={};
+    try{evidence=typeof row.evidence_json==='string'?JSON.parse(row.evidence_json):(row.evidence_json??{});}catch{return[];}
+    const ourValue=Number(evidence.ourValue),opponentValue=Number(evidence.opponentValue);
+    if(!Number.isFinite(ourValue)||!Number.isFinite(opponentValue))return[];
+    return [{
+      matchId:row.match_id,
+      side:row.side,
+      metric:row.metric_code,
+      direction:row.direction,
+      magnitude:Number(row.magnitude),
+      opportunities:row.opportunities==null?undefined:Number(row.opportunities),
+      rankScore:Number(row.rank_score),
+      ourValue,
+      opponentValue,
+      engineVersion:row.engine_version,
+    } as StoredFinding];
+  });
 }
 
 export async function getMatchSummary(matchId:string){

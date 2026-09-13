@@ -6,11 +6,12 @@ export type ResolverResult =
   | { status: 'resolved'; query: StructuredAnalyticsQuery }
   | { status: 'unsupported'; reasonCode: UnsupportedReasonCode; reason: string };
 
-const prescriptive = /\b(start|bench|sit|serve\s+target|who\s+should\s+serve|blocking\s+scheme|offensive\s+system)\b/i;
+const prescriptive = /\b(start|bench|sit|serve\s+target|who\s+should\s+serve|blocking\s+scheme|offensive\s+system)\b|\b(?:who|where|how)\s+should\s+(?:we\s+)?(?:serve|attack|target|block)\b|\bwho\s+should\s+we\s+target\b/i;
 const rotationQuestion = /\b(rotation|rotations|r[1-6])\b/i;
 const comparisonLanguage = /\b(compare|versus|vs\.?|against|more|fewer|less|higher|lower|difference|better|worse)\b/i;
 const ourLanguage = /\b(we|our|ours|us)\b/i;
 const opponentLanguage = /\b(opponent|they|them|their)\b/i;
+const findingLanguage = /\b(biggest|strongest|edge|advantage|stood\s+out|stand\s+out|finding|findings|cleared\s+the\s+evidence|promoted)\b/i;
 const opponentStopWords = new Set(['state', 'university', 'college', 'the', 'and', 'women', 'womens', 'volleyball']);
 
 function metricFromQuestion(text: string): MetricCode | null {
@@ -44,6 +45,20 @@ function subjectsFromQuestion(text: string, context: ResolverContext): ('our_tea
   return ['our_team'];
 }
 
+function comparisonFromQuestion(text: string): 'more' | 'fewer' | undefined {
+  if (/\b(more|higher)\b/i.test(text)) return 'more';
+  if (/\b(fewer|less|lower)\b/i.test(text)) return 'fewer';
+  return undefined;
+}
+
+function findingSideFromQuestion(text: string, context: ResolverContext): 'our_team' | 'opponent' | 'either' {
+  const ourMentioned = ourLanguage.test(text);
+  const opponentIsMentioned = opponentMentioned(text, context.opponentNames ?? []);
+  if (opponentIsMentioned && !ourMentioned && /\b(their|opponent|strongest|biggest|advantage|edge)\b/i.test(text)) return 'opponent';
+  if (ourMentioned) return 'our_team';
+  return 'either';
+}
+
 export function resolveCoachQuestion(text: string, context: ResolverContext): ResolverResult {
   const normalized = text.trim().toLowerCase();
   if (!normalized) {
@@ -69,6 +84,18 @@ export function resolveCoachQuestion(text: string, context: ResolverContext): Re
         scope: { matchId: context.matchId },
         metric,
         subjects: subjectsFromQuestion(normalized, context),
+        ...(comparisonFromQuestion(normalized) ? { comparison: comparisonFromQuestion(normalized) } : {}),
+      },
+    };
+  }
+
+  if (findingLanguage.test(normalized)) {
+    return {
+      status: 'resolved',
+      query: {
+        intent: 'top_finding',
+        scope: { matchId: context.matchId },
+        findingSide: findingSideFromQuestion(normalized, context),
       },
     };
   }

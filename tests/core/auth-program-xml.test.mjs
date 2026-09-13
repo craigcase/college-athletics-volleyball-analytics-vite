@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { getCurrentUserFromSupabase } from '../../.core-dist/lib/auth/current-user.js';
 import { verifySupabaseAccessToken } from '../../.core-dist/lib/auth/supabase-verifier.js';
-import { validateProgramSetup } from '../../.core-dist/lib/program/validation.js';
+import { validateProgramSetup, validateProgramIdentityUpdate } from '../../.core-dist/lib/program/validation.js';
 import { parseStructuredXml } from '../../.core-dist/lib/ingestion/match/xml.js';
 
 test('Supabase auth mapping fails closed and normalizes verified user identity', () => {
@@ -54,8 +54,8 @@ test('Supabase access-token verification fails closed on rejected or malformed r
 });
 
 test('program setup validation accepts required identity and rejects bad colors or blank names', () => {
-  assert.equal(validateProgramSetup({ schoolAbbreviation:'VCSU', teamName:'VIKINGS', primaryColor:'#123456', secondaryColor:'#ffffff', accentColor:'#ABCDEF', seasonYear:2026 }).ok, true);
-  assert.equal(validateProgramSetup({ schoolAbbreviation:'', teamName:'VIKINGS', primaryColor:'#123456', secondaryColor:'#fff', accentColor:'#ABCDEF', seasonYear:2026 }).ok, false);
+  assert.equal(validateProgramSetup({ schoolName:'Valley City State University', schoolAbbreviation:'VCSU', teamName:'VIKINGS', primaryColor:'#123456', secondaryColor:'#ffffff', accentColor:'#ABCDEF', seasonYear:2026 }).ok, true);
+  assert.equal(validateProgramSetup({ schoolName:'Valley City State University', schoolAbbreviation:'', teamName:'VIKINGS', primaryColor:'#123456', secondaryColor:'#fff', accentColor:'#ABCDEF', seasonYear:2026 }).ok, false);
   assert.equal(validateProgramSetup(null).ok, false);
   assert.equal(validateProgramSetup({}).ok, false);
 });
@@ -71,4 +71,31 @@ test('structured XML parser extracts only explicit supported totals and rally co
 test('unknown XML shape remains valid evidence with no invented observations', () => {
   const parsed = parseStructuredXml('<mystery><foo bar="1"/></mystery>', 'official_xml', 'upload://mystery.xml');
   assert.deepEqual(parsed.observations, []);
+});
+
+
+test('program identity validation stores full university name normally and forces abbreviation and mascot to uppercase', () => {
+  const result = validateProgramIdentityUpdate({
+    schoolName: 'Valley City State University',
+    schoolAbbreviation: 'vcsu',
+    teamName: 'Vikings',
+    primaryColor: '#183153',
+    secondaryColor: '#ffffff',
+    accentColor: '#b49a63',
+  });
+  assert.equal(result.ok, true);
+  if (result.ok) {
+    assert.equal(result.value.schoolName, 'Valley City State University');
+    assert.equal(result.value.schoolAbbreviation, 'VCSU');
+    assert.equal(result.value.teamName, 'VIKINGS');
+  }
+});
+
+test('program identity validation requires a full university name and valid colors', () => {
+  assert.equal(validateProgramIdentityUpdate({
+    schoolName: '', schoolAbbreviation:'VCSU', teamName:'VIKINGS', primaryColor:'#183153', secondaryColor:'#ffffff', accentColor:'#b49a63'
+  }).ok, false);
+  assert.equal(validateProgramIdentityUpdate({
+    schoolName: 'Valley City State University', schoolAbbreviation:'VCSU', teamName:'VIKINGS', primaryColor:'#18315', secondaryColor:'#ffffff', accentColor:'#b49a63'
+  }).ok, false);
 });

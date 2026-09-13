@@ -1,10 +1,11 @@
 import { getAdminClient } from '../../db/client.js';
 import { assertNoError } from '../../db/supabase-utils.js';
-import { getStoredMetrics } from '../../db/repositories/analytics.js';
+import { getStoredFindings, getStoredMetrics } from '../../db/repositories/analytics.js';
 import { resolveCoachQuestion } from '../../lib/coaches-edge/resolve.js';
 import { executeAnalyticsQuery } from '../../lib/coaches-edge/execute.js';
 import {
   formatCoachAnswer,
+  formatFindingAnswer,
   insufficientEvidenceMessage,
   unsupportedQuestionMessage,
 } from '../../lib/coaches-edge/presentation.js';
@@ -61,8 +62,8 @@ export default async (request: Request) => {
       });
     }
 
-    const metrics = await getStoredMetrics(matchId);
-    const answer = executeAnalyticsQuery(resolved.query, metrics);
+    const [metrics, findings] = await Promise.all([getStoredMetrics(matchId), getStoredFindings(matchId)]);
+    const answer = executeAnalyticsQuery(resolved.query, metrics, findings);
     if (answer.status !== 'answered') {
       return json({
         status: 'insufficient_evidence',
@@ -74,9 +75,9 @@ export default async (request: Request) => {
 
     return json({
       status: 'answered',
-      answer: formatCoachAnswer(resolved.query, answer.numbers, opponentName),
+      answer: answer.finding ? formatFindingAnswer(answer.finding, opponentName) : formatCoachAnswer(resolved.query, answer.numbers, opponentName),
       scope,
-      confidence: 'Evidence-backed • deterministic stored metric',
+      confidence: answer.finding ? 'Evidence-backed • deterministic stored finding' : 'Evidence-backed • deterministic stored metric',
       evidence: answer.evidence,
     });
   } catch (error) {

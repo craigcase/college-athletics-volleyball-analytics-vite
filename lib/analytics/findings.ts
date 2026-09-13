@@ -26,7 +26,9 @@ export function rankMatchFindings(metrics: MatchMetricResult[]): MatchFinding[] 
     if (magnitude < THRESHOLDS[metric]) continue;
     const opportunities = pair.our_team.denominator;
     const reliability = opportunities ? Math.min(1, opportunities / 60) : 0.75;
-    findings.push({ metric, direction: delta >= 0 ? 'our_advantage' : 'opponent_advantage', ourValue: pair.our_team.value, opponentValue: pair.opponent.value, magnitude, opportunities, rankScore: magnitude * reliability });
+    const lowerIsBetter = metric === 'service_errors';
+    const ourAdvantage = lowerIsBetter ? delta <= 0 : delta >= 0;
+    findings.push({ metric, direction: ourAdvantage ? 'our_advantage' : 'opponent_advantage', ourValue: pair.our_team.value, opponentValue: pair.opponent.value, magnitude, opportunities, rankScore: magnitude * reliability });
   }
   return findings.sort((a,b) => b.rankScore - a.rankScore).slice(0,5);
 }
