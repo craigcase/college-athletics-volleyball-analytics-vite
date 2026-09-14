@@ -5,7 +5,7 @@ export type QueryAnswer =
   | { status: 'insufficient_evidence'; scope: { matchId: string }; evidence: StoredMetric[]; numbers: []; finding?: undefined };
 
 export function executeAnalyticsQuery(query: StructuredAnalyticsQuery, metrics: StoredMetric[], findings: StoredFinding[] = []): QueryAnswer {
-  if (query.intent === 'compare_metric' && query.metric && query.subjects) {
+  if ((query.intent === 'compare_metric' || query.intent === 'metric_finding_status') && query.metric && query.subjects) {
     const evidence = query.subjects.flatMap((subject) => {
       const found = metrics.find((m) => m.matchId === query.scope.matchId && m.subject === subject && m.metric === query.metric);
       return found ? [found] : [];

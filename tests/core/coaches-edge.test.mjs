@@ -227,3 +227,19 @@ test('finding presentation explains the promoted deterministic finding without i
     'Our strongest promoted statistical edge was kills: 51 to 46, a 5-kill advantage.'
   );
 });
+
+test('named metric finding-strength question compares the metric gap with the promotion threshold', async()=>{
+  const result=resolveCoachQuestion('Was our hitting percentage advantage one of the strongest findings?',context);
+  assert.equal(result.status,'resolved');
+  assert.equal(result.query.intent,'metric_finding_status');
+  assert.equal(result.query.metric,'hitting_percentage');
+  assert.deepEqual(result.query.subjects,['our_team','opponent']);
+  const presentation=await import('../../.core-dist/lib/coaches-edge/presentation.js');
+  assert.equal(
+    presentation.formatCoachAnswer(result.query,[.153,.111],'Mayville State University',[
+      {matchId:'match-1',subject:'our_team',metric:'hitting_percentage',value:.153,engineVersion:'1.0.0'},
+      {matchId:'match-1',subject:'opponent',metric:'hitting_percentage',value:.111,engineVersion:'1.0.0'},
+    ]),
+    'We hit .153 to Mayville State University’s .111, a .042 advantage. That is below the .050 promotion threshold, so it was not one of the strongest promoted findings.'
+  );
+});

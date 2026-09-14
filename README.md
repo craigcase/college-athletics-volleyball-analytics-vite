@@ -1,5 +1,19 @@
 # College Athletics Consulting — Volleyball Analytics
 
+## v0.7.0 Rally analytics stress-test engine
+
+- Adds source-specific play-by-play ingestion for **PrestoSports** and **Volleyball LiveStats In-Arena Tool** XML plus public Sidearm play-by-play.
+- Builds a canonical Match → Set → Rally timeline while preserving raw source evidence and source-record links.
+- Recovers deterministic serving/receiving **team side** from rally-scoring continuity when source server labels are missing or contradictory; unsupported server-player identity remains missing.
+- Calculates evidence-gated **Sideout %, Point Scored %, Score1, SOS2, EPO, service runs, and longest service run** from canonical rallies.
+- Treats an opponent service error as an unearned FBSO (`given`) and an ace as a direct serving point. Ordinary terminal-only PBP does not fabricate first-ball-vs-later-sideout, T1/T2/T3+, Good Dig, contact quality, attack location, or exact on-court personnel.
+- Adds Rally Analytics to Match Summary and persisted rally questions to Coach's Edge.
+- Stress-tests nine real VCSU XML files: seven PrestoSports and two LiveStats files. Mayville reconciles to 195 canonical rallies with two localized PBP gap placeholders; College of Saint Mary exercises the Presto gap-recovery path.
+- Fails safely on contradictory evidence. The Mount Mercy source says 27-25 in the official line score but its PBP ends 28-24 in Set 1; v0.7.0 preserves both, records a reconciliation conflict, and withholds match-level rally analytics instead of guessing which rally is wrong.
+- Retires the old GSC/conference-stat and conference-benchmarking concept from the current product. VolleyMetrics remains a later optional enrichment source, not a VCSU requirement.
+
+**Database update required:** apply `supabase/migrations/202609130002_rally_analytics.sql` after the v0.6.6 program identity migration and before re-importing match evidence.
+
 
 ## v0.6.6 Coach's Edge findings + Program Settings
 
@@ -52,8 +66,9 @@ The existing database was created with fail-closed RLS and no browser/user polic
 1. `supabase/migrations/202609090001_initial.sql` — already applied on existing projects.
 2. `supabase/migrations/202609120001_user_scoped_rls.sql` — introduced in v0.6.0 and still required.
 3. `supabase/migrations/202609130001_program_identity_settings.sql` — introduced in v0.6.6; adds full university name and the expanded authenticated program-creation contract.
+4. `supabase/migrations/202609130002_rally_analytics.sql` — introduced in v0.7.0; adds canonical rally/timeline/source-link/rotation tables, rally capability fields, set-level rally-score integrity fields, grants, and user-scoped RLS.
 
-The RLS migration adds user-scoped RLS, Storage policies, and authenticated program bootstrap. The v0.6.6 identity migration extends that bootstrap without changing the authorization model.
+The RLS migration adds user-scoped RLS, Storage policies, and authenticated program bootstrap. The v0.6.6 identity migration extends that bootstrap without changing the authorization model. The v0.7.0 migration is additive and keeps existing box-score evidence and analytics intact.
 
 ## Architecture
 

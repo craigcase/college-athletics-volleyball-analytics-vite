@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vbgame source="PrestoSports" version="7.21.0" generated="08/29/2026"> 
+  <venue gameid="" location="2102 Harvell Cir,, Bellevue, NE, 68005" arena="" start="11:00 AM" end="12:51 PM" duration="1:51" delay="" attend="65" schednote="" leaguegame="N" neutralgame="Y" visid="GRAND VI" visname="Grand View" homeid="VALLEY C" homename="Valley City State" date="8/29/2026"> 
+    <officials/>  
+    <rules/> 
+  </venue>  
+  <team vh="V" id="GRAND VI" name="Grand View" code="501982" record="3-2"> 
+    <linescore line="25,25,22,25" score="3"> 
+      <linegame game="1" points="25"/>  
+      <linegame game="2" points="25"/>  
+      <linegame game="3" points="22"/>  
+      <linegame game="4" points="25"/> 
+    </linescore>  
+    <attackbygame> 
+      <attackgame game="1" k="14" e="5" ta="32" pct=".281"/>  
+      <attackgame game="2" k="15" e="4" ta="36" pct=".306"/>  
+      <attackgame game="3" k="9" e="4" ta="38" pct=".132"/>  
+      <attackgame game="4" k="14" e="3" ta="32" pct=".344"/> 
+    </attackbygame>  
+    <totals> 
+      <attack k="52" e="16" ta="138" pct=".261"/>  
+      <set a="47" e="2" ta="49"/>  
+      <serve sa="8" se="14" ta="96"/>  
+      <defense dig="61" re="4" ta="74"/>  
+      <block bs="0" ba="16" be="2" tb="8.0"/>  
+      <misc bhe="0" pts="68.0"/> 
+    </totals>  
+    <player uni="01" code="01" name="Juliana Neves" checkname="NEVES,JULIANA" gp="4" oncourt="N" ms="1" playerId="1eiz9q3mxt5vx795"> 
+      <attack k="1" e="0" ta="2" pct=".500"/>  
+      <set a="20" e="2" ta="22"/>  
+      <serve sa="2" se="2" ta="14"/>  
+      <defense dig="5" re="0" ta="0"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="3.0"/> 
+    </player>  
+    <player uni="02" code="02" name="Victoria Bencardino" checkname="BENCARDINO,VICTORIA" gp="4" oncourt="Y" playerId="j7mu3kadlnqkcsae"> 
+      <attack k="1" e="0" ta="3" pct=".333"/>  
+      <set a="18" e="0" ta="18"/>  
+      <serve sa="0" se="1" ta="12"/>  
+      <defense dig="5" re="0" ta="0"/>  
+      <block bs="0" ba="0" be="1" tb="0.0"/>  
+      <misc bhe="0" pts="1.0"/> 
+    </player>  
+    <player uni="03" code="03" name="Anna Takushi" checkname="TAKUSHI,ANNA" gp="0" oncourt="N" playerId="cap9572wbqg8lo80"/>  
+    <player uni="04" code="04" name="Sophia Keys" checkname="KEYS,SOPHIA" gp="0" oncourt="N" playerId="csl8h8piimf63fhw"/>  
+    <player uni="05" code="05" name="Cecilia Campos" checkname="CAMPOS,CECILIA" gp="4" oncourt="N" playerId="bukwoozd84ha6cj1"> 
+      <attack k="0" e="0" ta="0" pct=".000"/>  
+      <set a="2" e="0" ta="2"/>  
+      <serve sa="1" se="3" ta="10"/>  
+      <defense dig="9" re="0" ta="12"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="1.0"/> 
+    </player>  
+    <player uni="06" code="06" name="Luisa de Paula" checkname="PAULA,LUISA DE" gp="4" oncourt="N" ms="1" playerId="kknrmzlgbuurjytl"> 
+      <attack k="5" e="3" ta="13" pct=".154"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="1" re="0" ta="0"/>  
+      <block bs="0" ba="1" be="0" tb="1.0"/>  
+      <misc bhe="0" pts="5.5"/> 
+    </player>  
+    <player uni="07" code="07" name="Victoria Gasparini" checkname="GASPARINI,VICTORIA" gp="4" oncourt="Y" ms="1" playerId="r2xyf78znadkj94c"> 
+      <attack k="13" e="3" ta="33" pct=".303"/>  
+      <set a="1" e="0" ta="1"/>  
+      <serve sa="1" se="3" ta="16"/>  
+      <defense dig="9" re="2" ta="23"/>  
+      <block bs="0" ba="2" be="0" tb="2.0"/>  
+      <misc bhe="0" pts="15.0"/> 
+    </player>  
+    <player uni="08" code="08" name="Brooklyn Roder" checkname="RODER,BROOKLYN" gp="4" oncourt="Y" ms="1" playerId="yjdjtetemle8uf8d"> 
+      <attack k="5" e="2" ta="13" pct=".231"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="1" re="0" ta="0"/>  
+      <block bs="0" ba="2" be="0" tb="2.0"/>  
+      <misc bhe="0" pts="6.0"/> 
+    </player>  
+    <player uni="09" code="09" name="Aydia Mayotte" checkname="MAYOTTE,AYDIA" gp="4" oncourt="N" playerId="giwta5iozzvyns70"> 
+      <attack k="0" e="0" ta="1" pct=".000"/>  
+      <set a="6" e="0" ta="6"/>  
+      <serve sa="2" se="2" ta="11"/>  
+      <defense dig="16" re="0" ta="9"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="2.0"/> 
+    </player>  
+    <player uni="10" code="10" name="Clarissa Hasty" checkname="HASTY,CLARISSA" gp="0" oncourt="N" playerId="dyfh8z1qzibl79n3"/>  
+    <player uni="11" code="11" name="Lindsey Hrbek" checkname="HRBEK,LINDSEY" gp="1" oncourt="N" ms="1" playerId="qvdjf5dbolkjf92d"> 
+      <attack k="1" e="1" ta="3" pct=".000"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="2"/>  
+      <defense dig="0" re="0" ta="0"/>  
+      <block bs="0" ba="2" be="0" tb="2.0"/>  
+      <misc bhe="0" pts="2.0"/> 
+    </player>  
+    <player uni="12" code="12" name="Maria Eduarda dos Passos" checkname="PASSOS,MARIA EDUARDA DOS" gp="4" oncourt="N" playerId="ere99o55tu6u27ix"> 
+      <attack k="13" e="1" ta="31" pct=".387"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="2" re="2" ta="13"/>  
+      <block bs="0" ba="4" be="0" tb="4.0"/>  
+      <misc bhe="0" pts="15.0"/> 
+    </player>  
+    <player uni="13" code="13" name="Beniz Tasdemir" checkname="TASDEMIR,BENIZ" gp="0" oncourt="N" playerId="o6k0az85ocrekas3"/>  
+    <player uni="14" code="14" name="Ana Julia Goncalves" checkname="GONCALVES,ANA JULIA" gp="4" oncourt="Y" playerId="9nxbezeceb3x44re"> 
+      <attack k="5" e="4" ta="19" pct=".053"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="1" re="0" ta="0"/>  
+      <block bs="0" ba="1" be="0" tb="1.0"/>  
+      <misc bhe="0" pts="5.5"/> 
+    </player>  
+    <player uni="15" code="15" name="Ava Renner" checkname="RENNER,AVA" gp="4" oncourt="Y" ms="1" playerId="sqambm63a6gqrv5o"> 
+      <attack k="1" e="0" ta="1" pct="1.000"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="1" se="2" ta="19"/>  
+      <defense dig="7" re="0" ta="17"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="2.0"/> 
+    </player>  
+    <player uni="16" code="16" name="Delaney Roberts" checkname="ROBERTS,DELANEY" gp="0" oncourt="N" playerId="lbcubugi0x987ml4"/>  
+    <player uni="17" code="17" name="Ava Diaz" checkname="DIAZ,AVA" gp="0" oncourt="N" playerId="yp1661uyz9w1k52s"/>  
+    <player uni="18" code="18" name="Kaylee Stalder" checkname="STALDER,KAYLEE" gp="0" oncourt="N" playerId="2kxrrakuwersgwgi"/>  
+    <player uni="19" code="19" name="Hayden Chaney" checkname="CHANEY,HAYDEN" gp="0" oncourt="N" playerId="3ejo683ajfckzrzx"/>  
+    <player uni="20" code="20" name="Taylor Heath" checkname="HEATH,TAYLOR" gp="0" oncourt="N" playerId="rqwmuwjm5m04lubn"/>  
+    <player uni="21" code="21" name="Ehlaykler Soe" checkname="SOE,EHLAYKLER" gp="0" oncourt="N" playerId="d2gr9m52vgzepct9"/>  
+    <player uni="22" code="22" name="Tarra Kothenbeutel" checkname="KOTHENBEUTEL,TARRA" gp="0" oncourt="N" playerId="5o0guyaym36o13oh"/>  
+    <player uni="23" code="23" name="Jocelyn Barrett" checkname="BARRETT,JOCELYN" gp="4" oncourt="Y" playerId="prjb0837w3hbp0gd"> 
+      <attack k="7" e="2" ta="19" pct=".263"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="1" se="1" ta="12"/>  
+      <defense dig="5" re="0" ta="0"/>  
+      <block bs="0" ba="4" be="1" tb="4.0"/>  
+      <misc bhe="0" pts="10.0"/> 
+    </player>  
+    <player uni="24" code="24" name="Tessa de Vries" checkname="VRIES,TESSA DE" gp="0" oncourt="N" playerId="eccqehdo6waocams"/>  
+    <player uni="26" code="26" name="Katherine Balog" checkname="BALOG,KATHERINE" gp="0" oncourt="N" playerId="bgwmij9wlpsadjnw"/>  
+    <player uni="28" code="28" name="Gaby Santos" checkname="SANTOS,GABY" gp="0" oncourt="N" playerId="hfhfld7mqi36ocv0"/>  
+    <player uni="TM" code="TM" name="Team" checkname="TEAM" gp="4" oncourt="N" playerId=""> 
+      <attack k="0" e="0" ta="0" pct=".000"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="0" re="0" ta="0"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="0.0"/> 
+    </player> 
+  </team>  
+  <team vh="H" id="VALLEY C" name="Valley City State" code="506055" record="2-5"> 
+    <linescore line="18,21,25,15" score="1"> 
+      <linegame game="1" points="18"/>  
+      <linegame game="2" points="21"/>  
+      <linegame game="3" points="25"/>  
+      <linegame game="4" points="15"/> 
+    </linescore>  
+    <attackbygame> 
+      <attackgame game="1" k="9" e="8" ta="32" pct=".031"/>  
+      <attackgame game="2" k="11" e="7" ta="40" pct=".100"/>  
+      <attackgame game="3" k="16" e="9" ta="39" pct=".179"/>  
+      <attackgame game="4" k="7" e="6" ta="34" pct=".029"/> 
+    </attackbygame>  
+    <totals> 
+      <attack k="43" e="30" ta="145" pct=".090"/>  
+      <set a="39" e="1" ta="40"/>  
+      <serve sa="4" se="6" ta="80"/>  
+      <defense dig="63" re="8" ta="82"/>  
+      <block bs="1" ba="10" be="0" tb="6.0"/>  
+      <misc bhe="0" pts="53.0"/> 
+    </totals>  
+    <player uni="01" code="01" name="Brynn Sorenson" checkname="SORENSON,BRYNN" gp="4" oncourt="Y" ms="1" playerId="1o4b1wdj0v7l04rz"> 
+      <attack k="2" e="5" ta="20" pct="-.150"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="2" re="0" ta="0"/>  
+      <block bs="0" ba="2" be="0" tb="2.0"/>  
+      <misc bhe="0" pts="3.0"/> 
+    </player>  
+    <player uni="02" code="02" name="Kiana Hilary" checkname="HILARY,KIANA" gp="0" oncourt="N" playerId="euh6yyhkqdhvnalq"/>  
+    <player uni="03" code="03" name="Hudson Zerface" checkname="ZERFACE,HUDSON" gp="4" oncourt="Y" ms="1" playerId="p774k9mp3phfl1uu"> 
+      <attack k="0" e="0" ta="0" pct=".000"/>  
+      <set a="1" e="0" ta="1"/>  
+      <serve sa="0" se="0" ta="13"/>  
+      <defense dig="8" re="3" ta="29"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="0.0"/> 
+    </player>  
+    <player uni="04" code="04" name="Kadie Kocka" checkname="KOCKA,KADIE" gp="4" oncourt="N" playerId="5nmjiveyf5dhr387"> 
+      <attack k="13" e="4" ta="36" pct=".250"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="4" re="0" ta="1"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="13.0"/> 
+    </player>  
+    <player uni="05" code="05" name="Ellie Lucas" checkname="LUCAS,ELLIE" gp="4" oncourt="N" playerId="e8xma607d042zbxt"> 
+      <attack k="4" e="4" ta="15" pct=".000"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="0" re="0" ta="0"/>  
+      <block bs="0" ba="1" be="0" tb="1.0"/>  
+      <misc bhe="0" pts="4.5"/> 
+    </player>  
+    <player uni="06" code="06" name="Libby Mathern" checkname="MATHERN,LIBBY" gp="0" oncourt="N" playerId="po9vx2i7k8b9bgrg"/>  
+    <player uni="07" code="07" name="Eden Carrier" checkname="CARRIER,EDEN" gp="4" oncourt="Y" ms="1" playerId="evpufzzlrn8fza8v"> 
+      <attack k="8" e="1" ta="24" pct=".292"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="3" re="0" ta="0"/>  
+      <block bs="1" ba="2" be="0" tb="3.0"/>  
+      <misc bhe="0" pts="10.0"/> 
+    </player>  
+    <player uni="08" code="08" name="Molly Bjornbey" checkname="BJORNBEY,MOLLY" gp="4" oncourt="Y" ms="1" playerId="jz1klyt4nnn96fa1"> 
+      <attack k="7" e="7" ta="26" pct=".000"/>  
+      <set a="1" e="0" ta="1"/>  
+      <serve sa="2" se="1" ta="14"/>  
+      <defense dig="7" re="1" ta="23"/>  
+      <block bs="0" ba="2" be="0" tb="2.0"/>  
+      <misc bhe="0" pts="10.0"/> 
+    </player>  
+    <player uni="09" code="09" name="Kinlee Sufficool" checkname="SUFFICOOL,KINLEE" gp="4" oncourt="N" playerId="z6kldkhakvihrt8h"> 
+      <attack k="0" e="0" ta="0" pct=".000"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="1" ta="12"/>  
+      <defense dig="1" re="0" ta="0"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="0.0"/> 
+    </player>  
+    <player uni="10" code="10" name="Mady Geist" checkname="GEIST,MADY" gp="4" oncourt="Y" ms="1" playerId="x49lgdw9g3inag99"> 
+      <attack k="6" e="6" ta="15" pct=".000"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="1" re="0" ta="0"/>  
+      <block bs="0" ba="3" be="0" tb="3.0"/>  
+      <misc bhe="0" pts="7.5"/> 
+    </player>  
+    <player uni="12" code="12" name="Annika Pulju" checkname="PULJU,ANNIKA" gp="4" oncourt="N" playerId="jrsprwt59i81p7ov"> 
+      <attack k="0" e="0" ta="0" pct=".000"/>  
+      <set a="3" e="0" ta="3"/>  
+      <serve sa="0" se="0" ta="12"/>  
+      <defense dig="14" re="2" ta="27"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="0.0"/> 
+    </player>  
+    <player uni="15" code="15" name="Reece Cave" checkname="CAVE,REECE" gp="0" oncourt="N" playerId="g9ogiud2t0y1gxw6"/>  
+    <player uni="17" code="17" name="Kaitlyn Erickstad" checkname="ERICKSTAD,KAITLYN" gp="0" oncourt="N" playerId="6791bj2c0xiiyj4i"/>  
+    <player uni="19" code="19" name="Gracie Schumacher" checkname="SCHUMACHER,GRACIE" gp="4" oncourt="N" playerId="p2x29ubp5f8tjlyl"> 
+      <attack k="3" e="2" ta="6" pct=".167"/>  
+      <set a="18" e="0" ta="18"/>  
+      <serve sa="2" se="2" ta="16"/>  
+      <defense dig="9" re="0" ta="0"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="5.0"/> 
+    </player>  
+    <player uni="20" code="20" name="Anna Roisum" checkname="ROISUM,ANNA" gp="0" oncourt="N" playerId="41hc76zw4ib7mvp3"/>  
+    <player uni="22" code="22" name="Madden Bogenreif" checkname="BOGENREIF,MADDEN" gp="4" oncourt="Y" ms="1" playerId="aanwu4ndxkcqohee"> 
+      <attack k="0" e="1" ta="3" pct="-.333"/>  
+      <set a="16" e="1" ta="17"/>  
+      <serve sa="0" se="2" ta="13"/>  
+      <defense dig="14" re="0" ta="0"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="0.0"/> 
+    </player>  
+    <player uni="TM" code="TM" name="Team" checkname="TEAM" gp="4" oncourt="N" playerId=""> 
+      <attack k="0" e="0" ta="0" pct=".000"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="0" re="2" ta="2"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="0.0"/> 
+    </player> 
+  </team>  
+  <plays format="summary"> 
+    <game number="1"> 
+      <play number="1" text="GRAND VI starters: Lindsey Hrbek; Ava Renner; Juliana Neves; Luisa de Paula; Victoria Gasparini; Brooklyn Roder."/>  
+      <play number="2" text="VALLEY C starters: Mady Geist; Madden Bogenreif; Brynn Sorenson; Hudson Zerface; Eden Carrier; Molly Bjornbey."/>  
+      <play number="3" serveteam="VALLEY C" point="GRAND VI" vscore="1" hscore="0" text="[Madden Bogenreif] Kill by Brooklyn Roder."/>  
+      <play number="4" text="GRAND VI subs: Maria Eduarda dos Passos."/>  
+      <play number="5" serveteam="GRAND VI" point="GRAND VI" vscore="2" hscore="0" text="[Victoria Gasparini] Kill by Juliana Neves (from Cecilia Campos)."/>  
+      <play number="6" serveteam="GRAND VI" point="GRAND VI" vscore="3" hscore="0" text="[Victoria Gasparini] Attack error by Mady Geist."/>  
+      <play number="7" serveteam="GRAND VI" point="GRAND VI" vscore="4" hscore="0" text="[Victoria Gasparini] Attack error by Molly Bjornbey."/>  
+      <play number="8" serveteam="GRAND VI" point="GRAND VI" vscore="5" hscore="0" text="[Victoria Gasparini] Service ace (Hudson Zerface)."/>  
+      <play number="9" serveteam="GRAND VI" text="Timeout Valley City State."/>  
+      <play number="10" serveteam="GRAND VI" point="GRAND VI" vscore="6" hscore="0" text="[Victoria Gasparini] Attack error by Mady Geist."/>  
+      <play number="11" serveteam="GRAND VI" point="VALLEY C" vscore="6" hscore="1" text="[Victoria Gasparini] Service error."/>  
+      <play number="12" text="VALLEY C subs: Kadie Kocka."/>  
+      <play number="13" serveteam="VALLEY C" point="VALLEY C" vscore="6" hscore="2" text="[Molly Bjornbey] Kill by Kadie Kocka."/>  
+      <play number="14" serveteam="VALLEY C" point="GRAND VI" vscore="7" hscore="2" text="[Molly Bjornbey] Attack error by Mady Geist."/>  
+      <play number="15" serveteam="GRAND VI" point="GRAND VI" vscore="8" hscore="2" text="[Cecilia Campos] Attack error by Brynn Sorenson (block by Lindsey Hrbek; Maria Eduarda dos Passos)."/>  
+      <play number="16" serveteam="GRAND VI" point="VALLEY C" vscore="8" hscore="3" text="[Cecilia Campos] Service error."/>  
+      <play number="17" serveteam="VALLEY C" point="GRAND VI" vscore="9" hscore="3" text="[Annika Pulju] Kill by Luisa de Paula (from Juliana Neves)."/>  
+      <play number="18" text="GRAND VI subs: Ana Julia Goncalves; Victoria Bencardino."/>  
+      <play number="19" serveteam="GRAND VI" point="VALLEY C" vscore="9" hscore="4" text="[Victoria Bencardino] Kill by Kadie Kocka (from Madden Bogenreif)."/>  
+      <play number="20" text="VALLEY C subs: Gracie Schumacher; Ellie Lucas."/>  
+      <play number="21" serveteam="VALLEY C" point="GRAND VI" vscore="10" hscore="4" text="[Gracie Schumacher] Kill by Ana Julia Goncalves (from Victoria Bencardino)."/>  
+      <play number="22" text="GRAND VI subs: Ava Renner."/>  
+      <play number="23" serveteam="GRAND VI" point="GRAND VI" vscore="11" hscore="4" text="[Ava Renner] Service ace (Annika Pulju)."/>  
+      <play number="24" serveteam="GRAND VI" point="GRAND VI" vscore="12" hscore="4" text="[Ava Renner] Kill by Ana Julia Goncalves (from Victoria Bencardino)."/>  
+      <play number="25" serveteam="GRAND VI" point="GRAND VI" vscore="13" hscore="4" text="[Ava Renner] Kill by Victoria Gasparini."/>  
+      <play number="26" serveteam="GRAND VI" text="Timeout Valley City State."/>  
+      <play number="27" serveteam="GRAND VI" point="VALLEY C" vscore="13" hscore="5" text="[Ava Renner] Service error."/>  
+      <play number="28" serveteam="VALLEY C" point="GRAND VI" vscore="14" hscore="5" text="[Hudson Zerface] Kill by Victoria Gasparini (from Victoria Bencardino)."/>  
+      <play number="29" serveteam="GRAND VI" point="GRAND VI" vscore="15" hscore="5" text="[Lindsey Hrbek] Attack error by Gracie Schumacher."/>  
+      <play number="30" serveteam="GRAND VI" point="VALLEY C" vscore="15" hscore="6" text="[Lindsey Hrbek] Kill by Ellie Lucas (from Gracie Schumacher)."/>  
+      <play number="31" text="VALLEY C subs: Kinlee Sufficool."/>  
+      <play number="32" serveteam="VALLEY C" point="VALLEY C" vscore="15" hscore="7" text="[Kinlee Sufficool] Attack error by Ana Julia Goncalves."/>  
+      <play number="33" serveteam="VALLEY C" point="GRAND VI" vscore="16" hscore="7" text="[Kinlee Sufficool] Kill by Victoria Gasparini (from Victoria Bencardino)."/>  
+      <play number="34" text="GRAND VI subs: Juliana Neves; Luisa de Paula."/>  
+      <play number="35" text="VALLEY C subs: Eden Carrier."/>  
+      <play number="36" serveteam="GRAND VI" point="VALLEY C" vscore="16" hscore="8" text="[Juliana Neves] Attack error by Luisa de Paula."/>  
+      <play number="37" text="VALLEY C subs: Madden Bogenreif; Brynn Sorenson."/>  
+      <play number="38" serveteam="VALLEY C" point="GRAND VI" vscore="17" hscore="8" text="[Madden Bogenreif] Kill by Brooklyn Roder (from Juliana Neves)."/>  
+      <play number="39" text="GRAND VI subs: Maria Eduarda dos Passos."/>  
+      <play number="40" serveteam="GRAND VI" point="VALLEY C" vscore="17" hscore="9" text="[Victoria Gasparini] Attack error by Maria Eduarda dos Passos."/>  
+      <play number="41" text="VALLEY C subs: Kadie Kocka."/>  
+      <play number="42" serveteam="VALLEY C" point="GRAND VI" vscore="18" hscore="9" text="[Molly Bjornbey] Kill by Maria Eduarda dos Passos (from Juliana Neves)."/>  
+      <play number="43" serveteam="GRAND VI" point="GRAND VI" vscore="19" hscore="9" text="[Cecilia Campos] Kill by Maria Eduarda dos Passos (from Juliana Neves)."/>  
+      <play number="44" serveteam="GRAND VI" point="GRAND VI" vscore="20" hscore="9" text="[Cecilia Campos] Attack error by Mady Geist (block by Lindsey Hrbek; Maria Eduarda dos Passos)."/>  
+      <play number="45" serveteam="GRAND VI" point="VALLEY C" vscore="20" hscore="10" text="[Cecilia Campos] Kill by Kadie Kocka (from Madden Bogenreif)."/>  
+      <play number="46" text="VALLEY C subs: Eden Carrier."/>  
+      <play number="47" serveteam="VALLEY C" point="GRAND VI" vscore="21" hscore="10" text="[Annika Pulju] Kill by Lindsey Hrbek (from Juliana Neves)."/>  
+      <play number="48" text="GRAND VI subs: Ana Julia Goncalves; Victoria Bencardino."/>  
+      <play number="49" text="VALLEY C subs: Molly Bjornbey."/>  
+      <play number="50" serveteam="GRAND VI" point="VALLEY C" vscore="21" hscore="11" text="[Victoria Bencardino] Kill by Kadie Kocka (from Madden Bogenreif)."/>  
+      <play number="51" text="VALLEY C subs: Gracie Schumacher; Ellie Lucas."/>  
+      <play number="52" serveteam="VALLEY C" point="VALLEY C" vscore="21" hscore="12" text="[Gracie Schumacher] Service ace (Maria Eduarda dos Passos)."/>  
+      <play number="53" serveteam="VALLEY C" point="VALLEY C" vscore="21" hscore="13" text="[Gracie Schumacher] Kill by Eden Carrier, block error by Victoria Bencardino."/>  
+      <play number="54" serveteam="VALLEY C" point="VALLEY C" vscore="21" hscore="14" text="[Gracie Schumacher] Attack error by Ana Julia Goncalves."/>  
+      <play number="55" serveteam="VALLEY C" point="VALLEY C" vscore="21" hscore="15" text="[Gracie Schumacher] Attack error by Lindsey Hrbek."/>  
+      <play number="56" serveteam="GRAND VI" text="Timeout Grand View."/>  
+      <play number="57" serveteam="VALLEY C" point="VALLEY C" vscore="21" hscore="16" text="[Gracie Schumacher] Kill by Kadie Kocka (from Gracie Schumacher)."/>  
+      <play number="58" serveteam="VALLEY C" point="GRAND VI" vscore="22" hscore="16" text="[Gracie Schumacher] Service error."/>  
+      <play number="59" text="GRAND VI subs: Ava Renner."/>  
+      <play number="60" serveteam="GRAND VI" point="VALLEY C" vscore="22" hscore="17" text="[Ava Renner] Kill by Eden Carrier (from Gracie Schumacher)."/>  
+      <play number="61" text="VALLEY C subs: Hudson Zerface."/>  
+      <play number="62" serveteam="VALLEY C" point="VALLEY C" vscore="22" hscore="18" text="[Hudson Zerface] Kill by Eden Carrier (from Gracie Schumacher)."/>  
+      <play number="63" text="GRAND VI subs: Jocelyn Barrett."/>  
+      <play number="64" serveteam="VALLEY C" point="GRAND VI" vscore="23" hscore="18" text="[Hudson Zerface] Kill by Victoria Gasparini (from Victoria Bencardino)."/>  
+      <play number="65" serveteam="GRAND VI" point="GRAND VI" vscore="24" hscore="18" text="[Jocelyn Barrett] Attack error by Gracie Schumacher."/>  
+      <play number="66" serveteam="GRAND VI" point="GRAND VI" vscore="25" hscore="18" text="[Jocelyn Barrett] Kill by Victoria Gasparini (from Victoria Bencardino)."/> 
+    </game>  
+    <game number="2"> 
+      <play number="67" text="On court for GRAND VI: Ava Renner; Jocelyn Barrett; Victoria Gasparini; Brooklyn Roder; Juliana Neves; Luisa de Paula."/>  
+      <play number="68" text="On court for VALLEY C: Mady Geist; Gracie Schumacher; Hudson Zerface; Eden Carrier; Molly Bjornbey; Ellie Lucas."/>  
+      <play number="69" serveteam="GRAND VI" point="VALLEY C" vscore="0" hscore="1" text="[Juliana Neves] Kill by Mady Geist (from Gracie Schumacher)."/>  
+      <play number="70" text="VALLEY C subs: Madden Bogenreif; Brynn Sorenson."/>  
+      <play number="71" serveteam="VALLEY C" point="GRAND VI" vscore="1" hscore="1" text="[Madden Bogenreif] Kill by Victoria Gasparini (from Juliana Neves)."/>  
+      <play number="72" text="GRAND VI subs: Maria Eduarda dos Passos."/>  
+      <play number="73" serveteam="GRAND VI" point="VALLEY C" vscore="1" hscore="2" text="[Victoria Gasparini] Kill by Brynn Sorenson (from Madden Bogenreif)."/>  
+      <play number="74" text="VALLEY C subs: Kadie Kocka."/>  
+      <play number="75" serveteam="VALLEY C" point="VALLEY C" vscore="1" hscore="3" text="[Molly Bjornbey] Service ace (Victoria Gasparini)."/>  
+      <play number="76" serveteam="VALLEY C" point="GRAND VI" vscore="2" hscore="3" text="[Molly Bjornbey] Attack error by Brynn Sorenson (block by Maria Eduarda dos Passos; Brooklyn Roder)."/>  
+      <play number="77" serveteam="GRAND VI" point="VALLEY C" vscore="2" hscore="4" text="[Aydia Mayotte] Service error."/>  
+      <play number="78" serveteam="VALLEY C" point="GRAND VI" vscore="3" hscore="4" text="[Annika Pulju] Kill by Jocelyn Barrett (from Juliana Neves)."/>  
+      <play number="79" text="GRAND VI subs: Ana Julia Goncalves; Victoria Bencardino."/>  
+      <play number="80" serveteam="GRAND VI" point="GRAND VI" vscore="4" hscore="4" text="[Victoria Bencardino] Kill by Maria Eduarda dos Passos (from Victoria Bencardino)."/>  
+      <play number="81" serveteam="GRAND VI" point="GRAND VI" vscore="5" hscore="4" text="[Victoria Bencardino] Bad set by Madden Bogenreif."/>  
+      <play number="82" serveteam="GRAND VI" point="VALLEY C" vscore="5" hscore="5" text="[Victoria Bencardino] Kill by Kadie Kocka (from Madden Bogenreif)."/>  
+      <play number="83" text="VALLEY C subs: Gracie Schumacher; Ellie Lucas."/>  
+      <play number="84" serveteam="VALLEY C" point="GRAND VI" vscore="6" hscore="5" text="[Gracie Schumacher] Kill by Maria Eduarda dos Passos (from Victoria Bencardino)."/>  
+      <play number="85" text="GRAND VI subs: Ava Renner."/>  
+      <play number="86" serveteam="GRAND VI" point="VALLEY C" vscore="6" hscore="6" text="[Ava Renner] Kill by Eden Carrier (from Gracie Schumacher)."/>  
+      <play number="87" text="VALLEY C subs: Hudson Zerface."/>  
+      <play number="88" serveteam="VALLEY C" point="GRAND VI" vscore="7" hscore="6" text="[Hudson Zerface] Kill by Jocelyn Barrett."/>  
+      <play number="89" serveteam="GRAND VI" point="VALLEY C" vscore="7" hscore="7" text="[Jocelyn Barrett] Service error."/>  
+      <play number="90" serveteam="VALLEY C" point="VALLEY C" vscore="7" hscore="8" text="[Kinlee Sufficool] Kill by Ellie Lucas."/>  
+      <play number="91" serveteam="VALLEY C" point="VALLEY C" vscore="7" hscore="9" text="[Kinlee Sufficool] Kill by Mady Geist (from Gracie Schumacher)."/>  
+      <play number="92" serveteam="VALLEY C" point="GRAND VI" vscore="8" hscore="9" text="[Kinlee Sufficool] Kill by Victoria Gasparini."/>  
+      <play number="93" serveteam="GRAND VI" point="VALLEY C" vscore="8" hscore="10" text="[Juliana Neves] Service error."/>  
+      <play number="94" serveteam="VALLEY C" point="VALLEY C" vscore="8" hscore="11" text="[Madden Bogenreif] Attack error by Brooklyn Roder (block by Mady Geist; Molly Bjornbey)."/>  
+      <play number="95" serveteam="VALLEY C" point="GRAND VI" vscore="9" hscore="11" text="[Madden Bogenreif] Attack error by Molly Bjornbey."/>  
+      <play number="96" text="GRAND VI subs: Maria Eduarda dos Passos."/>  
+      <play number="97" serveteam="GRAND VI" point="GRAND VI" vscore="10" hscore="11" text="[Victoria Gasparini] Kill by Brooklyn Roder (from Juliana Neves)."/>  
+      <play number="98" serveteam="GRAND VI" point="VALLEY C" vscore="10" hscore="12" text="[Victoria Gasparini] Service error."/>  
+      <play number="99" text="VALLEY C subs: Kadie Kocka."/>  
+      <play number="100" serveteam="VALLEY C" point="VALLEY C" vscore="10" hscore="13" text="[Molly Bjornbey] Attack error by Luisa de Paula."/>  
+      <play number="101" serveteam="VALLEY C" point="VALLEY C" vscore="10" hscore="14" text="[Molly Bjornbey] Kill by Kadie Kocka (from Madden Bogenreif)."/>  
+      <play number="102" serveteam="GRAND VI" text="Timeout Grand View."/>  
+      <play number="103" serveteam="VALLEY C" point="GRAND VI" vscore="11" hscore="14" text="[Molly Bjornbey] Kill by Maria Eduarda dos Passos (from Juliana Neves)."/>  
+      <play number="104" serveteam="GRAND VI" point="GRAND VI" vscore="12" hscore="14" text="[Aydia Mayotte] Kill by Jocelyn Barrett (from Juliana Neves)."/>  
+      <play number="105" serveteam="GRAND VI" point="GRAND VI" vscore="13" hscore="14" text="[Aydia Mayotte] Service ace (Team)."/>  
+      <play number="106" serveteam="GRAND VI" point="VALLEY C" vscore="13" hscore="15" text="[Aydia Mayotte] Kill by Kadie Kocka (from Madden Bogenreif)."/>  
+      <play number="107" serveteam="VALLEY C" point="VALLEY C" vscore="13" hscore="16" text="[Annika Pulju] Kill by Kadie Kocka (from Madden Bogenreif)."/>  
+      <play number="108" serveteam="VALLEY C" point="VALLEY C" vscore="13" hscore="17" text="[Annika Pulju] Attack error by Jocelyn Barrett (block by Eden Carrier)."/>  
+      <play number="109" serveteam="VALLEY C" point="GRAND VI" vscore="14" hscore="17" text="[Annika Pulju] Attack error by Brynn Sorenson."/>  
+      <play number="110" text="GRAND VI subs: Victoria Bencardino; Victoria Gasparini."/>  
+      <play number="111" serveteam="GRAND VI" point="GRAND VI" vscore="15" hscore="17" text="[Victoria Bencardino] Attack error by Madden Bogenreif."/>  
+      <play number="112" serveteam="GRAND VI" point="VALLEY C" vscore="15" hscore="18" text="[Victoria Bencardino] Kill by Kadie Kocka (from Madden Bogenreif)."/>  
+      <play number="113" text="VALLEY C subs: Gracie Schumacher; Ellie Lucas."/>  
+      <play number="114" serveteam="VALLEY C" point="GRAND VI" vscore="16" hscore="18" text="[Gracie Schumacher] Kill by Maria Eduarda dos Passos (from Victoria Bencardino)."/>  
+      <play number="115" text="GRAND VI subs: Ava Renner."/>  
+      <play number="116" serveteam="GRAND VI" point="GRAND VI" vscore="17" hscore="18" text="[Ava Renner] Attack error by Ellie Lucas."/>  
+      <play number="117" serveteam="GRAND VI" point="GRAND VI" vscore="18" hscore="18" text="[Ava Renner] Attack error by Kadie Kocka."/>  
+      <play number="118" serveteam="GRAND VI" point="GRAND VI" vscore="19" hscore="18" text="[Ava Renner] Attack error by Ellie Lucas."/>  
+      <play number="119" serveteam="GRAND VI" text="Timeout Valley City State."/>  
+      <play number="120" serveteam="GRAND VI" point="GRAND VI" vscore="20" hscore="18" text="[Ava Renner] Kill by Ava Renner (from Victoria Bencardino)."/>  
+      <play number="121" serveteam="GRAND VI" point="VALLEY C" vscore="20" hscore="19" text="[Ava Renner] Service error."/>  
+      <play number="122" serveteam="VALLEY C" point="GRAND VI" vscore="21" hscore="19" text="[Hudson Zerface] Kill by Jocelyn Barrett (from Victoria Bencardino)."/>  
+      <play number="123" serveteam="GRAND VI" point="GRAND VI" vscore="22" hscore="19" text="[Jocelyn Barrett] Kill by Victoria Gasparini (from Victoria Bencardino)."/>  
+      <play number="124" serveteam="GRAND VI" point="VALLEY C" vscore="22" hscore="20" text="[Jocelyn Barrett] Kill by Eden Carrier (from Gracie Schumacher)."/>  
+      <play number="125" text="VALLEY C subs: Kinlee Sufficool; Hudson Zerface."/>  
+      <play number="126" serveteam="VALLEY C" point="GRAND VI" vscore="23" hscore="20" text="[Kinlee Sufficool] Kill by Ana Julia Goncalves (from Victoria Bencardino)."/>  
+      <play number="127" text="VALLEY C subs: Eden Carrier."/>  
+      <play number="128" text="GRAND VI subs: Juliana Neves; Luisa de Paula."/>  
+      <play number="129" serveteam="GRAND VI" point="GRAND VI" vscore="24" hscore="20" text="[Juliana Neves] Service ace (Molly Bjornbey)."/>  
+      <play number="130" serveteam="GRAND VI" point="VALLEY C" vscore="24" hscore="21" text="[Juliana Neves] Attack error by Victoria Gasparini (block by Mady Geist; Ellie Lucas)."/>  
+      <play number="131" text="VALLEY C subs: Madden Bogenreif; Brynn Sorenson."/>  
+      <play number="132" serveteam="VALLEY C" point="GRAND VI" vscore="25" hscore="21" text="[Madden Bogenreif] Kill by Luisa de Paula (from Juliana Neves)."/> 
+    </game>  
+    <game number="3"> 
+      <play number="133" text="On court for VALLEY C: Mady Geist; Madden Bogenreif; Hudson Zerface; Eden Carrier; Brynn Sorenson; Molly Bjornbey."/>  
+      <play number="134" text="On court for GRAND VI: Ava Renner; Jocelyn Barrett; Luisa de Paula; Victoria Gasparini; Brooklyn Roder; Juliana Neves."/>  
+      <play number="135" serveteam="VALLEY C" point="VALLEY C" vscore="0" hscore="1" text="[Madden Bogenreif] Bad set by Juliana Neves."/>  
+      <play number="136" serveteam="VALLEY C" point="VALLEY C" vscore="0" hscore="2" text="[Madden Bogenreif] Kill by Molly Bjornbey (from Madden Bogenreif)."/>  
+      <play number="137" serveteam="VALLEY C" point="GRAND VI" vscore="1" hscore="2" text="[Madden Bogenreif] Service error."/>  
+      <play number="138" text="GRAND VI subs: Maria Eduarda dos Passos."/>  
+      <play number="139" serveteam="GRAND VI" point="GRAND VI" vscore="2" hscore="2" text="[Victoria Gasparini] Attack error by Brynn Sorenson."/>  
+      <play number="140" serveteam="GRAND VI" point="VALLEY C" vscore="2" hscore="3" text="[Victoria Gasparini] Kill by Brynn Sorenson (from Madden Bogenreif)."/>  
+      <play number="141" text="VALLEY C subs: Kadie Kocka."/>  
+      <play number="142" serveteam="VALLEY C" point="VALLEY C" vscore="2" hscore="4" text="[Molly Bjornbey] Kill by Kadie Kocka."/>  
+      <play number="143" serveteam="VALLEY C" point="GRAND VI" vscore="3" hscore="4" text="[Molly Bjornbey] Kill by Brooklyn Roder (from Juliana Neves)."/>  
+      <play number="144" serveteam="GRAND VI" point="GRAND VI" vscore="4" hscore="4" text="[Cecilia Campos] Service ace (Annika Pulju)."/>  
+      <play number="145" serveteam="GRAND VI" point="GRAND VI" vscore="5" hscore="4" text="[Cecilia Campos] Kill by Maria Eduarda dos Passos (from Juliana Neves)."/>  
+      <play number="146" serveteam="GRAND VI" point="VALLEY C" vscore="5" hscore="5" text="[Cecilia Campos] Service error."/>  
+      <play number="147" serveteam="VALLEY C" point="VALLEY C" vscore="5" hscore="6" text="[Annika Pulju] Bad set by Juliana Neves."/>  
+      <play number="148" serveteam="VALLEY C" point="GRAND VI" vscore="6" hscore="6" text="[Annika Pulju] Kill by Maria Eduarda dos Passos."/>  
+      <play number="149" text="GRAND VI subs: Ana Julia Goncalves; Victoria Bencardino."/>  
+      <play number="150" serveteam="GRAND VI" point="VALLEY C" vscore="6" hscore="7" text="[Victoria Bencardino] Kill by Eden Carrier (from Madden Bogenreif)."/>  
+      <play number="151" serveteam="VALLEY C" point="VALLEY C" vscore="6" hscore="8" text="[Gracie Schumacher] Kill by Kadie Kocka (from Annika Pulju)."/>  
+      <play number="152" serveteam="VALLEY C" point="VALLEY C" vscore="6" hscore="9" text="[Gracie Schumacher] Attack error by Ana Julia Goncalves."/>  
+      <play number="153" serveteam="VALLEY C" point="VALLEY C" vscore="6" hscore="10" text="[Gracie Schumacher] Service ace (Maria Eduarda dos Passos)."/>  
+      <play number="154" serveteam="VALLEY C" point="GRAND VI" vscore="7" hscore="10" text="[Gracie Schumacher] Service error."/>  
+      <play number="155" text="GRAND VI subs: Ava Renner."/>  
+      <play number="156" serveteam="GRAND VI" point="VALLEY C" vscore="7" hscore="11" text="[Ava Renner] Kill by Eden Carrier (from Gracie Schumacher)."/>  
+      <play number="157" text="VALLEY C subs: Hudson Zerface."/>  
+      <play number="158" serveteam="VALLEY C" point="VALLEY C" vscore="7" hscore="12" text="[Hudson Zerface] Kill by Ellie Lucas (from Annika Pulju)."/>  
+      <play number="159" serveteam="GRAND VI" text="Timeout Grand View."/>  
+      <play number="160" serveteam="VALLEY C" point="VALLEY C" vscore="7" hscore="13" text="[Hudson Zerface] Attack error by Ana Julia Goncalves (block by Molly Bjornbey; Eden Carrier)."/>  
+      <play number="161" serveteam="VALLEY C" point="VALLEY C" vscore="7" hscore="14" text="[Hudson Zerface] Kill by Molly Bjornbey (from Gracie Schumacher)."/>  
+      <play number="162" serveteam="VALLEY C" point="GRAND VI" vscore="8" hscore="14" text="[Hudson Zerface] Attack error by Molly Bjornbey."/>  
+      <play number="163" serveteam="GRAND VI" point="GRAND VI" vscore="9" hscore="14" text="[Jocelyn Barrett] Attack error by Molly Bjornbey."/>  
+      <play number="164" serveteam="GRAND VI" point="GRAND VI" vscore="10" hscore="14" text="[Jocelyn Barrett] Attack error by Ellie Lucas."/>  
+      <play number="165" serveteam="GRAND VI" point="GRAND VI" vscore="11" hscore="14" text="[Jocelyn Barrett] Service ace (Hudson Zerface)."/>  
+      <play number="166" serveteam="GRAND VI" point="GRAND VI" vscore="12" hscore="14" text="[Jocelyn Barrett] Attack error by Eden Carrier."/>  
+      <play number="167" serveteam="GRAND VI" text="Timeout Valley City State."/>  
+      <play number="168" serveteam="GRAND VI" point="VALLEY C" vscore="12" hscore="15" text="[Jocelyn Barrett] Kill by Molly Bjornbey (from Gracie Schumacher)."/>  
+      <play number="169" serveteam="VALLEY C" point="VALLEY C" vscore="12" hscore="16" text="[Kinlee Sufficool] Attack error by Victoria Gasparini."/>  
+      <play number="170" serveteam="VALLEY C" point="GRAND VI" vscore="13" hscore="16" text="[Kinlee Sufficool] Kill by Victoria Gasparini (from Victoria Bencardino)."/>  
+      <play number="171" text="GRAND VI subs: Juliana Neves; Luisa de Paula."/>  
+      <play number="172" serveteam="GRAND VI" point="GRAND VI" vscore="14" hscore="16" text="[Juliana Neves] Kill by Victoria Gasparini (from Juliana Neves)."/>  
+      <play number="173" serveteam="GRAND VI" point="GRAND VI" vscore="15" hscore="16" text="[Juliana Neves] Attack error by Mady Geist."/>  
+      <play number="174" serveteam="GRAND VI" point="VALLEY C" vscore="15" hscore="17" text="[Juliana Neves] Kill by Molly Bjornbey (from Gracie Schumacher)."/>  
+      <play number="175" text="VALLEY C subs: Madden Bogenreif; Brynn Sorenson."/>  
+      <play number="176" serveteam="VALLEY C" point="GRAND VI" vscore="16" hscore="17" text="[Madden Bogenreif] Kill by Victoria Gasparini."/>  
+      <play number="177" text="GRAND VI subs: Maria Eduarda dos Passos."/>  
+      <play number="178" serveteam="GRAND VI" point="VALLEY C" vscore="16" hscore="18" text="[Victoria Gasparini] Kill by Mady Geist (from Madden Bogenreif)."/>  
+      <play number="179" text="VALLEY C subs: Kadie Kocka."/>  
+      <play number="180" serveteam="VALLEY C" point="GRAND VI" vscore="17" hscore="18" text="[Molly Bjornbey] Kill by Maria Eduarda dos Passos (from Juliana Neves)."/>  
+      <play number="181" serveteam="GRAND VI" point="GRAND VI" vscore="18" hscore="18" text="[Cecilia Campos] Attack error by Kadie Kocka (block by Jocelyn Barrett; Luisa de Paula)."/>  
+      <play number="182" serveteam="GRAND VI" point="VALLEY C" vscore="18" hscore="19" text="[Cecilia Campos] Service error."/>  
+      <play number="183" serveteam="VALLEY C" point="GRAND VI" vscore="19" hscore="19" text="[Annika Pulju] Attack error by Kadie Kocka."/>  
+      <play number="184" text="GRAND VI subs: Ana Julia Goncalves; Victoria Bencardino."/>  
+      <play number="185" serveteam="GRAND VI" point="VALLEY C" vscore="19" hscore="20" text="[Victoria Bencardino] Kill by Eden Carrier (from Madden Bogenreif)."/>  
+      <play number="186" text="VALLEY C subs: Gracie Schumacher; Ellie Lucas."/>  
+      <play number="187" serveteam="VALLEY C" point="GRAND VI" vscore="20" hscore="20" text="[Gracie Schumacher] Kill by Ana Julia Goncalves."/>  
+      <play number="188" text="GRAND VI subs: Ava Renner."/>  
+      <play number="189" serveteam="GRAND VI" point="VALLEY C" vscore="20" hscore="21" text="[Ava Renner] Kill by Kadie Kocka (from Gracie Schumacher)."/>  
+      <play number="190" text="VALLEY C subs: Hudson Zerface."/>  
+      <play number="191" serveteam="VALLEY C" point="VALLEY C" vscore="20" hscore="22" text="[Hudson Zerface] Kill by Molly Bjornbey (from Gracie Schumacher)."/>  
+      <play number="192" serveteam="GRAND VI" text="Timeout Grand View."/>  
+      <play number="193" serveteam="VALLEY C" point="GRAND VI" vscore="21" hscore="22" text="[Hudson Zerface] Kill by Ana Julia Goncalves (from Aydia Mayotte)."/>  
+      <play number="194" serveteam="GRAND VI" point="VALLEY C" vscore="21" hscore="23" text="[Jocelyn Barrett] Kill by Gracie Schumacher (from Hudson Zerface)."/>  
+      <play number="195" text="VALLEY C subs: Kinlee Sufficool."/>  
+      <play number="196" serveteam="VALLEY C" point="VALLEY C" vscore="21" hscore="24" text="[Kinlee Sufficool] Kill by Gracie Schumacher."/>  
+      <play number="197" serveteam="VALLEY C" point="GRAND VI" vscore="22" hscore="24" text="[Kinlee Sufficool] Attack error by Molly Bjornbey."/>  
+      <play number="198" text="VALLEY C subs: Eden Carrier."/>  
+      <play number="199" text="GRAND VI subs: Juliana Neves; Luisa de Paula."/>  
+      <play number="200" serveteam="GRAND VI" point="VALLEY C" vscore="22" hscore="25" text="[Juliana Neves] Attack error by Victoria Gasparini."/> 
+    </game>  
+    <game number="4"> 
+      <play number="201" text="On court for VALLEY C: Mady Geist; Madden Bogenreif; Brynn Sorenson; Hudson Zerface; Eden Carrier; Molly Bjornbey."/>  
+      <play number="202" text="On court for GRAND VI: Ava Renner; Jocelyn Barrett; Luisa de Paula; Victoria Gasparini; Juliana Neves; Brooklyn Roder."/>  
+      <play number="203" serveteam="GRAND VI" point="GRAND VI" vscore="1" hscore="0" text="[Juliana Neves] Service ace (Hudson Zerface)."/>  
+      <play number="204" serveteam="GRAND VI" point="GRAND VI" vscore="2" hscore="0" text="[Juliana Neves] Attack error by Molly Bjornbey (block by Brooklyn Roder; Victoria Gasparini)."/>  
+      <play number="205" serveteam="GRAND VI" point="GRAND VI" vscore="3" hscore="0" text="[Juliana Neves] Kill by Luisa de Paula."/>  
+      <play number="206" serveteam="GRAND VI" point="VALLEY C" vscore="3" hscore="1" text="[Juliana Neves] Attack error by Luisa de Paula (block by Mady Geist; Brynn Sorenson)."/>  
+      <play number="207" text="VALLEY C subs: Kadie Kocka."/>  
+      <play number="208" serveteam="VALLEY C" point="VALLEY C" vscore="3" hscore="2" text="[Molly Bjornbey] Service ace (Victoria Gasparini)."/>  
+      <play number="209" serveteam="VALLEY C" point="GRAND VI" vscore="4" hscore="2" text="[Molly Bjornbey] Service error."/>  
+      <play number="210" text="GRAND VI subs: Maria Eduarda dos Passos."/>  
+      <play number="211" serveteam="GRAND VI" point="GRAND VI" vscore="5" hscore="2" text="[Victoria Gasparini] Kill by Brooklyn Roder (from Juliana Neves)."/>  
+      <play number="212" serveteam="GRAND VI" point="VALLEY C" vscore="5" hscore="3" text="[Victoria Gasparini] Service error."/>  
+      <play number="213" serveteam="VALLEY C" point="VALLEY C" vscore="5" hscore="4" text="[Annika Pulju] Attack error by Brooklyn Roder."/>  
+      <play number="214" serveteam="VALLEY C" point="GRAND VI" vscore="6" hscore="4" text="[Annika Pulju] Kill by Maria Eduarda dos Passos (from Juliana Neves)."/>  
+      <play number="215" serveteam="GRAND VI" point="VALLEY C" vscore="6" hscore="5" text="[Aydia Mayotte] Service error."/>  
+      <play number="216" text="VALLEY C subs: Gracie Schumacher; Ellie Lucas."/>  
+      <play number="217" serveteam="VALLEY C" point="GRAND VI" vscore="7" hscore="5" text="[Gracie Schumacher] Kill by Maria Eduarda dos Passos (from Juliana Neves)."/>  
+      <play number="218" text="GRAND VI subs: Ana Julia Goncalves; Victoria Bencardino."/>  
+      <play number="219" serveteam="GRAND VI" point="GRAND VI" vscore="8" hscore="5" text="[Victoria Bencardino] Kill by Jocelyn Barrett."/>  
+      <play number="220" serveteam="GRAND VI" point="VALLEY C" vscore="8" hscore="6" text="[Victoria Bencardino] Service error."/>  
+      <play number="221" text="VALLEY C subs: Hudson Zerface."/>  
+      <play number="222" serveteam="VALLEY C" point="GRAND VI" vscore="9" hscore="6" text="[Hudson Zerface] Kill by Jocelyn Barrett (from Victoria Bencardino)."/>  
+      <play number="223" serveteam="GRAND VI" point="GRAND VI" vscore="10" hscore="6" text="[Ava Renner] Kill by Victoria Gasparini (from Aydia Mayotte)."/>  
+      <play number="224" serveteam="GRAND VI" point="GRAND VI" vscore="11" hscore="6" text="[Ava Renner] Kill by Victoria Gasparini (from Victoria Bencardino)."/>  
+      <play number="225" serveteam="GRAND VI" text="Timeout Valley City State."/>  
+      <play number="226" serveteam="GRAND VI" point="VALLEY C" vscore="11" hscore="7" text="[Ava Renner] Kill by Gracie Schumacher (from Molly Bjornbey)."/>  
+      <play number="227" text="VALLEY C subs: Kinlee Sufficool."/>  
+      <play number="228" serveteam="VALLEY C" point="GRAND VI" vscore="12" hscore="7" text="[Kinlee Sufficool] Attack error by Mady Geist."/>  
+      <play number="229" text="VALLEY C subs: Eden Carrier."/>  
+      <play number="230" serveteam="GRAND VI" point="VALLEY C" vscore="12" hscore="8" text="[Jocelyn Barrett] Kill by Molly Bjornbey (from Gracie Schumacher)."/>  
+      <play number="231" text="VALLEY C subs: Madden Bogenreif; Brynn Sorenson."/>  
+      <play number="232" serveteam="VALLEY C" point="VALLEY C" vscore="12" hscore="9" text="[Madden Bogenreif] Kill by Mady Geist (from Madden Bogenreif)."/>  
+      <play number="233" serveteam="VALLEY C" point="VALLEY C" vscore="12" hscore="10" text="[Madden Bogenreif] Kill by Mady Geist."/>  
+      <play number="234" serveteam="VALLEY C" point="GRAND VI" vscore="13" hscore="10" text="[Madden Bogenreif] Service error."/>  
+      <play number="235" serveteam="GRAND VI" point="VALLEY C" vscore="13" hscore="11" text="[Juliana Neves] Service error."/>  
+      <play number="236" serveteam="VALLEY C" point="GRAND VI" vscore="14" hscore="11" text="[Molly Bjornbey] Attack error by Kadie Kocka."/>  
+      <play number="237" serveteam="GRAND VI" point="VALLEY C" vscore="14" hscore="12" text="[Victoria Gasparini] Kill by Mady Geist (from Madden Bogenreif)."/>  
+      <play number="238" serveteam="VALLEY C" point="GRAND VI" vscore="15" hscore="12" text="[Annika Pulju] Kill by Maria Eduarda dos Passos (from Victoria Gasparini)."/>  
+      <play number="239" serveteam="GRAND VI" point="GRAND VI" vscore="16" hscore="12" text="[Aydia Mayotte] Attack error by Brynn Sorenson (block by Maria Eduarda dos Passos; Jocelyn Barrett)."/>  
+      <play number="240" serveteam="GRAND VI" point="GRAND VI" vscore="17" hscore="12" text="[Aydia Mayotte] Service ace (Team)."/>  
+      <play number="241" serveteam="GRAND VI" point="GRAND VI" vscore="18" hscore="12" text="[Aydia Mayotte] Kill by Luisa de Paula (from Juliana Neves)."/>  
+      <play number="242" serveteam="GRAND VI" text="Timeout Valley City State."/>  
+      <play number="243" serveteam="GRAND VI" point="GRAND VI" vscore="19" hscore="12" text="[Aydia Mayotte] Kill by Jocelyn Barrett."/>  
+      <play number="244" serveteam="GRAND VI" point="GRAND VI" vscore="20" hscore="12" text="[Aydia Mayotte] Kill by Maria Eduarda dos Passos."/>  
+      <play number="245" serveteam="GRAND VI" point="VALLEY C" vscore="20" hscore="13" text="[Aydia Mayotte] Attack error by Jocelyn Barrett (block by Eden Carrier; Brynn Sorenson)."/>  
+      <play number="246" serveteam="VALLEY C" point="GRAND VI" vscore="21" hscore="13" text="[Gracie Schumacher] Kill by Luisa de Paula (from Juliana Neves)."/>  
+      <play number="247" serveteam="GRAND VI" point="VALLEY C" vscore="21" hscore="14" text="[Victoria Bencardino] Kill by Ellie Lucas (from Gracie Schumacher)."/>  
+      <play number="248" serveteam="VALLEY C" point="GRAND VI" vscore="22" hscore="14" text="[Hudson Zerface] Kill by Victoria Bencardino (from Aydia Mayotte)."/>  
+      <play number="249" text="GRAND VI subs: Ava Renner."/>  
+      <play number="250" serveteam="GRAND VI" point="GRAND VI" vscore="23" hscore="14" text="[Ava Renner] Attack error by Molly Bjornbey (block by Ana Julia Goncalves; Jocelyn Barrett)."/>  
+      <play number="251" serveteam="GRAND VI" point="GRAND VI" vscore="24" hscore="14" text="[Ava Renner] Attack error by Ellie Lucas (block by Jocelyn Barrett; Victoria Gasparini)."/>  
+      <play number="252" serveteam="GRAND VI" point="VALLEY C" vscore="24" hscore="15" text="[Ava Renner] Kill by Molly Bjornbey (from Gracie Schumacher), block error by Jocelyn Barrett."/>  
+      <play number="253" serveteam="VALLEY C" point="GRAND VI" vscore="25" hscore="15" text="[Kinlee Sufficool] Service error."/> 
+    </game> 
+  </plays>  
+  <analysis/>  
+  <status complete="Y" vscore="3" hscore="1" game="4" vpoints="25" hpoints="15" serving="H" running="F"/>  
+  <leadchanges ties="0" leads="0"> 
+    <leadchange game="1" ties="0" leads="0"/>  
+    <leadchange game="2" ties="6" leads="3"/>  
+    <leadchange game="3" ties="7" leads="2"/>  
+    <leadchange game="4" ties="0" leads="0"/> 
+  </leadchanges>  
+  <breakdowns vh="V" pts="97" kill="52" ace="8" block="8" eatk="16" esvc="6" ebhe="1"> 
+    <breakdown game="1" pts="25" kill="14" ace="2" block="2" eatk="5" esvc="1" ebhe="0"/>  
+    <breakdown game="2" pts="25" kill="15" ace="2" block="1" eatk="4" esvc="0" ebhe="1"/>  
+    <breakdown game="3" pts="22" kill="9" ace="2" block="1" eatk="4" esvc="2" ebhe="0"/>  
+    <breakdown game="4" pts="25" kill="14" ace="2" block="4" eatk="3" esvc="3" ebhe="0"/> 
+  </breakdowns>  
+  <breakdowns vh="H" pts="79" kill="43" ace="4" block="6" eatk="30" esvc="14" ebhe="2"> 
+    <breakdown game="1" pts="18" kill="9" ace="1" block="0" eatk="8" esvc="3" ebhe="0"/>  
+    <breakdown game="2" pts="21" kill="11" ace="1" block="3" eatk="7" esvc="5" ebhe="0"/>  
+    <breakdown game="3" pts="25" kill="16" ace="1" block="1" eatk="9" esvc="2" ebhe="2"/>  
+    <breakdown game="4" pts="15" kill="7" ace="1" block="2" eatk="6" esvc="4" ebhe="0"/> 
+  </breakdowns> 
+</vbgame>
+
+

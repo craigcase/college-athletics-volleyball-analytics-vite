@@ -21,7 +21,7 @@ test('vertical slice keeps schedule match canonical, computes deterministically,
   assert.equal(resolution.status, 'matched');
   assert.equal(resolution.matchId, 'match-1');
 
-  const capabilities = detectCapabilities({ observations: box.observations });
+  const capabilities = detectCapabilities({ evidence: { observations: box.observations } });
   const team = Object.fromEntries(['us','opponent'].map(side => [side, Object.fromEntries(box.observations.filter(o => o.entityKey === side).map(o => [o.field, o.value]))]));
   const metrics = calculateMatchAnalytics({ matchId:'match-1', canonicalRevision:1, capabilities, teams:{ our_team:{ kills:team.us.kills, attackErrors:team.us.attack_errors, attackAttempts:team.us.attack_attempts }, opponent:{ kills:team.opponent.kills, attackErrors:team.opponent.attack_errors, attackAttempts:team.opponent.attack_attempts } } });
   const stored = metrics.map(m => ({ matchId:m.matchId, subject:m.subject, metric:m.metric, value:m.value, opportunities:m.denominator, engineVersion:m.engineVersion }));
@@ -35,8 +35,8 @@ test('vertical slice keeps schedule match canonical, computes deterministically,
 test('richer XML enriches capabilities for same canonical match without replacing basic evidence', () => {
   const basic = parsePublicBoxScoreHtml(`<section data-match-date="2026-09-05" data-opponent="Mayville State"></section><div data-team="us" data-kills="45" data-errors="18" data-attempts="110"></div><div data-team="opponent" data-kills="39" data-errors="22" data-attempts="115"></div>`, 'https://example.edu/box');
   const rich = parseStructuredXml(`<match date="2026-09-05" opponent="Mayville State"><rally index="1" servingTeam="us" scoreAfter="1-0" rotation="R1"/><contact player="p7" passQuality="3" attackOrigin="Outside" attackDestination="Cross"/></match>`, 'volleymetrics_xml', 'upload://vm.xml');
-  const before = detectCapabilities({ observations: basic.observations });
-  const after = detectCapabilities({ observations: [...basic.observations, ...rich.observations] });
+  const before = detectCapabilities({ evidence: { observations: basic.observations } });
+  const after = detectCapabilities({ evidence: { observations: [...basic.observations, ...rich.observations] } });
   assert.equal(before.rallySequence, false);
   assert.equal(after.rallySequence, true);
   assert.equal(after.rotationState, true);

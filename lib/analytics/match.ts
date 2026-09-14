@@ -1,5 +1,7 @@
 import { calculateHittingPercentage } from './hitting.js';
 import { ANALYTICS_ENGINE_VERSION, type AnalyticsSubject, type MatchMetricResult } from './types.js';
+import { calculateRallyAnalytics } from './rally.js';
+import type { CanonicalRallyDraft } from '../ingestion/match/timeline-types.js';
 
 type TeamTotals = { kills?: number; attackErrors?: number; attackAttempts?: number; aces?: number; serviceErrors?: number };
 type Input = {
@@ -29,4 +31,10 @@ export function calculateMatchAnalytics(input: Input): MatchMetricResult[] {
     }
   }
   return out;
+}
+
+export function calculateAllMatchAnalytics(input:Input & {rallies?:CanonicalRallyDraft[]}):MatchMetricResult[]{
+  const boxMetrics=calculateMatchAnalytics(input);
+  const rallyMetrics=input.rallies?.length?calculateRallyAnalytics({matchId:input.matchId,canonicalRevision:input.canonicalRevision,rallies:input.rallies}):[];
+  return [...boxMetrics,...rallyMetrics];
 }

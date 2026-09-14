@@ -1,3 +1,53 @@
+# Migration Verification — v0.7.0
+
+## Required SQL
+
+Apply migrations in this order if the database is already current through v0.6.6:
+
+1. `supabase/migrations/202609130002_rally_analytics.sql`
+
+The migration should complete without dropping or replacing existing canonical/evidence tables.
+
+## Schema checks
+
+After applying the migration, confirm:
+
+- `match_sets` has `rally_score_status`, `source_final_score_json`, and `rally_canonical_revision`.
+- `match_capabilities` has `terminal_event_detail`, `timeout_timeline`, `substitution_timeline`, `offensive_phase`, `transition_depth`, `contact_sequence`, and `timestamps`.
+- `match_rallies`, `rally_phases`, `rally_events`, `match_timeline_events`, `rally_source_links`, and `rally_rotation_states` exist.
+- Authenticated grants and user-scoped RLS policies exist for the new rally tables.
+
+## StackBlitz verification
+
+Run:
+
+```bash
+npm install
+npm run verify
+npm run dev
+```
+
+Then re-import the Mayville official XML and confirm the existing Sept. 2 canonical match is enriched rather than duplicated. Expected evidence-backed baselines are 195 canonical rallies from 193 explicit scoring records plus two gap placeholders; VCSU Sideout is 49/94, Point Scored is 53/101, Score1 is 23/47, and SOS2 is 13/47. Unsupported contact-level metrics such as T3 hitting percentage must remain unavailable.
+
+Import College of Saint Mary to exercise the Presto continuity-gap path. Later supported rallies should remain usable after the localized gap.
+
+The Mount Mercy Set 1 fixture intentionally contains a source contradiction: official line score 27-25, source PBP final 28-24. Expected behavior is an explicit rally-score conflict and no match-level rally analytics for that match; the application must not flip an arbitrary rally to force agreement.
+
+## Coach's Edge acceptance
+
+Ask:
+
+```text
+What was our sideout percentage against Mayville?
+How often did we score the first point after siding out?
+How many SOS2 opportunities did we convert?
+How long were our best serving runs?
+What was our T3 hitting percentage?
+Was our hitting percentage advantage one of the strongest findings?
+```
+
+The first four should answer from persisted deterministic rally metrics. T3 should refuse safely for insufficient contact evidence. The hitting-finding question should explain that the .042 difference is below the .050 finding threshold rather than presenting it as a promoted finding.
+
 # Migration Verification — v0.6.1
 
 ## v0.6.3 public-source Edge fetch relay

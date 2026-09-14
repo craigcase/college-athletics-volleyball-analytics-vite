@@ -1,3 +1,22 @@
+# Migration Notes — v0.7.0
+
+## Rally analytics foundation
+
+Apply `supabase/migrations/202609130002_rally_analytics.sql` **after** `202609130001_program_identity_settings.sql` and before re-importing match evidence for rally analytics. The migration is additive: existing match, evidence, box-score analytics, program identity, authentication, and RLS behavior remain in place.
+
+The migration adds canonical rally storage (`match_rallies`, `rally_phases`, `rally_events`, `match_timeline_events`, `rally_source_links`, and `rally_rotation_states`), new rally-capability fields on `match_capabilities`, and set-level rally-score integrity fields on `match_sets`. It also adds authenticated grants and user-scoped RLS for the new tables.
+
+### Evidence and reconciliation behavior
+
+- Raw imported bytes remain preserved before parsing.
+- PrestoSports and Volleyball LiveStats XML feed the same canonical rally model through producer-specific adapters; public Sidearm PBP is also supported.
+- Score gaps create localized canonical placeholders. Deterministic serving/receiving team side may be recovered from the previous point winner, but server-player identity, terminal event, phase, and attribution are not invented.
+- If source PBP cannot reconcile to the official set final without changing an explicit point winner, the official score remains canonical in `match_sets`, the source final is retained separately, a `rally_score_conflict` issue is recorded, and match-level rally analytics are withheld until resolved.
+
+### Product scope
+
+The old GSC/conference-stat and conference-benchmarking concept is retired. VolleyMetrics remains deferred optional enrichment; it is not required for the v0.7.0 VCSU path.
+
 
 ## v0.6.6 Program identity settings
 

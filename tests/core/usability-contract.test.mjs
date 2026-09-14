@@ -59,3 +59,10 @@ test('a program lookup failure is not treated as no program', async () => {
   assert.match(app,/ProgramLoadError/);
   assert.match(app,/Retry/);
 });
+
+test('match summary exposes evidence-gated rally analytics without calculating them in React', async()=>{
+  const page=await readFile(new URL('../../src/components/MatchSummary.tsx',import.meta.url),'utf8');
+  for(const label of ['Rally Analytics','Sideout %','Point Scored %','Score1','SOS2','EPO','Longest Service Run','Sideout Pathways','Not available from this evidence'])assert.match(page,new RegExp(label.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')));
+  assert.match(page,/summary\.rallyAnalytics/);
+  assert.doesNotMatch(page,/calculateRallyAnalytics/);
+});

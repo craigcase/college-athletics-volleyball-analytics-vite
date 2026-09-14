@@ -5,7 +5,6 @@ import type { EvidenceObservation } from '../../lib/ingestion/types';
 import type { SourceFamily } from '../../lib/ingestion/source-family';
 import { sourceConfidence } from '../../lib/ingestion/confidence';
 import { resolveCanonicalMatch, type MatchEvidenceIdentity } from '../../lib/ingestion/match/resolve-match';
-import { recalculateMatch } from './analytics';
 
 export async function resolveMatchForEvidence(programId:string,seasonId:string,evidence:MatchEvidenceIdentity){
   const db=getAdminClient();
@@ -25,12 +24,17 @@ export async function resolveMatchForEvidence(programId:string,seasonId:string,e
   return resolveCanonicalMatch({evidence,candidates});
 }
 
-export async function attachEvidenceToMatch(input:{programId:string;matchId:string;sourceArtifactId:string;sourceFamily:SourceFamily;lineageId:string;matchConfidence:number;observations:EvidenceObservation[];actorEmail:string}){
+export async function attachEvidenceToMatch(input:{programId:string;matchId:string;sourceArtifactId:string;sourceFamily:SourceFamily;lineageId:string;matchConfidence:number;observations:EvidenceObservation[];actorEmail:string;reprocess?:boolean}){
   const db=getAdminClient(),now=nowIso();
   const linked=await db.from('match_source_links').select('id').eq('match_id',input.matchId).eq('source_artifact_id',input.sourceArtifactId).maybeSingle();
   assertNoError(linked.error,'Check match source link');
-  if(linked.data)return {duplicate:true,matchId:input.matchId};
-  const link=await db.from('match_source_links').insert({id:id('matchsource'),match_id:input.matchId,source_artifact_id:input.sourceArtifactId,match_confidence:input.matchConfidence,created_at:now});assertNoError(link.error,'Attach match source');
+  if(linked.data&&!input.reprocess)return {duplicate:true,matchId:input.matchId};
+  if(!linked.data){
+    const link=await db.from('match_source_links').insert({id:id('matchsource'),match_id:input.matchId,source_artifact_id:input.sourceArtifactId,match_confidence:input.matchConfidence,created_at:now});assertNoError(link.error,'Attach match source');
+  }else{
+    const stale=await db.from('evidence_observations').delete().eq('match_id',input.matchId).eq('source_artifact_id',input.sourceArtifactId);
+    assertNoError(stale.error,'Clear stale parsed match evidence');
+  }
   if(input.observations.length){
     const rows=input.observations.map(o=>({id:id('obs'),program_id:input.programId,source_artifact_id:input.sourceArtifactId,match_id:input.matchId,entity_type:o.entityType,source_entity_key:o.entityKey,field_name:o.field,value_json:JSON.stringify(o.value),set_number:o.setNumber??null,rally_index:o.rallyIndex??null,source_confidence:sourceConfidence(input.sourceFamily,o.field),observed_at:now}));
     const obs=await db.from('evidence_observations').insert(rows);assertNoError(obs.error,'Persist match evidence');
@@ -39,7 +43,6 @@ export async function attachEvidenceToMatch(input:{programId:string;matchId:stri
   if(!match.data)throw new Error('MATCH_NOT_FOUND');
   const revision=Number((match.data as any).canonical_revision??1)+1;
   const revisionUpdate=await db.from('matches').update({canonical_revision:revision,updated_at:now}).eq('id',input.matchId);assertNoError(revisionUpdate.error,'Advance match revision');
-  const activity=await db.from('activity_events').insert({id:id('activity'),program_id:input.programId,actor_email:input.actorEmail,action:'match.evidence_attached',entity_type:'match',entity_id:input.matchId,details_json:JSON.stringify({sourceArtifactId:input.sourceArtifactId,sourceFamily:input.sourceFamily,observationCount:input.observations.length}),created_at:now});assertNoError(activity.error,'Create match activity');
-  const analytics=await recalculateMatch(input.matchId);
-  return {duplicate:false,matchId:input.matchId,analytics};
+  const activity=await db.from('activity_events').insert({id:id('activity'),program_id:input.programId,actor_email:input.actorEmail,action:input.reprocess?'match.evidence_reprocessed':'match.evidence_attached',entity_type:'match',entity_id:input.matchId,details_json:JSON.stringify({sourceArtifactId:input.sourceArtifactId,sourceFamily:input.sourceFamily,observationCount:input.observations.length,canonicalRevision:revision}),created_at:now});assertNoError(activity.error,'Create match activity');
+  return {duplicate:false,matchId:input.matchId,canonicalRevision:revision};
 }

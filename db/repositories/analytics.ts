@@ -1,8 +1,11 @@
 import { getAdminClient } from '../client.js';
 import { assertNoError } from '../supabase-utils';
 import { id, nowIso } from '../../lib/ids';
-import { detectCapabilities } from '../../lib/capabilities/detect';
+import { detectCapabilities, type RallyCapabilityFacts } from '../../lib/capabilities/detect';
 import { calculateMatchAnalytics } from '../../lib/analytics/match';
+import { calculateRallyAnalytics } from '../../lib/analytics/rally';
+import { buildServiceRuns } from '../../lib/analytics/service-runs';
+import { loadCanonicalRallies, loadRallyScoreIntegrity } from './rallies';
 import { rankMatchFindings } from '../../lib/analytics/findings';
 import { reconcileField } from '../../lib/ingestion/reconcile';
 import type { EvidenceObservation } from '../../lib/ingestion/types';
@@ -23,8 +26,27 @@ export async function recalculateMatch(matchId:string):Promise<{canonicalRevisio
   assertNoError((artifactsResult as any).error,'Read evidence lineages');
   const lineageMap=new Map((((artifactsResult as any).data??[]) as any[]).map(r=>[r.id,r.lineage_id??r.id]));
   const observations:EvidenceObservation[]=rows.map(r=>({entityType:r.entity_type,entityKey:r.source_entity_key??'',field:r.field_name,value:JSON.parse(r.value_json),...(r.set_number!=null?{setNumber:r.set_number}:{}),...(r.rally_index!=null?{rallyIndex:r.rally_index}:{})}));
-  const capabilities=detectCapabilities({observations});
   const revision=Number(match.canonical_revision??1);
+  const [ralliesResult,timelineResult,phasesResult,eventsResult]=await Promise.all([
+    db.from('match_rallies').select('serving_side,terminal_event_type').eq('match_id',matchId).eq('canonical_revision',revision),
+    db.from('match_timeline_events').select('event_type').eq('match_id',matchId).eq('canonical_revision',revision),
+    db.from('rally_phases').select('transition_depth,match_rallies!inner(match_id,canonical_revision)').eq('match_rallies.match_id',matchId).eq('match_rallies.canonical_revision',revision),
+    db.from('rally_events').select('occurred_at_seconds,match_rallies!inner(match_id,canonical_revision)').eq('match_rallies.match_id',matchId).eq('match_rallies.canonical_revision',revision),
+  ]);
+  assertNoError(ralliesResult.error,'Read rally capability facts');assertNoError(timelineResult.error,'Read timeline capability facts');assertNoError(phasesResult.error,'Read phase capability facts');assertNoError(eventsResult.error,'Read contact capability facts');
+  const rallyRows=(ralliesResult.data??[]) as any[],timelineRows=(timelineResult.data??[]) as any[],phaseRows=(phasesResult.data??[]) as any[],eventRows=(eventsResult.data??[]) as any[];
+  const rallyFacts:RallyCapabilityFacts={
+    rallyCount:rallyRows.length,
+    knownServeStateCount:rallyRows.filter(r=>r.serving_side).length,
+    terminalDetailCount:rallyRows.filter(r=>r.terminal_event_type).length,
+    timeoutCount:timelineRows.filter(r=>r.event_type==='timeout').length,
+    substitutionCount:timelineRows.filter(r=>r.event_type==='substitution').length,
+    phaseCount:phaseRows.length,
+    transitionDepthCount:phaseRows.filter(r=>r.transition_depth!=null).length,
+    contactCount:eventRows.length,
+    timestampCount:eventRows.filter(r=>r.occurred_at_seconds!=null).length,
+  };
+  const capabilities=detectCapabilities({evidence:{observations},rallyFacts});
   const teams:any={};
 
   for(const side of ['us','opponent'] as const){
@@ -47,9 +69,12 @@ export async function recalculateMatch(matchId:string):Promise<{canonicalRevisio
     const totalWrite=await db.from('match_team_totals').upsert(totalRow,{onConflict:'match_id,team_side,canonical_revision'});assertNoError(totalWrite.error,'Persist match team totals');
   }
 
-  const metrics=calculateMatchAnalytics({matchId,canonicalRevision:revision,capabilities,teams});
+  const [canonicalRallies,setScoreIntegrity]=await Promise.all([loadCanonicalRallies(matchId,revision),loadRallyScoreIntegrity(matchId,revision)]);
+  const boxMetrics=calculateMatchAnalytics({matchId,canonicalRevision:revision,capabilities,teams});
+  const rallyMetrics=capabilities.rallySequence&&canonicalRallies.length?calculateRallyAnalytics({matchId,canonicalRevision:revision,rallies:canonicalRallies,setScoreIntegrity}):[];
+  const metrics=[...boxMetrics,...rallyMetrics];
   const findings=rankMatchFindings(metrics);
-  const capabilityWrite=await db.from('match_capabilities').upsert({match_id:matchId,canonical_revision:revision,box_score_totals:capabilities.boxScoreTotals,player_totals:capabilities.playerTotals,set_totals:capabilities.setTotals,rally_sequence:capabilities.rallySequence,serve_receive_state:capabilities.serveReceiveState,rotation_state:capabilities.rotationState,on_court_state:capabilities.onCourtState,contact_quality:capabilities.contactQuality,attack_origin:capabilities.attackOrigin,attack_destination:capabilities.attackDestination,updated_at:nowIso()},{onConflict:'match_id'});
+  const capabilityWrite=await db.from('match_capabilities').upsert({match_id:matchId,canonical_revision:revision,box_score_totals:capabilities.boxScoreTotals,player_totals:capabilities.playerTotals,set_totals:capabilities.setTotals,rally_sequence:capabilities.rallySequence,serve_receive_state:capabilities.serveReceiveState,rotation_state:capabilities.rotationState,on_court_state:capabilities.onCourtState,contact_quality:capabilities.contactQuality,attack_origin:capabilities.attackOrigin,attack_destination:capabilities.attackDestination,terminal_event_detail:capabilities.terminalEventDetail,timeout_timeline:capabilities.timeoutTimeline,substitution_timeline:capabilities.substitutionTimeline,offensive_phase:capabilities.offensivePhase,transition_depth:capabilities.transitionDepth,contact_sequence:capabilities.contactSequence,timestamps:capabilities.timestamps,updated_at:nowIso()},{onConflict:'match_id'});
   assertNoError(capabilityWrite.error,'Persist match capabilities');
   const [deleteMetrics,deleteFindings]=await Promise.all([
     db.from('match_metric_results').delete().eq('match_id',matchId).eq('canonical_revision',revision),
@@ -70,9 +95,9 @@ export async function recalculateMatch(matchId:string):Promise<{canonicalRevisio
 export async function getStoredMetrics(matchId:string):Promise<StoredMetric[]>{
   const db=getAdminClient();
   const match=await db.from('matches').select('canonical_revision').eq('id',matchId).maybeSingle();assertNoError(match.error,'Read metric revision');if(!match.data)return[];
-  const result=await db.from('match_metric_results').select('match_id,subject,metric_code,value,denominator,engine_version').eq('match_id',matchId).eq('canonical_revision',(match.data as any).canonical_revision);
+  const result=await db.from('match_metric_results').select('match_id,subject,metric_code,value,numerator,denominator,engine_version').eq('match_id',matchId).eq('canonical_revision',(match.data as any).canonical_revision);
   assertNoError(result.error,'Read stored metrics');
-  return ((result.data??[]) as any[]).map(r=>({matchId:r.match_id,subject:r.subject,metric:r.metric_code,value:r.value,opportunities:r.denominator,engineVersion:r.engine_version}));
+  return ((result.data??[]) as any[]).map(r=>({matchId:r.match_id,subject:r.subject,metric:r.metric_code,value:r.value,numerator:r.numerator==null?undefined:Number(r.numerator),opportunities:r.denominator==null?undefined:Number(r.denominator),engineVersion:r.engine_version}));
 }
 
 
@@ -125,5 +150,31 @@ export async function getMatchSummary(matchId:string){
   const artifactIds=((linksResult.data??[]) as any[]).map(r=>r.source_artifact_id);
   const artifactsResult=artifactIds.length?await db.from('source_artifacts').select('source_family,original_filename,source_url,imported_at').in('id',artifactIds):{data:[],error:null};
   assertNoError((artifactsResult as any).error,'Read summary sources');
-  return {id:match.id,scheduledAt:match.scheduled_at,homeAway:match.home_away,location:match.location,result:match.result,setScoresJson:match.set_scores_json,canonicalRevision:match.canonical_revision,opponentName:(teamResult as any).data?.canonical_name??'Opponent',dataStatus,metrics,findings:((findingsResult.data??[]) as any[]).map(f=>({side:f.side,metric:f.metric_code,direction:f.direction,magnitude:f.magnitude,opportunities:f.opportunities,rankScore:f.rank_score,evidenceJson:f.evidence_json})),sources:((artifactsResult as any).data??[]).map((s:any)=>({sourceFamily:s.source_family,fileName:s.original_filename,sourceUrl:s.source_url,importedAt:s.imported_at}))};
+  const revision=Number(match.canonical_revision??1);
+  const [canonicalRallies,setScoreIntegrity]=await Promise.all([loadCanonicalRallies(matchId,revision),loadRallyScoreIntegrity(matchId,revision)]);
+  const conflictedSets=setScoreIntegrity.filter(row=>row.status==='conflict').map(row=>row.setNumber);
+  const scoreIntegrity={
+    status:conflictedSets.length?'conflict':setScoreIntegrity.length?'verified':'unknown',
+    conflictedSets,
+  } as const;
+  const sideoutPathways={
+    our_team:{first_ball_sideout:0,regular_sideout:0,unknown_phase:0},
+    opponent:{first_ball_sideout:0,regular_sideout:0,unknown_phase:0},
+  };
+  if(scoreIntegrity.status!=='conflict')for(const rally of canonicalRallies){
+    const side=rally.receivingSide;
+    if(!side||rally.pointWinner!==side)continue;
+    const key=rally.pathway==='first_ball_sideout'?'first_ball_sideout':rally.pathway==='regular_sideout'?'regular_sideout':'unknown_phase';
+    sideoutPathways[side][key]+=1;
+  }
+  const rallyMetricCodes=new Set(['sideout_percentage','point_scored_percentage','score1_percentage','sos2_percentage','epo_percentage','longest_service_run']);
+  const rallyMetrics=metrics.filter(metric=>rallyMetricCodes.has(metric.metric));
+  const unsupported:string[]=[];
+  if(scoreIntegrity.status==='conflict')unsupported.push('Rally analytics withheld because the source PBP conflicts with the official set score');
+  if(!c?.offensive_phase)unsupported.push('FBSO and transition attack efficiency');
+  if(!c?.transition_depth)unsupported.push('Transition depth (T1/T2/T3+)');
+  if(!c?.contact_sequence)unsupported.push('Good Dig and contact-chain analytics');
+  const serviceRuns=scoreIntegrity.status==='conflict'?[]:buildServiceRuns(canonicalRallies).map(run=>({teamSide:run.teamSide,setNumber:run.setNumber,pointsWon:run.pointsWon,serveAttempts:run.serveAttempts,...(run.serverSourceKey?{serverSourceKey:run.serverSourceKey}:{})}));
+  const rallyAnalytics={metrics:rallyMetrics,sideoutPathways,unsupported,serviceRuns,scoreIntegrity};
+  return {id:match.id,scheduledAt:match.scheduled_at,homeAway:match.home_away,location:match.location,result:match.result,setScoresJson:match.set_scores_json,canonicalRevision:match.canonical_revision,opponentName:(teamResult as any).data?.canonical_name??'Opponent',dataStatus,metrics,findings:((findingsResult.data??[]) as any[]).map(f=>({side:f.side,metric:f.metric_code,direction:f.direction,magnitude:f.magnitude,opportunities:f.opportunities,rankScore:f.rank_score,evidenceJson:f.evidence_json})),rallyAnalytics,sources:((artifactsResult as any).data??[]).map((s:any)=>({sourceFamily:s.source_family,fileName:s.original_filename,sourceUrl:s.source_url,importedAt:s.imported_at}))};
 }

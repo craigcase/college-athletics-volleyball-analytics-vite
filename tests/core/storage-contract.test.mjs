@@ -16,7 +16,7 @@ test('match imports preserve evidence before parsing or reconciliation', async (
 
 test('an unlinked duplicate match source is parsed again so it can attach after its schedule match exists', async () => {
   const service = await readFile(new URL('../../lib/services/import-match.ts', import.meta.url), 'utf8');
-  assert.match(service, /if\(source\.duplicate&&linkedMatchId\)/);
+  assert.match(service, /if\(source\.duplicate&&linkedMatchId&&source\.parserVersion===PARSER_VERSION\)/);
 });
 
 test('roster re-import keeps numeric-name repair and staff override protection', async () => {

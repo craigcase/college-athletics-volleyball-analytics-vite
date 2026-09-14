@@ -3,7 +3,7 @@ import { assertNoError } from '../supabase-utils';
 import { id, nowIso } from '../../lib/ids';
 import { sha256Hex, type SourceFamily } from '../../lib/ingestion/source-family';
 
-export type StoredSource = { id:string; contentHash:string; objectKey:string; duplicate:boolean; sourceFamily:SourceFamily; lineageId:string };
+export type StoredSource = { id:string; contentHash:string; objectKey:string; duplicate:boolean; sourceFamily:SourceFamily; lineageId:string; parserVersion:string };
 
 const safeFileName = (value: string | undefined) => (value || 'source').split(/[\\/]/).pop()!.replace(/[^a-zA-Z0-9._-]+/g, '_').slice(0, 160) || 'source';
 
@@ -11,11 +11,11 @@ export async function preserveSource(input:{ programId:string; bytes:Uint8Array;
   const db=getAdminClient();
   const contentHash=await sha256Hex(input.bytes);
   const existingResult=await db.from('source_artifacts')
-    .select('id,content_hash,object_key,lineage_id,source_family')
+    .select('id,content_hash,object_key,lineage_id,source_family,parser_version')
     .eq('program_id',input.programId).eq('content_hash',contentHash).maybeSingle();
   assertNoError(existingResult.error,'Read existing source artifact');
   const existing=existingResult.data as any;
-  if (existing) return { id:existing.id,contentHash:existing.content_hash,objectKey:existing.object_key,lineageId:existing.lineage_id,sourceFamily:existing.source_family,duplicate:true };
+  if (existing) return { id:existing.id,contentHash:existing.content_hash,objectKey:existing.object_key,lineageId:existing.lineage_id,sourceFamily:existing.source_family,parserVersion:existing.parser_version??'unknown',duplicate:true };
 
   const lineageKey=input.lineageKey ?? `${input.sourceFamily}:${input.sourceUrl ? new URL(input.sourceUrl).hostname : 'upload'}`;
   const lineageResult=await db.from('source_lineages').select('id').eq('program_id',input.programId).eq('lineage_key',lineageKey).maybeSingle();
@@ -42,5 +42,11 @@ export async function preserveSource(input:{ programId:string; bytes:Uint8Array;
     await db.storage.from(bucket).remove([objectKey]);
     assertNoError(artifact.error,'Create source artifact');
   }
-  return {id:artifactId,contentHash,objectKey,duplicate:false,sourceFamily:input.sourceFamily,lineageId};
+  return {id:artifactId,contentHash,objectKey,duplicate:false,sourceFamily:input.sourceFamily,lineageId,parserVersion:input.parserVersion};
+}
+
+export async function updateSourceParserVersion(sourceArtifactId:string,parserVersion:string):Promise<void>{
+  const db=getAdminClient();
+  const result=await db.from('source_artifacts').update({parser_version:parserVersion}).eq('id',sourceArtifactId);
+  assertNoError(result.error,'Update source parser version');
 }

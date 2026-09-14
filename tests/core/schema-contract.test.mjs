@@ -31,3 +31,22 @@ test('staff override table preserves source-neutral sticky field targeting', asy
   assert.match(sql, /canonical_value_json\s+TEXT\s+NOT NULL/i);
   assert.match(sql, /UNIQUE\s*\(program_id,\s*entity_type,\s*entity_id,\s*field_name\)/i);
 });
+
+const rallyMigration = new URL('../../supabase/migrations/202609130002_rally_analytics.sql', import.meta.url);
+
+test('rally analytics migration adds canonical rally tables, capabilities, indexes, grants, and user-scoped RLS', async () => {
+  const sql = await readFile(rallyMigration, 'utf8');
+  const tables = ['match_rallies','rally_phases','rally_events','match_timeline_events','rally_source_links','rally_rotation_states'];
+  for (const table of tables) assert.match(sql, new RegExp(`create table(?: if not exists)? public\\.${table}\\b`, 'i'), `missing ${table}`);
+  for (const capability of ['terminal_event_detail','timeout_timeline','substitution_timeline','offensive_phase','transition_depth','contact_sequence','timestamps']) {
+    assert.match(sql, new RegExp(`\\b${capability}\\b`, 'i'), `missing capability ${capability}`);
+  }
+  assert.match(sql, /create or replace function private\.can_access_rally\(p_rally_id text\)/i);
+  assert.match(sql, /grant execute on function private\.can_access_rally\(text\) to authenticated/i);
+  assert.match(sql, /grant select, insert, update, delete on table public\.match_rallies to authenticated/i);
+  assert.match(sql, /private\.can_access_match\(match_id\)/i);
+  assert.match(sql, /private\.can_access_rally\(rally_id\)/i);
+  assert.match(sql, /create index[\s\S]*match_rallies\s*\(match_id,\s*canonical_revision,\s*set_number,\s*rally_number\)/i);
+  assert.match(sql, /alter table public\.match_sets[\s\S]*rally_score_status/i);
+  assert.match(sql, /source_final_score_json/i);
+});

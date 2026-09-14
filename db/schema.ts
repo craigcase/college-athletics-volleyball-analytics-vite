@@ -9,4 +9,6 @@ export const tables = {
   reconciliationIssues: 'reconciliation_issues', matchCapabilities: 'match_capabilities',
   matchTeamTotals: 'match_team_totals', playerMatchTotals: 'player_match_totals',
   matchMetricResults: 'match_metric_results', matchFindings: 'match_findings', activityEvents: 'activity_events',
+  matchRallies: 'match_rallies', rallyPhases: 'rally_phases', rallyEvents: 'rally_events',
+  matchTimelineEvents: 'match_timeline_events', rallySourceLinks: 'rally_source_links', rallyRotationStates: 'rally_rotation_states',
 } as const;

@@ -31,9 +31,12 @@ test('Supabase schedule persistence keeps one match attaches source links and re
   assert.match(source, /schedule_change/);
 });
 
-test('match evidence increments canonical revision before deterministic recalculation', async () => {
-  const source = await read('../../db/repositories/matches.ts');
-  const revision = source.indexOf("update({canonical_revision:revision");
-  const recalculate = source.indexOf('await recalculateMatch(');
-  assert.ok(revision >= 0 && recalculate > revision);
+test('match evidence advances canonical revision but defers recalculation to the import service', async () => {
+  const repository = await read('../../db/repositories/matches.ts');
+  const service = await read('../../lib/services/import-match.ts');
+  assert.match(repository, /update\(\{canonical_revision:revision/);
+  assert.doesNotMatch(repository, /await recalculateMatch\(/);
+  const persist = service.indexOf('await replaceCanonicalTimeline(');
+  const recalculate = service.indexOf('await recalculateMatch(');
+  assert.ok(persist >= 0 && recalculate > persist);
 });

@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<vbgame source="PrestoSports" version="7.21.0" generated="08/22/2026"> 
+  <venue gameid="" location="300 Centennial Dr,, North Sioux City, IA, 57049" arena="" start="8:00 AM" end="" duration="" delay="" attend="0" schednote="" leaguegame="N" neutralgame="Y" visid="VALLEY C" visname="Valley City State" homeid="MOUNT ME" homename="Mount Mercy" date="8/22/2026"> 
+    <officials></officials>  
+    <rules></rules> 
+  </venue>  
+  <team vh="V" id="VALLEY C" name="Valley City State" code="506055" record=""> 
+    <linescore line="27,22,22,22" score="1"> 
+      <linegame game="1" points="27"></linegame>  
+      <linegame game="2" points="22"></linegame>  
+      <linegame game="3" points="22"></linegame>  
+      <linegame game="4" points="22"></linegame> 
+    </linescore>  
+    <attackbygame> 
+      <attackgame game="1" k="18" e="6" ta="49" pct=".245"></attackgame>  
+      <attackgame game="2" k="14" e="7" ta="29" pct=".241"></attackgame>  
+      <attackgame game="3" k="7" e="7" ta="32" pct=".000"></attackgame>  
+      <attackgame game="4" k="13" e="7" ta="36" pct=".167"></attackgame> 
+    </attackbygame>  
+    <totals> 
+      <attack k="52" e="27" ta="146" pct=".171"></attack>  
+      <set a="47" e="5" ta="52"></set>  
+      <serve sa="4" se="4" ta="94"></serve>  
+      <defense dig="66" re="12" ta="86"></defense>  
+      <block bs="1" ba="6" be="0" tb="4.0"></block>  
+      <misc bhe="0" pts="60.0"></misc> 
+    </totals>  
+    <player uni="01" code="01" name="Brynn Sorenson" checkname="SORENSON,BRYNN" gp="4" oncourt="N" playerId="1o4b1wdj0v7l04rz"> 
+      <attack k="6" e="4" ta="20" pct=".100"></attack>  
+      <set a="1" e="1" ta="2"></set>  
+      <serve sa="0" se="0" ta="1"></serve>  
+      <defense dig="2" re="0" ta="0"></defense>  
+      <block bs="0" ba="1" be="0" tb="1.0"></block>  
+      <misc bhe="0" pts="6.5"></misc> 
+    </player>  
+    <player uni="02" code="02" name="Kiana Hilary" checkname="HILARY,KIANA" gp="0" oncourt="N" playerId="euh6yyhkqdhvnalq"></player>  
+    <player uni="03" code="03" name="Hudson Zerface" checkname="ZERFACE,HUDSON" gp="4" oncourt="Y" ms="1" playerId="p774k9mp3phfl1uu"> 
+      <attack k="0" e="0" ta="1" pct=".000"></attack>  
+      <set a="0" e="0" ta="0"></set>  
+      <serve sa="0" se="0" ta="18"></serve>  
+      <defense dig="8" re="1" ta="10"></defense>  
+      <block bs="0" ba="0" be="0" tb="0.0"></block>  
+      <misc bhe="0" pts="0.0"></misc> 
+    </player>  
+    <player uni="04" code="04" name="Kadie Kocka" checkname="KOCKA,KADIE" gp="4" oncourt="N" playerId="5nmjiveyf5dhr387"> 
+      <attack k="9" e="5" ta="26" pct=".154"></attack>  
+      <set a="0" e="0" ta="0"></set>  
+      <serve sa="0" se="0" ta="0"></serve>  
+      <defense dig="1" re="3" ta="20"></defense>  
+      <block bs="0" ba="0" be="0" tb="0.0"></block>  
+      <misc bhe="0" pts="9.0"></misc> 
+    </player>  
+    <player uni="05" code="05" name="Ellie Lucas" checkname="LUCAS,ELLIE" gp="4" oncourt="Y" ms="1" playerId="e8xma607d042zbxt"> 
+      <attack k="4" e="4" ta="23" pct=".000"></attack>  
+      <set a="1" e="0" ta="1"></set>  
+      <serve sa="0" se="0" ta="0"></serve>  
+      <defense dig="3" re="0" ta="0"></defense>  
+      <block bs="0" ba="0" be="0" tb="0.0"></block>  
+      <misc bhe="0" pts="4.0"></misc> 
+    </player>  
+    <player uni="06" code="06" name="Libby Mathern" checkname="MATHERN,LIBBY" gp="0" oncourt="N" playerId="po9vx2i7k8b9bgrg"></player>  
+    <player uni="07" code="07" name="Eden Carrier" checkname="CARRIER,EDEN" gp="4" oncourt="Y" ms="1" playerId="evpufzzlrn8fza8v"> 
+      <attack k="4" e="6" ta="17" pct="-.118"></attack>  
+      <set a="0" e="0" ta="0"></set>  
+      <serve sa="0" se="0" ta="0"></serve>  
+      <defense dig="0" re="0" ta="1"></defense>  
+      <block bs="1" ba="1" be="0" tb="2.0"></block>  
+      <misc bhe="0" pts="5.5"></misc> 
+    </player>  
+    <player uni="08" code="08" name="Molly Bjornbey" checkname="BJORNBEY,MOLLY" gp="4" oncourt="Y" ms="1" playerId="jz1klyt4nnn96fa1"> 
+      <attack k="12" e="4" ta="31" pct=".258"></attack>  
+      <set a="1" e="0" ta="1"></set>  
+      <serve sa="1" se="2" ta="14"></serve>  
+      <defense dig="14" re="5" ta="34"></defense>  
+      <block bs="0" ba="2" be="0" tb="2.0"></block>  
+      <misc bhe="0" pts="14.0"></misc> 
+    </player>  
+    <player uni="09" code="09" name="Kinlee Sufficool" checkname="SUFFICOOL,KINLEE" gp="4" oncourt="N" playerId="z6kldkhakvihrt8h"> 
+      <attack k="0" e="0" ta="0" pct=".000"></attack>  
+      <set a="3" e="0" ta="3"></set>  
+      <serve sa="0" se="0" ta="16"></serve>  
+      <defense dig="1" re="0" ta="2"></defense>  
+      <block bs="0" ba="0" be="0" tb="0.0"></block>  
+      <misc bhe="0" pts="0.0"></misc> 
+    </player>  
+    <player uni="10" code="10" name="Mady Geist" checkname="GEIST,MADY" gp="4" oncourt="Y" ms="1" playerId="x49lgdw9g3inag99"> 
+      <attack k="16" e="4" ta="26" pct=".462"></attack>  
+      <set a="0" e="0" ta="0"></set>  
+      <serve sa="0" se="0" ta="0"></serve>  
+      <defense dig="0" re="0" ta="0"></defense>  
+      <block bs="0" ba="2" be="0" tb="2.0"></block>  
+      <misc bhe="0" pts="17.0"></misc> 
+    </player>  
+    <player uni="12" code="12" name="Annika Pulju" checkname="PULJU,ANNIKA" gp="4" oncourt="N" playerId="jrsprwt59i81p7ov"> 
+      <attack k="0" e="0" ta="1" pct=".000"></attack>  
+      <set a="4" e="0" ta="4"></set>  
+      <serve sa="1" se="0" ta="15"></serve>  
+      <defense dig="20" re="1" ta="14"></defense>  
+      <block bs="0" ba="0" be="0" tb="0.0"></block>  
+      <misc bhe="0" pts="1.0"></misc> 
+    </player>  
+    <player uni="15" code="15" name="Reece Cave" checkname="CAVE,REECE" gp="0" oncourt="N" playerId="g9ogiud2t0y1gxw6"></player>  
+    <player uni="17" code="17" name="Kaitlyn Erickstad" checkname="ERICKSTAD,KAITLYN" gp="0" oncourt="N" playerId="6791bj2c0xiiyj4i"></player>  
+    <player uni="19" code="19" name="Gracie Schumacher" checkname="SCHUMACHER,GRACIE" gp="4" oncourt="N" playerId="p2x29ubp5f8tjlyl"> 
+      <attack k="1" e="0" ta="1" pct="1.000"></attack>  
+      <set a="19" e="3" ta="22"></set>  
+      <serve sa="2" se="2" ta="12"></serve>  
+      <defense dig="11" re="0" ta="1"></defense>  
+      <block bs="0" ba="0" be="0" tb="0.0"></block>  
+      <misc bhe="0" pts="3.0"></misc> 
+    </player>  
+    <player uni="20" code="20" name="Anna Roisum" checkname="ROISUM,ANNA" gp="0" oncourt="N" playerId="41hc76zw4ib7mvp3"></player>  
+    <player uni="22" code="22" name="Madden Bogenreif" checkname="BOGENREIF,MADDEN" gp="4" oncourt="Y" ms="1" playerId="aanwu4ndxkcqohee"> 
+      <attack k="0" e="0" ta="0" pct=".000"></attack>  
+      <set a="18" e="1" ta="19"></set>  
+      <serve sa="0" se="0" ta="18"></serve>  
+      <defense dig="6" re="0" ta="2"></defense>  
+      <block bs="0" ba="0" be="0" tb="0.0"></block>  
+      <misc bhe="0" pts="0.0"></misc> 
+    </player>  
+    <player uni="TM" code="TM" name="Team" checkname="TEAM" gp="4" oncourt="N" playerId=""> 
+      <attack k="0" e="0" ta="0" pct=".000"></attack>  
+      <set a="0" e="0" ta="0"></set>  
+      <serve sa="0" se="0" ta="0"></serve>  
+      <defense dig="0" re="2" ta="2"></defense>  
+      <block bs="0" ba="0" be="0" tb="0.0"></block>  
+      <misc bhe="0" pts="0.0"></misc> 
+    </player> 
+  </team>  
+  <team vh="H" id="MOUNT ME" name="Mount Mercy" code="503377" record=""> 
+    <linescore line="25,25,25,25" score="3"> 
+      <linegame game="1" points="25"></linegame>  
+      <linegame game="2" points="25"></linegame>  
+      <linegame game="3" points="25"></linegame>  
+      <linegame game="4" points="25"></linegame> 
+    </linescore>  
+    <attackbygame> 
+      <attackgame game="1" k="12" e="6" ta="47" pct=".128"></attackgame>  
+      <attackgame game="2" k="13" e="5" ta="29" pct=".276"></attackgame>  
+      <attackgame game="3" k="12" e="6" ta="38" pct=".158"></attackgame>  
+      <attackgame game="4" k="13" e="4" ta="33" pct=".273"></attackgame> 
+    </attackbygame>  
+    <totals> 
+      <attack k="50" e="21" ta="147" pct=".197"></attack>  
+      <set a="49" e="2" ta="51"></set>  
+      <serve sa="12" se="13" ta="99"></serve>  
+      <defense dig="57" re="4" ta="90"></defense>  
+      <block bs="3" ba="10" be="0" tb="8.0"></block>  
+      <misc bhe="0" pts="70.0"></misc> 
+    </totals>  
+    <player uni="01" code="01" name="Kate Wright" checkname="WRIGHT,KATE" gp="4" oncourt="N" playerId="mpuhhr53b3ww6611"> 
+      <attack k="0" e="0" ta="0" pct=".000"></attack>  
+      <set a="4" e="0" ta="4"></set>  
+      <serve sa="1" se="2" ta="13"></serve>  
+      <defense dig="11" re="2" ta="17"></defense>  
+      <block bs="0" ba="0" be="0" tb="0.0"></block>  
+      <misc bhe="0" pts="1.0"></misc> 
+    </player>  
+    <player uni="02" code="02" name="Eryn Jackson" checkname="JACKSON,ERYN" gp="4" oncourt="N" playerId="d6z69xz1bqdru6b8"> 
+      <attack k="0" e="1" ta="1" pct="-1.000"></attack>  
+      <set a="2" e="0" ta="2"></set>  
+      <serve sa="0" se="2" ta="3"></serve>  
+      <defense dig="4" re="1" ta="14"></defense>  
+      <block bs="0" ba="0" be="0" tb="0.0"></block>  
+      <misc bhe="0" pts="0.0"></misc> 
+    </player>  
+    <player uni="03" code="03" name="Kirstyn Kolbet" checkname="KOLBET,KIRSTYN" gp="1" oncourt="N" playerId="1cg7xkvgqxtllv8s"> 
+      <attack k="0" e="0" ta="0" pct=".000"></attack>  
+      <set a="0" e="0" ta="0"></set>  
+      <serve sa="0" se="0" ta="1"></serve>  
+      <defense dig="0" re="0" ta="0"></defense>  
+      <block bs="0" ba="0" be="0" tb="0.0"></block>  
+      <misc bhe="0" pts="0.0"></misc> 
+    </player>  
+    <player uni="04" code="04" name="Lola Holub" checkname="HOLUB,LOLA" gp="4" oncourt="N" playerId="4ie1c3yaf7yesyc7"> 
+      <attack k="0" e="0" ta="0" pct=".000"></attack>  
+      <set a="0" e="0" ta="0"></set>  
+      <serve sa="1" se="0" ta="9"></serve>  
+      <defense dig="1" re="0" ta="0"></defense>  
+      <block bs="0" ba="0" be="0" tb="0.0"></block>  
+      <misc bhe="0" pts="1.0"></misc> 
+    </player>  
+    <player uni="05" code="05" name="Sam Schrage" checkname="SCHRAGE,SAM" gp="4" oncourt="Y" ms="1" playerId="fxfbrkyfo3aa4gwn"> 
+      <attack k="8" e="1" ta="24" pct=".292"></attack>  
+      <set a="0" e="0" ta="0"></set>  
+      <serve sa="0" se="0" ta="0"></serve>  
+      <defense dig="2" re="0" ta="0"></defense>  
+      <block bs="3" ba="1" be="0" tb="4.0"></block>  
+      <misc bhe="0" pts="11.5"></misc> 
+    </player>  
+    <player uni="06" code="06" name="Alivia Arsenault" checkname="ARSENAULT,ALIVIA" gp="1" oncourt="N" playerId="haxr168l7dqismga"> 
+      <attack k="0" e="2" ta="4" pct="-.500"></attack>  
+      <set a="0" e="0" ta="0"></set>  
+      <serve sa="0" se="0" ta="0"></serve>  
+      <defense dig="0" re="0" ta="1"></defense>  
+      <block bs="0" ba="0" be="0" tb="0.0"></block>  
+      <misc bhe="0" pts="0.0"></misc> 
+    </player>  
+    <player uni="07" code="07" name="Danica Wrage" checkname="WRAGE,DANICA" gp="3" oncourt="N" playerId="5kj3ou66puldq3rm"> 
+      <attack k="10" e="2" ta="18" pct=".444"></attack>  
+      <set a="0" e="0" ta="0"></set>  
+      <serve sa="0" se="0" ta="0"></serve>  
+      <defense dig="1" re="0" ta="0"></defense>  
+      <block bs="0" ba="3" be="0" tb="3.0"></block>  
+      <misc bhe="0" pts="11.5"></misc> 
+    </player>  
+    <player uni="08" code="08" name="Bella Dantzler" checkname="DANTZLER,BELLA" gp="4" oncourt="Y" ms="1" playerId="vwgupux8p1jxtkb7"> 
+      <attack k="5" e="5" ta="14" pct=".000"></attack>  
+      <set a="0" e="0" ta="0"></set>  
+      <serve sa="0" se="0" ta="0"></serve>  
+      <defense dig="2" re="0" ta="1"></defense>  
+      <block bs="0" ba="3" be="0" tb="3.0"></block>  
+      <misc bhe="0" pts="6.5"></misc> 
+    </player>  
+    <player uni="09" code="09" name="Maddie Marquardt" checkname="MARQUARDT,MADDIE" gp="4" oncourt="Y" ms="1" playerId="42i0hrvntgky7icv"> 
+      <attack k="2" e="2" ta="5" pct=".000"></attack>  
+      <set a="40" e="1" ta="41"></set>  
+      <serve sa="3" se="2" ta="23"></serve>  
+      <defense dig="6" re="0" ta="0"></defense>  
+      <block bs="0" ba="0" be="0" tb="0.0"></block>  
+      <misc bhe="0" pts="5.0"></misc> 
+    </player>  
+    <player uni="10" code="10" name="Hallie Bedier" checkname="BEDIER,HALLIE" gp="4" oncourt="Y" ms="1" playerId="umskv5znn2wfhda5"> 
+      <attack k="14" e="4" ta="36" pct=".278"></attack>  
+      <set a="2" e="0" ta="2"></set>  
+      <serve sa="3" se="2" ta="15"></serve>  
+      <defense dig="12" re="1" ta="34"></defense>  
+      <block bs="0" ba="2" be="0" tb="2.0"></block>  
+      <misc bhe="0" pts="18.0"></misc> 
+    </player>  
+    <player uni="12" code="12" name="Brooke Ellyson" checkname="ELLYSON,BROOKE" gp="1" oncourt="N" playerId="tbreu5xtf40w04v8"> 
+      <attack k="0" e="0" ta="0" pct=".000"></attack>  
+      <set a="0" e="0" ta="0"></set>  
+      <serve sa="0" se="0" ta="1"></serve>  
+      <defense dig="0" re="0" ta="0"></defense>  
+      <block bs="0" ba="0" be="0" tb="0.0"></block>  
+      <misc bhe="0" pts="0.0"></misc> 
+    </player>  
+    <player uni="13" code="13" name="Mary Kate Bendlage" checkname="BENDLAGE,MARY KATE" gp="4" oncourt="Y" ms="1" playerId="k4t3s7ng8lug7qhm"> 
+      <attack k="11" e="4" ta="44" pct=".159"></attack>  
+      <set a="1" e="0" ta="1"></set>  
+      <serve sa="2" se="3" ta="20"></serve>  
+      <defense dig="14" re="0" ta="21"></defense>  
+      <block bs="0" ba="1" be="0" tb="1.0"></block>  
+      <misc bhe="0" pts="13.5"></misc> 
+    </player>  
+    <player uni="15" code="15" name="Kelsey Klesner" checkname="KLESNER,KELSEY" gp="1" oncourt="N" playerId="9fs8rbsy32xdkz9g"> 
+      <attack k="0" e="0" ta="0" pct=".000"></attack>  
+      <set a="0" e="0" ta="0"></set>  
+      <serve sa="0" se="0" ta="0"></serve>  
+      <defense dig="0" re="0" ta="1"></defense>  
+      <block bs="0" ba="0" be="0" tb="0.0"></block>  
+      <misc bhe="0" pts="0.0"></misc> 
+    </player>  
+    <player uni="16" code="16" name="Kira Klesner" checkname="KLESNER,KIRA" gp="4" oncourt="Y" ms="1" playerId="knby52k1exqneejn"> 
+      <attack k="0" e="0" ta="1" pct=".000"></attack>  
+      <set a="0" e="1" ta="1"></set>  
+      <serve sa="2" se="2" ta="14"></serve>  
+      <defense dig="4" re="0" ta="1"></defense>  
+      <block bs="0" ba="0" be="0" tb="0.0"></block>  
+      <misc bhe="0" pts="2.0"></misc> 
+    </player>  
+    <player uni="19" code="19" name="Taia Hodgkinson" checkname="HODGKINSON,TAIA" gp="0" oncourt="N" playerId="t54cdh1bth4gpv41"></player>  
+    <player uni="TM" code="TM" name="Team" checkname="TEAM" gp="4" oncourt="N" playerId=""> 
+      <attack k="0" e="0" ta="0" pct=".000"></attack>  
+      <set a="0" e="0" ta="0"></set>  
+      <serve sa="0" se="0" ta="0"></serve>  
+      <defense dig="0" re="0" ta="0"></defense>  
+      <block bs="0" ba="0" be="0" tb="0.0"></block>  
+      <misc bhe="0" pts="0.0"></misc> 
+    </player> 
+  </team>  
+  <plays format="summary"> 
+    <game number="1"> 
+      <play number="1" text="VALLEY C starters: Mady Geist; Madden Bogenreif; Hudson Zerface; Ellie Lucas; Eden Carrier; Molly Bjornbey."></play>  
+      <play number="2" text="MOUNT ME starters: Hallie Bedier; Mary Kate Bendlage; Kira Klesner; Sam Schrage; Bella Dantzler; Maddie Marquardt."></play>  
+      <play number="3" serveteam="VALLEY C" point="VALLEY C" vscore="1" hscore="0" text="[Madden Bogenreif] Bad set by Kira Klesner."></play>  
+      <play number="4" serveteam="VALLEY C" point="MOUNT ME" vscore="1" hscore="1" text="[Madden Bogenreif] Kill by Bella Dantzler (from Maddie Marquardt)."></play>  
+      <play number="5" serveteam="MOUNT ME" point="VALLEY C" vscore="2" hscore="1" text="[Maddie Marquardt] Kill by Molly Bjornbey (from Madden Bogenreif)."></play>  
+      <play number="6" serveteam="VALLEY C" point="MOUNT ME" vscore="2" hscore="2" text="[Molly Bjornbey] Kill by Bella Dantzler (from Maddie Marquardt)."></play>  
+      <play number="7" serveteam="MOUNT ME" point="VALLEY C" vscore="3" hscore="2" text="[Hallie Bedier] Service error."></play>  
+      <play number="8" serveteam="VALLEY C" point="VALLEY C" vscore="4" hscore="2" text="[Annika Pulju] Bad set by Maddie Marquardt."></play>  
+      <play number="9" serveteam="VALLEY C" point="MOUNT ME" vscore="4" hscore="3" text="[Annika Pulju] Kill by Mary Kate Bendlage (from Maddie Marquardt)."></play>  
+      <play number="10" serveteam="MOUNT ME" point="MOUNT ME" vscore="4" hscore="4" text="[Kate Wright] Kill by Mary Kate Bendlage (from Kate Wright)."></play>  
+      <play number="11" serveteam="MOUNT ME" point="MOUNT ME" vscore="4" hscore="5" text="[Kate Wright] Kill by Sam Schrage (from Maddie Marquardt)."></play>  
+      <play number="12" serveteam="MOUNT ME" point="VALLEY C" vscore="5" hscore="5" text="[Kate Wright] Attack error by Hallie Bedier."></play>  
+      <play number="13" serveteam="VALLEY C" point="VALLEY C" vscore="6" hscore="5" text="[Gracie Schumacher] Kill by Eden Carrier (from Gracie Schumacher)."></play>  
+      <play number="14" serveteam="VALLEY C" point="MOUNT ME" vscore="6" hscore="6" text="[Gracie Schumacher] Attack error by Eden Carrier."></play>  
+      <play number="15" serveteam="MOUNT ME" point="VALLEY C" vscore="7" hscore="6" text="[Kira Klesner] Kill by Eden Carrier (from Gracie Schumacher)."></play>  
+      <play number="16" serveteam="VALLEY C" point="VALLEY C" vscore="8" hscore="6" text="[Hudson Zerface] Kill by Eden Carrier."></play>  
+      <play number="17" serveteam="VALLEY C" point="VALLEY C" vscore="9" hscore="6" text="[Hudson Zerface] Attack error by Mary Kate Bendlage."></play>  
+      <play number="18" serveteam="VALLEY C" point="VALLEY C" vscore="10" hscore="6" text="[Hudson Zerface] Kill by Brynn Sorenson (from Gracie Schumacher)."></play>  
+      <play number="19" serveteam="VALLEY C" point="VALLEY C" vscore="11" hscore="6" text="[Hudson Zerface] Attack error by Sam Schrage."></play>  
+      <play number="20" serveteam="VALLEY C" text="Timeout Mount Mercy."></play>  
+      <play number="21" serveteam="VALLEY C" point="VALLEY C" vscore="12" hscore="6" text="[Hudson Zerface] Kill by Gracie Schumacher."></play>  
+      <play number="22" serveteam="MOUNT ME" point="MOUNT ME" vscore="12" hscore="7" text="[Mary Kate Bendlage] Attack error by Molly Bjornbey."></play>  
+      <play number="23" serveteam="MOUNT ME" point="VALLEY C" vscore="13" hscore="7" text="[Mary Kate Bendlage] Service error."></play>  
+      <play number="24" serveteam="VALLEY C" point="VALLEY C" vscore="14" hscore="7" text="[Kinlee Sufficool] Kill by Brynn Sorenson (from Kinlee Sufficool)."></play>  
+      <play number="25" serveteam="VALLEY C" point="MOUNT ME" vscore="14" hscore="8" text="[Kinlee Sufficool] Kill by Hallie Bedier (from Maddie Marquardt)."></play>  
+      <play number="26" serveteam="MOUNT ME" point="MOUNT ME" vscore="14" hscore="9" text="[Lola Holub] Service ace (Molly Bjornbey)."></play>  
+      <play number="27" serveteam="MOUNT ME" point="MOUNT ME" vscore="14" hscore="10" text="[Lola Holub] Attack error by Brynn Sorenson."></play>  
+      <play number="28" serveteam="MOUNT ME" point="MOUNT ME" vscore="14" hscore="11" text="[Lola Holub] Bad set by Gracie Schumacher."></play>  
+      <play number="29" serveteam="VALLEY C" point="VALLEY C" vscore="15" hscore="11" text="[Madden Bogenreif] Kill by Mady Geist (from Ellie Lucas)."></play>  
+      <play number="30" serveteam="MOUNT ME" point="VALLEY C" vscore="16" hscore="11" text="[Maddie Marquardt] Kill by Ellie Lucas (from Molly Bjornbey)."></play>  
+      <play number="31" serveteam="VALLEY C" point="MOUNT ME" vscore="16" hscore="12" text="[Molly Bjornbey] Service error."></play>  
+      <play number="32" serveteam="MOUNT ME" point="VALLEY C" vscore="17" hscore="12" text="[Hallie Bedier] Attack error by Alivia Arsenault."></play>  
+      <play number="33" serveteam="VALLEY C" point="VALLEY C" vscore="18" hscore="12" text="[Annika Pulju] Kill by Ellie Lucas (from Madden Bogenreif)."></play>  
+      <play number="34" serveteam="VALLEY C" text="Timeout Mount Mercy."></play>  
+      <play number="35" serveteam="VALLEY C" point="VALLEY C" vscore="19" hscore="12" text="[Annika Pulju] Attack error by Mary Kate Bendlage."></play>  
+      <play number="36" serveteam="VALLEY C" point="MOUNT ME" vscore="19" hscore="13" text="[Annika Pulju] Kill by Mary Kate Bendlage (from Maddie Marquardt)."></play>  
+      <play number="37" serveteam="MOUNT ME" point="VALLEY C" vscore="20" hscore="13" text="[Kate Wright] Kill by Kadie Kocka (from Madden Bogenreif)."></play>  
+      <play number="38" serveteam="VALLEY C" point="MOUNT ME" vscore="20" hscore="14" text="[Gracie Schumacher] Attack error by Brynn Sorenson."></play>  
+      <play number="39" serveteam="MOUNT ME" point="VALLEY C" vscore="21" hscore="14" text="[Kira Klesner] Kill by Brynn Sorenson (from Annika Pulju)."></play>  
+      <play number="40" serveteam="VALLEY C" point="VALLEY C" vscore="22" hscore="14" text="[Hudson Zerface] Kill by Eden Carrier (from Gracie Schumacher)."></play>  
+      <play number="41" serveteam="VALLEY C" point="MOUNT ME" vscore="22" hscore="15" text="[Hudson Zerface] Kill by Mary Kate Bendlage (from Maddie Marquardt)."></play>  
+      <play number="42" serveteam="MOUNT ME" point="MOUNT ME" vscore="22" hscore="16" text="[Mary Kate Bendlage] Kill by Hallie Bedier (from Maddie Marquardt)."></play>  
+      <play number="43" serveteam="MOUNT ME" point="VALLEY C" vscore="23" hscore="16" text="[Mary Kate Bendlage] Kill by Ellie Lucas (from Kinlee Sufficool)."></play>  
+      <play number="44" serveteam="MOUNT ME" point="MOUNT ME" vscore="23" hscore="17" text="[Mary Kate Bendlage] Service ace (Team)."></play>  
+      <play number="45" serveteam="MOUNT ME" point="MOUNT ME" vscore="23" hscore="18" text="[Mary Kate Bendlage] Attack error by Eden Carrier (block by Sam Schrage)."></play>  
+      <play number="46" serveteam="VALLEY C" text="Timeout Valley City State."></play>  
+      <play number="47" serveteam="MOUNT ME" point="VALLEY C" vscore="24" hscore="18" text="[Mary Kate Bendlage] Kill by Molly Bjornbey (from Gracie Schumacher)."></play>  
+      <play number="48" serveteam="VALLEY C" point="MOUNT ME" vscore="24" hscore="19" text="[Kinlee Sufficool] Bad set by Brynn Sorenson."></play>  
+      <play number="49" serveteam="MOUNT ME" point="VALLEY C" vscore="25" hscore="19" text="[Lola Holub] Kill by Mady Geist (from Gracie Schumacher)."></play>  
+      <play number="50" serveteam="VALLEY C" point="MOUNT ME" vscore="25" hscore="20" text="[Madden Bogenreif] Kill by Hallie Bedier (from Maddie Marquardt)."></play>  
+      <play number="51" serveteam="MOUNT ME" point="VALLEY C" vscore="26" hscore="20" text="[Maddie Marquardt] Kill by Mady Geist (from Madden Bogenreif)."></play>  
+      <play number="52" serveteam="VALLEY C" point="MOUNT ME" vscore="26" hscore="21" text="[Molly Bjornbey] Kill by Hallie Bedier (from Kate Wright)."></play>  
+      <play number="53" serveteam="MOUNT ME" point="MOUNT ME" vscore="26" hscore="22" text="[Hallie Bedier] Attack error by Kadie Kocka."></play>  
+      <play number="54" serveteam="MOUNT ME" point="VALLEY C" vscore="27" hscore="22" text="[Hallie Bedier] Attack error by Alivia Arsenault."></play>  
+      <play number="55" serveteam="VALLEY C" point="MOUNT ME" vscore="27" hscore="23" text="[Annika Pulju] Bad set by Madden Bogenreif."></play>  
+      <play number="56" serveteam="MOUNT ME" point="VALLEY C" vscore="28" hscore="23" text="[Kate Wright] Kill by Mady Geist (from Kinlee Sufficool)."></play>  
+      <play number="57" serveteam="VALLEY C" point="MOUNT ME" vscore="28" hscore="24" text="[Brynn Sorenson] Kill by Mary Kate Bendlage (from Maddie Marquardt)."></play> 
+    </game>  
+    <game number="2"> 
+      <play number="58" serveteam="MOUNT ME" point="MOUNT ME" vscore="0" hscore="1" text="[Maddie Marquardt] Attack error by Brynn Sorenson."></play>  
+      <play number="59" serveteam="MOUNT ME" point="MOUNT ME" vscore="0" hscore="2" text="[Maddie Marquardt] Service ace (Hudson Zerface)."></play>  
+      <play number="60" serveteam="MOUNT ME" point="MOUNT ME" vscore="0" hscore="3" text="[Maddie Marquardt] Attack error by Molly Bjornbey."></play>  
+      <play number="61" serveteam="MOUNT ME" point="VALLEY C" vscore="1" hscore="3" text="[Maddie Marquardt] Kill by Mady Geist (from Gracie Schumacher)."></play>  
+      <play number="62" serveteam="VALLEY C" point="MOUNT ME" vscore="1" hscore="4" text="[Madden Bogenreif] Kill by Danica Wrage (from Maddie Marquardt)."></play>  
+      <play number="63" serveteam="MOUNT ME" point="VALLEY C" vscore="2" hscore="4" text="[Hallie Bedier] Kill by Mady Geist (from Madden Bogenreif)."></play>  
+      <play number="64" serveteam="VALLEY C" point="MOUNT ME" vscore="2" hscore="5" text="[Molly Bjornbey] Kill by Mary Kate Bendlage (from Maddie Marquardt)."></play>  
+      <play number="65" serveteam="MOUNT ME" point="MOUNT ME" vscore="2" hscore="6" text="[Kate Wright] Kill by Mary Kate Bendlage (from Maddie Marquardt)."></play>  
+      <play number="66" serveteam="MOUNT ME" point="MOUNT ME" vscore="2" hscore="7" text="[Kate Wright] Service ace (Kadie Kocka)."></play>  
+      <play number="67" serveteam="MOUNT ME" point="VALLEY C" vscore="3" hscore="7" text="[Kate Wright] Attack error by Danica Wrage."></play>  
+      <play number="68" serveteam="VALLEY C" point="MOUNT ME" vscore="3" hscore="8" text="[Annika Pulju] Kill by Mary Kate Bendlage (from Maddie Marquardt)."></play>  
+      <play number="69" serveteam="MOUNT ME" point="VALLEY C" vscore="4" hscore="8" text="[Kira Klesner] Kill by Kadie Kocka (from Madden Bogenreif)."></play>  
+      <play number="70" serveteam="VALLEY C" point="MOUNT ME" vscore="4" hscore="9" text="[Gracie Schumacher] Service error."></play>  
+      <play number="71" serveteam="MOUNT ME" point="MOUNT ME" vscore="4" hscore="10" text="[Mary Kate Bendlage] Attack error by Kadie Kocka."></play>  
+      <play number="72" serveteam="MOUNT ME" point="MOUNT ME" vscore="4" hscore="11" text="[Mary Kate Bendlage] Attack error by Eden Carrier."></play>  
+      <play number="73" serveteam="VALLEY C" text="Timeout Valley City State."></play>  
+      <play number="74" serveteam="MOUNT ME" point="VALLEY C" vscore="5" hscore="11" text="[Mary Kate Bendlage] Kill by Brynn Sorenson (from Gracie Schumacher)."></play>  
+      <play number="75" serveteam="VALLEY C" point="VALLEY C" vscore="6" hscore="11" text="[Hudson Zerface] Attack error by Maddie Marquardt."></play>  
+      <play number="76" serveteam="VALLEY C" point="VALLEY C" vscore="7" hscore="11" text="[Hudson Zerface] Kill by Brynn Sorenson (from Annika Pulju)."></play>  
+      <play number="77" serveteam="VALLEY C" point="MOUNT ME" vscore="7" hscore="12" text="[Hudson Zerface] Kill by Hallie Bedier (from Maddie Marquardt)."></play>  
+      <play number="78" serveteam="MOUNT ME" point="VALLEY C" vscore="8" hscore="12" text="[Eryn Jackson] Service error."></play>  
+      <play number="79" serveteam="VALLEY C" point="VALLEY C" vscore="9" hscore="12" text="[Kinlee Sufficool] Attack error by Bella Dantzler (block by Mady Geist; Brynn Sorenson)."></play>  
+      <play number="80" serveteam="VALLEY C" point="VALLEY C" vscore="10" hscore="12" text="[Kinlee Sufficool] Attack error by Hallie Bedier."></play>  
+      <play number="81" serveteam="VALLEY C" point="MOUNT ME" vscore="10" hscore="13" text="[Kinlee Sufficool] Kill by Bella Dantzler (from Maddie Marquardt)."></play>  
+      <play number="82" serveteam="MOUNT ME" point="VALLEY C" vscore="11" hscore="13" text="[Maddie Marquardt] Kill by Mady Geist (from Gracie Schumacher)."></play>  
+      <play number="83" serveteam="VALLEY C" point="MOUNT ME" vscore="11" hscore="14" text="[Madden Bogenreif] Kill by Hallie Bedier (from Maddie Marquardt)."></play>  
+      <play number="84" serveteam="MOUNT ME" point="MOUNT ME" vscore="11" hscore="15" text="[Hallie Bedier] Service ace (Annika Pulju)."></play>  
+      <play number="85" serveteam="MOUNT ME" point="VALLEY C" vscore="12" hscore="15" text="[Hallie Bedier] Kill by Mady Geist (from Madden Bogenreif)."></play>  
+      <play number="86" serveteam="VALLEY C" point="VALLEY C" vscore="13" hscore="15" text="[Molly Bjornbey] Kill by Mady Geist (from Madden Bogenreif)."></play>  
+      <play number="87" serveteam="VALLEY C" point="VALLEY C" vscore="14" hscore="15" text="[Molly Bjornbey] Kill by Mady Geist."></play>  
+      <play number="88" serveteam="VALLEY C" point="MOUNT ME" vscore="14" hscore="16" text="[Molly Bjornbey] Kill by Mary Kate Bendlage (from Maddie Marquardt)."></play>  
+      <play number="89" serveteam="MOUNT ME" point="VALLEY C" vscore="15" hscore="16" text="[Kate Wright] Kill by Kadie Kocka (from Madden Bogenreif)."></play>  
+      <play number="90" serveteam="VALLEY C" point="MOUNT ME" vscore="15" hscore="17" text="[Annika Pulju] Attack error by Kadie Kocka."></play>  
+      <play number="91" serveteam="MOUNT ME" point="VALLEY C" vscore="16" hscore="17" text="[Kira Klesner] Bad set by Hallie Bedier."></play>  
+      <play number="92" serveteam="VALLEY C" point="VALLEY C" vscore="17" hscore="17" text="[Gracie Schumacher] Service ace (Kate Wright)."></play>  
+      <play number="93" serveteam="VALLEY C" text="Timeout Mount Mercy."></play>  
+      <play number="94" serveteam="VALLEY C" point="MOUNT ME" vscore="17" hscore="18" text="[Gracie Schumacher] Kill by Sam Schrage (from Maddie Marquardt)."></play>  
+      <play number="95" serveteam="MOUNT ME" point="MOUNT ME" vscore="17" hscore="19" text="[Mary Kate Bendlage] Kill by Hallie Bedier (from Maddie Marquardt)."></play>  
+      <play number="96" serveteam="MOUNT ME" point="MOUNT ME" vscore="17" hscore="20" text="[Mary Kate Bendlage] Kill by Hallie Bedier (from Maddie Marquardt)."></play>  
+      <play number="97" serveteam="MOUNT ME" point="VALLEY C" vscore="18" hscore="20" text="[Mary Kate Bendlage] Kill by Kadie Kocka (from Brynn Sorenson)."></play>  
+      <play number="98" serveteam="VALLEY C" point="MOUNT ME" vscore="18" hscore="21" text="[Hudson Zerface] Attack error by Eden Carrier."></play>  
+      <play number="99" serveteam="MOUNT ME" point="MOUNT ME" vscore="18" hscore="22" text="[Lola Holub] Attack error by Molly Bjornbey."></play>  
+      <play number="100" serveteam="VALLEY C" text="Timeout Valley City State."></play>  
+      <play number="101" serveteam="MOUNT ME" point="VALLEY C" vscore="19" hscore="22" text="[Lola Holub] Kill by Brynn Sorenson (from Gracie Schumacher)."></play>  
+      <play number="102" serveteam="VALLEY C" point="VALLEY C" vscore="20" hscore="22" text="[Kinlee Sufficool] Kill by Mady Geist (from Gracie Schumacher)."></play>  
+      <play number="103" serveteam="VALLEY C" point="MOUNT ME" vscore="20" hscore="23" text="[Kinlee Sufficool] Kill by Hallie Bedier (from Maddie Marquardt)."></play>  
+      <play number="104" serveteam="MOUNT ME" point="VALLEY C" vscore="21" hscore="23" text="[Maddie Marquardt] Kill by Mady Geist (from Gracie Schumacher)."></play>  
+      <play number="105" serveteam="VALLEY C" point="VALLEY C" vscore="22" hscore="23" text="[Kinlee Sufficool] Attack error by Eryn Jackson (block by Eden Carrier)."></play>  
+      <play number="106" serveteam="MOUNT ME" point="MOUNT ME" vscore="22" hscore="24" text="[Hallie Bedier] Service ace (Molly Bjornbey)."></play>  
+      <play number="107" serveteam="VALLEY C" point="MOUNT ME" vscore="22" hscore="25" text="[Molly Bjornbey] Kill by Danica Wrage (from Maddie Marquardt)."></play> 
+    </game>  
+    <game number="3"> 
+      <play number="108" serveteam="VALLEY C" point="VALLEY C" vscore="1" hscore="0" text="[Madden Bogenreif] Attack error by Bella Dantzler."></play>  
+      <play number="109" serveteam="VALLEY C" point="MOUNT ME" vscore="1" hscore="1" text="[Madden Bogenreif] Attack error by Mady Geist."></play>  
+      <play number="110" serveteam="MOUNT ME" point="MOUNT ME" vscore="1" hscore="2" text="[Maddie Marquardt] Service ace (Team)."></play>  
+      <play number="111" serveteam="MOUNT ME" point="MOUNT ME" vscore="1" hscore="3" text="[Maddie Marquardt] Attack error by Ellie Lucas."></play>  
+      <play number="112" serveteam="MOUNT ME" point="MOUNT ME" vscore="1" hscore="4" text="[Maddie Marquardt] Attack error by Mady Geist (block by Danica Wrage; Bella Dantzler)."></play>  
+      <play number="113" serveteam="MOUNT ME" point="VALLEY C" vscore="2" hscore="4" text="[Maddie Marquardt] Service error."></play>  
+      <play number="114" serveteam="VALLEY C" point="MOUNT ME" vscore="2" hscore="5" text="[Molly Bjornbey] Kill by Danica Wrage (from Eryn Jackson)."></play>  
+      <play number="115" serveteam="MOUNT ME" point="MOUNT ME" vscore="2" hscore="6" text="[Hallie Bedier] Service ace (Kadie Kocka)."></play>  
+      <play number="116" serveteam="MOUNT ME" point="VALLEY C" vscore="3" hscore="6" text="[Hallie Bedier] Service error."></play>  
+      <play number="117" serveteam="VALLEY C" point="MOUNT ME" vscore="3" hscore="7" text="[Annika Pulju] Kill by Danica Wrage (from Maddie Marquardt)."></play>  
+      <play number="118" serveteam="MOUNT ME" point="VALLEY C" vscore="4" hscore="7" text="[Kate Wright] Service error."></play>  
+      <play number="119" serveteam="VALLEY C" point="MOUNT ME" vscore="4" hscore="8" text="[Gracie Schumacher] Attack error by Kadie Kocka."></play>  
+      <play number="120" serveteam="MOUNT ME" point="VALLEY C" vscore="5" hscore="8" text="[Kira Klesner] Attack error by Mary Kate Bendlage."></play>  
+      <play number="121" serveteam="VALLEY C" point="MOUNT ME" vscore="5" hscore="9" text="[Hudson Zerface] Kill by Sam Schrage (from Maddie Marquardt)."></play>  
+      <play number="122" serveteam="MOUNT ME" point="MOUNT ME" vscore="5" hscore="10" text="[Mary Kate Bendlage] Service ace (Molly Bjornbey)."></play>  
+      <play number="123" serveteam="MOUNT ME" point="VALLEY C" vscore="6" hscore="10" text="[Mary Kate Bendlage] Service error."></play>  
+      <play number="124" serveteam="VALLEY C" point="MOUNT ME" vscore="6" hscore="11" text="[Kinlee Sufficool] Kill by Sam Schrage (from Maddie Marquardt)."></play>  
+      <play number="125" serveteam="MOUNT ME" point="VALLEY C" vscore="7" hscore="11" text="[Kirstyn Kolbet] Kill by Mady Geist (from Gracie Schumacher)."></play>  
+      <play number="126" serveteam="VALLEY C" point="VALLEY C" vscore="8" hscore="11" text="[Madden Bogenreif] Kill by Mady Geist."></play>  
+      <play number="127" serveteam="VALLEY C" point="MOUNT ME" vscore="8" hscore="12" text="[Madden Bogenreif] Kill by Maddie Marquardt (from Hallie Bedier)."></play>  
+      <play number="128" serveteam="MOUNT ME" point="MOUNT ME" vscore="8" hscore="13" text="[Maddie Marquardt] Service ace (Molly Bjornbey)."></play>  
+      <play number="129" serveteam="MOUNT ME" point="VALLEY C" vscore="9" hscore="13" text="[Maddie Marquardt] Service error."></play>  
+      <play number="130" serveteam="VALLEY C" point="MOUNT ME" vscore="9" hscore="14" text="[Molly Bjornbey] Kill by Hallie Bedier (from Maddie Marquardt)."></play>  
+      <play number="131" serveteam="MOUNT ME" point="MOUNT ME" vscore="9" hscore="15" text="[Brooke Ellyson] Attack error by Ellie Lucas."></play>  
+      <play number="132" serveteam="VALLEY C" text="Timeout Valley City State."></play>  
+      <play number="133" serveteam="MOUNT ME" point="VALLEY C" vscore="10" hscore="15" text="[Hallie Bedier] Kill by Mady Geist."></play>  
+      <play number="134" serveteam="VALLEY C" point="VALLEY C" vscore="11" hscore="15" text="[Annika Pulju] Attack error by Bella Dantzler."></play>  
+      <play number="135" serveteam="VALLEY C" point="MOUNT ME" vscore="11" hscore="16" text="[Annika Pulju] Kill by Danica Wrage (from Maddie Marquardt)."></play>  
+      <play number="136" serveteam="MOUNT ME" point="VALLEY C" vscore="12" hscore="16" text="[Eryn Jackson] Kill by Kadie Kocka (from Madden Bogenreif)."></play>  
+      <play number="137" serveteam="VALLEY C" point="MOUNT ME" vscore="12" hscore="17" text="[Gracie Schumacher] Kill by Sam Schrage (from Maddie Marquardt)."></play>  
+      <play number="138" serveteam="MOUNT ME" point="VALLEY C" vscore="13" hscore="17" text="[Kira Klesner] Service error."></play>  
+      <play number="139" serveteam="VALLEY C" point="MOUNT ME" vscore="13" hscore="18" text="[Hudson Zerface] Attack error by Eden Carrier (block by Sam Schrage)."></play>  
+      <play number="140" serveteam="MOUNT ME" point="MOUNT ME" vscore="13" hscore="19" text="[Mary Kate Bendlage] Kill by Sam Schrage (from Maddie Marquardt)."></play>  
+      <play number="141" serveteam="MOUNT ME" point="VALLEY C" vscore="14" hscore="19" text="[Mary Kate Bendlage] Service error."></play>  
+      <play number="142" serveteam="VALLEY C" point="VALLEY C" vscore="15" hscore="19" text="[Kinlee Sufficool] Attack error by Maddie Marquardt."></play>  
+      <play number="143" serveteam="VALLEY C" point="VALLEY C" vscore="16" hscore="19" text="[Kinlee Sufficool] Attack error by Hallie Bedier (block by Mady Geist; Molly Bjornbey)."></play>  
+      <play number="144" serveteam="VALLEY C" point="MOUNT ME" vscore="16" hscore="20" text="[Kinlee Sufficool] Kill by Hallie Bedier (from Mary Kate Bendlage)."></play>  
+      <play number="145" serveteam="MOUNT ME" point="VALLEY C" vscore="17" hscore="20" text="[Lola Holub] Kill by Molly Bjornbey (from Gracie Schumacher)."></play>  
+      <play number="146" serveteam="VALLEY C" point="MOUNT ME" vscore="17" hscore="21" text="[Madden Bogenreif] Kill by Hallie Bedier (from Maddie Marquardt)."></play>  
+      <play number="147" serveteam="MOUNT ME" point="VALLEY C" vscore="18" hscore="21" text="[Maddie Marquardt] Kill by Molly Bjornbey (from Madden Bogenreif)."></play>  
+      <play number="148" serveteam="VALLEY C" point="MOUNT ME" vscore="18" hscore="22" text="[Molly Bjornbey] Service error."></play>  
+      <play number="149" serveteam="MOUNT ME" point="VALLEY C" vscore="19" hscore="22" text="[Hallie Bedier] Attack error by Bella Dantzler."></play>  
+      <play number="150" serveteam="VALLEY C" point="VALLEY C" vscore="20" hscore="22" text="[Annika Pulju] Service ace (Kate Wright)."></play>  
+      <play number="151" serveteam="VALLEY C" point="VALLEY C" vscore="21" hscore="22" text="[Annika Pulju] Kill by Kadie Kocka (from Madden Bogenreif)."></play>  
+      <play number="152" serveteam="VALLEY C" text="Timeout Mount Mercy."></play>  
+      <play number="153" serveteam="VALLEY C" point="MOUNT ME" vscore="21" hscore="23" text="[Annika Pulju] Kill by Danica Wrage (from Maddie Marquardt)."></play>  
+      <play number="154" serveteam="MOUNT ME" point="VALLEY C" vscore="22" hscore="23" text="[Eryn Jackson] Service error."></play>  
+      <play number="155" serveteam="VALLEY C" point="MOUNT ME" vscore="22" hscore="24" text="[Gracie Schumacher] Bad set by Gracie Schumacher."></play>  
+      <play number="156" serveteam="MOUNT ME" point="MOUNT ME" vscore="22" hscore="25" text="[Kira Klesner] Attack error by Eden Carrier (block by Sam Schrage)."></play> 
+    </game>  
+    <game number="4"> 
+      <play number="157" serveteam="MOUNT ME" point="MOUNT ME" vscore="0" hscore="1" text="[Maddie Marquardt] Attack error by Mady Geist (block by Danica Wrage; Bella Dantzler)."></play>  
+      <play number="158" serveteam="MOUNT ME" point="MOUNT ME" vscore="0" hscore="2" text="[Maddie Marquardt] Attack error by Brynn Sorenson (block by Hallie Bedier; Danica Wrage)."></play>  
+      <play number="159" serveteam="MOUNT ME" point="MOUNT ME" vscore="0" hscore="3" text="[Maddie Marquardt] Kill by Bella Dantzler (from Eryn Jackson)."></play>  
+      <play number="160" serveteam="MOUNT ME" point="VALLEY C" vscore="1" hscore="3" text="[Maddie Marquardt] Kill by Molly Bjornbey (from Gracie Schumacher)."></play>  
+      <play number="161" serveteam="VALLEY C" point="VALLEY C" vscore="2" hscore="3" text="[Madden Bogenreif] Kill by Molly Bjornbey (from Madden Bogenreif)."></play>  
+      <play number="162" serveteam="VALLEY C" point="VALLEY C" vscore="3" hscore="3" text="[Madden Bogenreif] Kill by Mady Geist (from Madden Bogenreif)."></play>  
+      <play number="163" serveteam="VALLEY C" point="VALLEY C" vscore="4" hscore="3" text="[Madden Bogenreif] Attack error by Hallie Bedier."></play>  
+      <play number="164" serveteam="VALLEY C" point="VALLEY C" vscore="5" hscore="3" text="[Madden Bogenreif] Attack error by Danica Wrage."></play>  
+      <play number="165" serveteam="VALLEY C" point="MOUNT ME" vscore="5" hscore="4" text="[Madden Bogenreif] Kill by Danica Wrage (from Maddie Marquardt)."></play>  
+      <play number="166" serveteam="MOUNT ME" point="VALLEY C" vscore="6" hscore="4" text="[Hallie Bedier] Kill by Molly Bjornbey (from Madden Bogenreif)."></play>  
+      <play number="167" serveteam="VALLEY C" point="VALLEY C" vscore="7" hscore="4" text="[Molly Bjornbey] Service ace (Eryn Jackson)."></play>  
+      <play number="168" serveteam="VALLEY C" point="MOUNT ME" vscore="7" hscore="5" text="[Molly Bjornbey] Kill by Danica Wrage (from Maddie Marquardt)."></play>  
+      <play number="169" serveteam="MOUNT ME" point="MOUNT ME" vscore="7" hscore="6" text="[Kate Wright] Attack error by Ellie Lucas."></play>  
+      <play number="170" serveteam="MOUNT ME" point="VALLEY C" vscore="8" hscore="6" text="[Kate Wright] Kill by Kadie Kocka (from Madden Bogenreif)."></play>  
+      <play number="171" serveteam="VALLEY C" point="MOUNT ME" vscore="8" hscore="7" text="[Annika Pulju] Kill by Danica Wrage (from Maddie Marquardt)."></play>  
+      <play number="172" serveteam="MOUNT ME" point="MOUNT ME" vscore="8" hscore="8" text="[Kira Klesner] Service ace (Molly Bjornbey)."></play>  
+      <play number="173" serveteam="MOUNT ME" point="MOUNT ME" vscore="8" hscore="9" text="[Kira Klesner] Attack error by Ellie Lucas (block by Mary Kate Bendlage; Sam Schrage)."></play>  
+      <play number="174" serveteam="MOUNT ME" point="MOUNT ME" vscore="8" hscore="10" text="[Kira Klesner] Service ace (Kadie Kocka)."></play>  
+      <play number="175" serveteam="MOUNT ME" text="Timeout Valley City State."></play>  
+      <play number="176" serveteam="MOUNT ME" point="MOUNT ME" vscore="8" hscore="11" text="[Kira Klesner] Kill by Mary Kate Bendlage (from Maddie Marquardt)."></play>  
+      <play number="177" serveteam="MOUNT ME" point="MOUNT ME" vscore="8" hscore="12" text="[Kira Klesner] Kill by Sam Schrage (from Kate Wright)."></play>  
+      <play number="178" serveteam="MOUNT ME" point="VALLEY C" vscore="9" hscore="12" text="[Kira Klesner] Service error."></play>  
+      <play number="179" serveteam="VALLEY C" point="VALLEY C" vscore="10" hscore="12" text="[Gracie Schumacher] Service ace (Hallie Bedier)."></play>  
+      <play number="180" serveteam="VALLEY C" point="MOUNT ME" vscore="10" hscore="13" text="[Gracie Schumacher] Service error."></play>  
+      <play number="181" serveteam="MOUNT ME" point="MOUNT ME" vscore="10" hscore="14" text="[Mary Kate Bendlage] Bad set by Gracie Schumacher."></play>  
+      <play number="182" serveteam="MOUNT ME" point="VALLEY C" vscore="11" hscore="14" text="[Mary Kate Bendlage] Kill by Kadie Kocka (from Gracie Schumacher)."></play>  
+      <play number="183" serveteam="VALLEY C" point="VALLEY C" vscore="12" hscore="14" text="[Hudson Zerface] Attack error by Hallie Bedier (block by Molly Bjornbey; Eden Carrier)."></play>  
+      <play number="184" serveteam="VALLEY C" point="MOUNT ME" vscore="12" hscore="15" text="[Hudson Zerface] Kill by Sam Schrage (from Maddie Marquardt)."></play>  
+      <play number="185" serveteam="MOUNT ME" point="VALLEY C" vscore="13" hscore="15" text="[Lola Holub] Kill by Molly Bjornbey (from Annika Pulju)."></play>  
+      <play number="186" serveteam="VALLEY C" point="VALLEY C" vscore="14" hscore="15" text="[Kinlee Sufficool] Attack error by Bella Dantzler."></play>  
+      <play number="187" serveteam="VALLEY C" point="MOUNT ME" vscore="14" hscore="16" text="[Kinlee Sufficool] Attack error by Brynn Sorenson (block by Hallie Bedier; Bella Dantzler)."></play>  
+      <play number="188" serveteam="MOUNT ME" point="MOUNT ME" vscore="14" hscore="17" text="[Maddie Marquardt] Attack error by Molly Bjornbey."></play>  
+      <play number="189" serveteam="MOUNT ME" point="MOUNT ME" vscore="14" hscore="18" text="[Maddie Marquardt] Attack error by Mady Geist."></play>  
+      <play number="190" serveteam="MOUNT ME" point="VALLEY C" vscore="15" hscore="18" text="[Maddie Marquardt] Kill by Molly Bjornbey (from Annika Pulju)."></play>  
+      <play number="191" serveteam="VALLEY C" point="MOUNT ME" vscore="15" hscore="19" text="[Madden Bogenreif] Kill by Danica Wrage (from Maddie Marquardt)."></play>  
+      <play number="192" serveteam="MOUNT ME" point="MOUNT ME" vscore="15" hscore="20" text="[Hallie Bedier] Kill by Bella Dantzler (from Maddie Marquardt)."></play>  
+      <play number="193" serveteam="MOUNT ME" point="VALLEY C" vscore="16" hscore="20" text="[Hallie Bedier] Kill by Molly Bjornbey (from Madden Bogenreif)."></play>  
+      <play number="194" serveteam="VALLEY C" point="MOUNT ME" vscore="16" hscore="21" text="[Molly Bjornbey] Attack error by Kadie Kocka."></play>  
+      <play number="195" serveteam="MOUNT ME" point="VALLEY C" vscore="17" hscore="21" text="[Kate Wright] Service error."></play>  
+      <play number="196" serveteam="VALLEY C" point="MOUNT ME" vscore="17" hscore="22" text="[Madden Bogenreif] Kill by Mary Kate Bendlage (from Maddie Marquardt)."></play>  
+      <play number="197" serveteam="VALLEY C" text="Timeout Valley City State."></play>  
+      <play number="198" serveteam="MOUNT ME" point="VALLEY C" vscore="18" hscore="22" text="[Kira Klesner] Kill by Ellie Lucas (from Madden Bogenreif)."></play>  
+      <play number="199" serveteam="VALLEY C" point="MOUNT ME" vscore="18" hscore="23" text="[Gracie Schumacher] Kill by Hallie Bedier."></play>  
+      <play number="200" serveteam="MOUNT ME" point="VALLEY C" vscore="19" hscore="23" text="[Mary Kate Bendlage] Kill by Kadie Kocka (from Gracie Schumacher)."></play>  
+      <play number="201" serveteam="VALLEY C" point="VALLEY C" vscore="20" hscore="23" text="[Hudson Zerface] Kill by Molly Bjornbey (from Gracie Schumacher)."></play>  
+      <play number="202" serveteam="VALLEY C" point="VALLEY C" vscore="21" hscore="23" text="[Hudson Zerface] Attack error by Mary Kate Bendlage."></play>  
+      <play number="203" serveteam="VALLEY C" point="MOUNT ME" vscore="21" hscore="24" text="[Hudson Zerface] Kill by Maddie Marquardt (from Hallie Bedier)."></play>  
+      <play number="204" serveteam="MOUNT ME" point="VALLEY C" vscore="22" hscore="24" text="[Lola Holub] Kill by Molly Bjornbey (from Gracie Schumacher)."></play>  
+      <play number="205" serveteam="VALLEY C" point="MOUNT ME" vscore="22" hscore="25" text="[Kinlee Sufficool] Kill by Hallie Bedier (from Kate Wright)."></play> 
+    </game> 
+  </plays>  
+  <analysis></analysis>  
+  <status complete="N" vscore="1" hscore="3" game="4" vpoints="22" hpoints="25" serving="V"></status>  
+  <leadchanges ties="2" leads="2"> 
+    <leadchange game="1" ties="5" leads="2"></leadchange>  
+    <leadchange game="2" ties="1" leads="0"></leadchange>  
+    <leadchange game="3" ties="1" leads="1"></leadchange>  
+    <leadchange game="4" ties="2" leads="2"></leadchange> 
+  </leadchanges>  
+  <breakdowns vh="V" pts="93" kill="52" ace="4" block="4" eatk="27" esvc="13" ebhe="2"> 
+    <breakdown game="1" pts="27" kill="18" ace="0" block="0" eatk="6" esvc="2" ebhe="2"></breakdown>  
+    <breakdown game="2" pts="22" kill="14" ace="1" block="2" eatk="7" esvc="1" ebhe="0"></breakdown>  
+    <breakdown game="3" pts="22" kill="7" ace="1" block="1" eatk="7" esvc="8" ebhe="0"></breakdown>  
+    <breakdown game="4" pts="22" kill="13" ace="2" block="1" eatk="7" esvc="2" ebhe="0"></breakdown> 
+  </breakdowns>  
+  <breakdowns vh="H" pts="100" kill="50" ace="12" block="8" eatk="21" esvc="4" ebhe="5"> 
+    <breakdown game="1" pts="25" kill="12" ace="2" block="1" eatk="6" esvc="1" ebhe="3"></breakdown>  
+    <breakdown game="2" pts="25" kill="13" ace="4" block="0" eatk="5" esvc="1" ebhe="0"></breakdown>  
+    <breakdown game="3" pts="25" kill="12" ace="4" block="3" eatk="6" esvc="1" ebhe="1"></breakdown>  
+    <breakdown game="4" pts="25" kill="13" ace="2" block="4" eatk="4" esvc="1" ebhe="1"></breakdown> 
+  </breakdowns> 
+</vbgame>
+
+
+

@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vbgame source="PrestoSports" version="7.21.0" generated="08/21/2026"> 
+  <venue gameid="" location="North Sioux City, SD" arena="CNOS Fieldhouse" start="10:00 AM" end="11:22 AM" duration="1:22" delay="" attend="0" schednote="" leaguegame="N" neutralgame="Y" visid="DU" visname="Dordt (IA)" homeid="VCS" homename="Valley City State" date="8/21/2026"> 
+    <officials> 
+      <official title="1st Referee" name="Eloise Heimke"/>  
+      <official title="2nd Referee" name="Hali Stredde"/> 
+    </officials>  
+    <rules/> 
+  </venue>  
+  <team vh="V" id="DU" name="Dordt (IA)" code="501390" record="1-0"> 
+    <linescore line="25,25,25" score="3"> 
+      <linegame game="1" points="25"/>  
+      <linegame game="2" points="25"/>  
+      <linegame game="3" points="25"/> 
+    </linescore>  
+    <attackbygame> 
+      <attackgame game="1" k="15" e="9" ta="38" pct=".158"/>  
+      <attackgame game="2" k="15" e="4" ta="28" pct=".393"/>  
+      <attackgame game="3" k="10" e="6" ta="35" pct=".114"/> 
+    </attackbygame>  
+    <totals> 
+      <attack k="40" e="19" ta="101" pct=".208"/>  
+      <set a="38" e="0" ta="38"/>  
+      <serve sa="14" se="12" ta="73"/>  
+      <defense dig="41" re="6" ta="55"/>  
+      <block bs="4" ba="6" be="2" tb="7.0"/>  
+      <misc bhe="0" pts="61.0"/> 
+    </totals>  
+    <player uni="01" code="01" name="Chloe Huisman" checkname="HUISMAN,CHLOE" gp="3" oncourt="Y" ms="1" playerId="99xvc3jv0jwst8fk"> 
+      <attack k="0" e="0" ta="1" pct=".000"/>  
+      <set a="19" e="0" ta="19"/>  
+      <serve sa="2" se="2" ta="9"/>  
+      <defense dig="1" re="0" ta="0"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="2.0"/> 
+    </player>  
+    <player uni="02" code="02" name="Kyler King" checkname="KING,KYLER" gp="0" oncourt="N" playerId="rrikss85pzouneg7"/>  
+    <player uni="03" code="03" name="Peyton Poppema" checkname="POPPEMA,PEYTON" gp="2" oncourt="N" playerId="e6pl99t2nnshnayi"> 
+      <attack k="0" e="0" ta="1" pct=".000"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="1" ta="9"/>  
+      <defense dig="0" re="0" ta="0"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="0.0"/> 
+    </player>  
+    <player uni="04" code="04" name="Haley Wielenga" checkname="WIELENGA,HALEY" gp="3" oncourt="N" ms="1" playerId="uvdqfti5m0o6d5i2"> 
+      <attack k="1" e="0" ta="1" pct="1.000"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="3" se="2" ta="14"/>  
+      <defense dig="5" re="2" ta="10"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="4.0"/> 
+    </player>  
+    <player uni="05" code="05" name="Haley Kuperus" checkname="KUPERUS,HALEY" gp="3" oncourt="Y" ms="1" playerId="wazls7k8qtn4u39b"> 
+      <attack k="10" e="6" ta="18" pct=".222"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="1" re="0" ta="0"/>  
+      <block bs="0" ba="2" be="0" tb="2.0"/>  
+      <misc bhe="0" pts="11.0"/> 
+    </player>  
+    <player uni="06" code="06" name="Maggie Van Schepen" checkname="SCHEPEN,MAGGIE VAN" gp="0" oncourt="N" playerId="94ooomvzlx21rae7"/>  
+    <player uni="07" code="07" name="Amy Doef" checkname="DOEF,AMY" gp="0" oncourt="N" playerId="i1netdlnu7ivqej9"/>  
+    <player uni="08" code="08" name="Shayna Van Dyken" checkname="DYKEN,SHAYNA VAN" gp="0" oncourt="N" playerId="gtxn36pjtyqijv3r"/>  
+    <player uni="09" code="09" name="Laney Wolfswinkel" checkname="WOLFSWINKEL,LANEY" gp="3" oncourt="Y" ms="1" playerId="o0ltfe2i427y75a1"> 
+      <attack k="10" e="4" ta="22" pct=".273"/>  
+      <set a="2" e="0" ta="2"/>  
+      <serve sa="1" se="2" ta="10"/>  
+      <defense dig="9" re="2" ta="26"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="11.0"/> 
+    </player>  
+    <player uni="10" code="10" name="Ellie Weg" checkname="WEG,ELLIE" gp="3" oncourt="Y" ms="1" playerId="yl39odphgc0iw0q1"> 
+      <attack k="6" e="1" ta="12" pct=".417"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="4" re="0" ta="0"/>  
+      <block bs="3" ba="3" be="1" tb="6.0"/>  
+      <misc bhe="0" pts="10.5"/> 
+    </player>  
+    <player uni="11" code="11" name="Ada Dekkers" checkname="DEKKERS,ADA" gp="0" oncourt="N" playerId="aobkz7nhyzjxzwm4"/>  
+    <player uni="12" code="12" name="Maddy Jackson" checkname="JACKSON,MADDY" gp="1" oncourt="N" playerId="so0c77pkriggltgy"> 
+      <attack k="0" e="0" ta="0" pct=".000"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="1" se="1" ta="3"/>  
+      <defense dig="1" re="0" ta="1"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="1.0"/> 
+    </player>  
+    <player uni="13" code="13" name="Jaida Barrow" checkname="BARROW,JAIDA" gp="3" oncourt="Y" ms="1" playerId="d1npz9x3fg1tvard"> 
+      <attack k="2" e="1" ta="6" pct=".167"/>  
+      <set a="1" e="0" ta="1"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="0" re="0" ta="0"/>  
+      <block bs="1" ba="0" be="0" tb="1.0"/>  
+      <misc bhe="0" pts="3.0"/> 
+    </player>  
+    <player uni="14" code="14" name="Breanna Beckering" checkname="BECKERING,BREANNA" gp="3" oncourt="N" playerId="4hktexz2ux0kc48u"> 
+      <attack k="4" e="3" ta="14" pct=".071"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="0" re="0" ta="0"/>  
+      <block bs="0" ba="1" be="1" tb="1.0"/>  
+      <misc bhe="0" pts="4.5"/> 
+    </player>  
+    <player uni="15" code="15" name="Myra Carlson" checkname="CARLSON,MYRA" gp="0" oncourt="N" playerId="phgkfmqqtvs31610"/>  
+    <player uni="19" code="19" name="Madyson Fey" checkname="FEY,MADYSON" gp="0" oncourt="N" playerId="lsuq2vwdsai2be3p"/>  
+    <player uni="20" code="20" name="Sara DeBoer" checkname="DEBOER,SARA" gp="0" oncourt="N" playerId="7z0hlcq8z0qbqzbd"/>  
+    <player uni="21" code="21" name="Tavyn Sichmiller" checkname="SICHMILLER,TAVYN" gp="0" oncourt="N" playerId="cjbngfhl4x83of4r"/>  
+    <player uni="22" code="22" name="Kylie Beckering" checkname="BECKERING,KYLIE" gp="3" oncourt="N" playerId="dr1igo5rkj3763xn"> 
+      <attack k="0" e="0" ta="0" pct=".000"/>  
+      <set a="4" e="0" ta="4"/>  
+      <serve sa="3" se="3" ta="14"/>  
+      <defense dig="14" re="1" ta="16"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="3.0"/> 
+    </player>  
+    <player uni="23" code="23" name="Carlee Jackson" checkname="JACKSON,CARLEE" gp="3" oncourt="N" playerId="5ntnk9ph9zyn7tzv"> 
+      <attack k="0" e="1" ta="3" pct="-.333"/>  
+      <set a="12" e="0" ta="12"/>  
+      <serve sa="4" se="1" ta="14"/>  
+      <defense dig="4" re="0" ta="0"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="4.0"/> 
+    </player>  
+    <player uni="24" code="24" name="Scarlett Winterfeld" checkname="WINTERFELD,SCARLETT" gp="3" oncourt="Y" playerId="p6h8gdkfmgnwi8w4"> 
+      <attack k="7" e="3" ta="23" pct=".174"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="2" re="0" ta="1"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="7.0"/> 
+    </player>  
+    <player uni="TM" code="TM" name="Team" checkname="TEAM" gp="3" oncourt="N" playerId=""> 
+      <attack k="0" e="0" ta="0" pct=".000"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="0" re="1" ta="1"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="0.0"/> 
+    </player> 
+  </team>  
+  <team vh="H" id="VCS" name="Valley City State" code="506055" record="0-1"> 
+    <linescore line="22,15,21" score="0"> 
+      <linegame game="1" points="22"/>  
+      <linegame game="2" points="15"/>  
+      <linegame game="3" points="21"/> 
+    </linescore>  
+    <attackbygame> 
+      <attackgame game="1" k="7" e="5" ta="27" pct=".074"/>  
+      <attackgame game="2" k="4" e="4" ta="22" pct=".000"/>  
+      <attackgame game="3" k="10" e="6" ta="35" pct=".114"/> 
+    </attackbygame>  
+    <totals> 
+      <attack k="21" e="15" ta="84" pct=".071"/>  
+      <set a="19" e="1" ta="20"/>  
+      <serve sa="6" se="5" ta="60"/>  
+      <defense dig="35" re="14" ta="61"/>  
+      <block bs="2" ba="4" be="4" tb="4.0"/>  
+      <misc bhe="0" pts="31.0"/> 
+    </totals>  
+    <player uni="1" code="1" name="Brynn Sorenson" checkname="SORENSON,BRYNN" gp="2" oncourt="N" playerId="1o4b1wdj0v7l04rz"> 
+      <attack k="2" e="2" ta="6" pct=".000"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="1" re="1" ta="3"/>  
+      <block bs="0" ba="0" be="1" tb="0.0"/>  
+      <misc bhe="0" pts="2.0"/> 
+    </player>  
+    <player uni="2" code="2" name="Kiana Hilary" checkname="HILARY,KIANA" gp="0" oncourt="N" playerId="euh6yyhkqdhvnalq"/>  
+    <player uni="3" code="3" name="Hudson Zerface" checkname="ZERFACE,HUDSON" gp="3" oncourt="Y" ms="1" playerId="p774k9mp3phfl1uu"> 
+      <attack k="1" e="0" ta="1" pct="1.000"/>  
+      <set a="1" e="0" ta="1"/>  
+      <serve sa="0" se="0" ta="8"/>  
+      <defense dig="3" re="2" ta="11"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="1.0"/> 
+    </player>  
+    <player uni="4" code="4" name="Kadie Kocka" checkname="KOCKA,KADIE" gp="3" oncourt="N" playerId="5nmjiveyf5dhr387"> 
+      <attack k="3" e="2" ta="16" pct=".062"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="1" re="3" ta="7"/>  
+      <block bs="0" ba="2" be="0" tb="2.0"/>  
+      <misc bhe="0" pts="4.0"/> 
+    </player>  
+    <player uni="5" code="5" name="Ellie Lucas" checkname="LUCAS,ELLIE" gp="3" oncourt="Y" playerId="e8xma607d042zbxt"> 
+      <attack k="0" e="3" ta="8" pct="-.375"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="1"/>  
+      <defense dig="0" re="0" ta="0"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="0.0"/> 
+    </player>  
+    <player uni="6" code="6" name="Libby Mathern" checkname="MATHERN,LIBBY" gp="0" oncourt="N" playerId="po9vx2i7k8b9bgrg"/>  
+    <player uni="7" code="7" name="Eden Carrier" checkname="CARRIER,EDEN" gp="3" oncourt="Y" ms="1" playerId="evpufzzlrn8fza8v"> 
+      <attack k="4" e="3" ta="15" pct=".067"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="0" re="0" ta="0"/>  
+      <block bs="0" ba="1" be="0" tb="1.0"/>  
+      <misc bhe="0" pts="4.5"/> 
+    </player>  
+    <player uni="8" code="8" name="Molly Bjornbey" checkname="BJORNBEY,MOLLY" gp="3" oncourt="Y" ms="1" playerId="jz1klyt4nnn96fa1"> 
+      <attack k="0" e="0" ta="6" pct=".000"/>  
+      <set a="1" e="0" ta="1"/>  
+      <serve sa="2" se="0" ta="11"/>  
+      <defense dig="8" re="2" ta="24"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="2.0"/> 
+    </player>  
+    <player uni="9" code="9" name="Kinlee Sufficool" checkname="SUFFICOOL,KINLEE" gp="1" oncourt="N" playerId="z6kldkhakvihrt8h"> 
+      <attack k="0" e="0" ta="0" pct=".000"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="4"/>  
+      <defense dig="4" re="1" ta="2"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="0.0"/> 
+    </player>  
+    <player uni="10" code="10" name="Mady Geist" checkname="GEIST,MADY" gp="3" oncourt="Y" ms="1" playerId="x49lgdw9g3inag99"> 
+      <attack k="7" e="1" ta="16" pct=".375"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="0" re="0" ta="0"/>  
+      <block bs="2" ba="1" be="3" tb="3.0"/>  
+      <misc bhe="0" pts="9.5"/> 
+    </player>  
+    <player uni="12" code="12" name="Annika Pulju" checkname="PULJU,ANNIKA" gp="3" oncourt="N" playerId="jrsprwt59i81p7ov"> 
+      <attack k="0" e="0" ta="0" pct=".000"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="1" se="1" ta="7"/>  
+      <defense dig="3" re="4" ta="13"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="1.0"/> 
+    </player>  
+    <player uni="15" code="15" name="Reece Cave" checkname="CAVE,REECE" gp="3" oncourt="N" playerId="g9ogiud2t0y1gxw6"> 
+      <attack k="0" e="0" ta="0" pct=".000"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="1" se="2" ta="8"/>  
+      <defense dig="1" re="0" ta="0"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="1.0"/> 
+    </player>  
+    <player uni="17" code="17" name="Kaitlyn Erickstad" checkname="ERICKSTAD,KAITLYN" gp="0" oncourt="N" playerId="6791bj2c0xiiyj4i"/>  
+    <player uni="19" code="19" name="Gracie Schumacher" checkname="SCHUMACHER,GRACIE" gp="3" oncourt="N" ms="1" playerId="p2x29ubp5f8tjlyl"> 
+      <attack k="1" e="0" ta="1" pct="1.000"/>  
+      <set a="6" e="0" ta="6"/>  
+      <serve sa="0" se="0" ta="10"/>  
+      <defense dig="3" re="0" ta="0"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="1.0"/> 
+    </player>  
+    <player uni="20" code="20" name="Anna Roisum" checkname="ROISUM,ANNA" gp="0" oncourt="N" playerId="41hc76zw4ib7mvp3"/>  
+    <player uni="22" code="22" name="Madden Bogenreif" checkname="BOGENREIF,MADDEN" gp="3" oncourt="Y" ms="1" playerId="aanwu4ndxkcqohee"> 
+      <attack k="3" e="4" ta="15" pct="-.067"/>  
+      <set a="11" e="0" ta="11"/>  
+      <serve sa="2" se="2" ta="11"/>  
+      <defense dig="11" re="0" ta="0"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="5.0"/> 
+    </player>  
+    <player uni="TM" code="TM" name="Team" checkname="TEAM" gp="3" oncourt="N" playerId=""> 
+      <attack k="0" e="0" ta="0" pct=".000"/>  
+      <set a="0" e="1" ta="1"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="0" re="1" ta="1"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="0.0"/> 
+    </player> 
+  </team>  
+  <plays format="summary"> 
+    <game number="1"> 
+      <play number="1" text="DU starters: Ellie Weg; Jaida Barrow; Chloe Huisman; Haley Wielenga; Haley Kuperus; Laney Wolfswinkel."/>  
+      <play number="2" text="VCS starters: Hudson Zerface; Eden Carrier; Molly Bjornbey; Mady Geist; Gracie Schumacher; Madden Bogenreif."/>  
+      <play number="3" serveteam="DU" point="VCS" vscore="0" hscore="1" text="[Chloe Huisman] Attack error by Haley Kuperus (block by Mady Geist)."/>  
+      <play number="4" text="VCS subs: Ellie Lucas."/>  
+      <play number="5" serveteam="VCS" point="DU" vscore="1" hscore="1" text="[Madden Bogenreif] Kill by Laney Wolfswinkel."/>  
+      <play number="6" serveteam="DU" point="DU" vscore="2" hscore="1" text="[Laney Wolfswinkel] Service ace (Team)."/>  
+      <play number="7" serveteam="DU" point="VCS" vscore="2" hscore="2" text="[Laney Wolfswinkel] Service error."/>  
+      <play number="8" text="VCS subs: Kadie Kocka."/>  
+      <play number="9" serveteam="VCS" point="VCS" vscore="2" hscore="3" text="[Molly Bjornbey] Service ace (Team)."/>  
+      <play number="10" serveteam="VCS" point="DU" vscore="3" hscore="3" text="[Molly Bjornbey] Kill by Scarlett Winterfeld."/>  
+      <play number="11" serveteam="DU" point="DU" vscore="4" hscore="3" text="[Kylie Beckering] Service ace (Molly Bjornbey)."/>  
+      <play number="12" serveteam="DU" point="VCS" vscore="4" hscore="4" text="[Kylie Beckering] Service error."/>  
+      <play number="13" serveteam="VCS" point="DU" vscore="5" hscore="4" text="[Annika Pulju] Kill by Haley Kuperus."/>  
+      <play number="14" text="DU subs: Breanna Beckering; Carlee Jackson."/>  
+      <play number="15" serveteam="DU" point="VCS" vscore="5" hscore="5" text="[Carlee Jackson] Kill by Eden Carrier (from Madden Bogenreif), block error by Ellie Weg."/>  
+      <play number="16" text="VCS subs: Gracie Schumacher."/>  
+      <play number="17" serveteam="VCS" point="VCS" vscore="5" hscore="6" text="[Gracie Schumacher] Attack error by Breanna Beckering."/>  
+      <play number="18" serveteam="VCS" point="DU" vscore="6" hscore="6" text="[Gracie Schumacher] Kill by Scarlett Winterfeld."/>  
+      <play number="19" text="DU subs: Haley Wielenga."/>  
+      <play number="20" serveteam="DU" point="DU" vscore="7" hscore="6" text="[Haley Wielenga] Kill by Ellie Weg."/>  
+      <play number="21" serveteam="DU" point="VCS" vscore="7" hscore="7" text="[Haley Wielenga] Attack error by Laney Wolfswinkel."/>  
+      <play number="22" text="VCS subs: Hudson Zerface."/>  
+      <play number="23" serveteam="VCS" point="DU" vscore="8" hscore="7" text="[Hudson Zerface] Kill by Laney Wolfswinkel."/>  
+      <play number="24" text="DU subs: Peyton Poppema."/>  
+      <play number="25" serveteam="DU" point="DU" vscore="9" hscore="7" text="[Peyton Poppema] Kill by Jaida Barrow."/>  
+      <play number="26" serveteam="DU" point="VCS" vscore="9" hscore="8" text="[Peyton Poppema] Kill by Madden Bogenreif."/>  
+      <play number="27" text="DU subs: Ellie Weg."/>  
+      <play number="28" text="VCS subs: Reece Cave."/>  
+      <play number="29" serveteam="VCS" point="DU" vscore="10" hscore="8" text="[Reece Cave] Kill by Breanna Beckering."/>  
+      <play number="30" text="VCS subs: Eden Carrier."/>  
+      <play number="31" text="DU subs: Haley Kuperus; Chloe Huisman."/>  
+      <play number="32" serveteam="DU" point="DU" vscore="11" hscore="8" text="[Chloe Huisman] Kill by Laney Wolfswinkel."/>  
+      <play number="33" serveteam="DU" point="VCS" vscore="11" hscore="9" text="[Chloe Huisman] Attack error by Haley Kuperus."/>  
+      <play number="34" text="VCS subs: Ellie Lucas."/>  
+      <play number="35" serveteam="VCS" point="DU" vscore="12" hscore="9" text="[Madden Bogenreif] Kill by Haley Kuperus (from Chloe Huisman), block error by Mady Geist."/>  
+      <play number="36" text="DU subs: Scarlett Winterfeld."/>  
+      <play number="37" serveteam="DU" point="DU" vscore="13" hscore="9" text="[Laney Wolfswinkel] Kill by Laney Wolfswinkel."/>  
+      <play number="38" serveteam="DU" point="VCS" vscore="13" hscore="10" text="[Laney Wolfswinkel] Kill by Mady Geist."/>  
+      <play number="39" text="VCS subs: Kadie Kocka."/>  
+      <play number="40" serveteam="VCS" point="VCS" vscore="13" hscore="11" text="[Molly Bjornbey] Attack error by Scarlett Winterfeld."/>  
+      <play number="41" serveteam="VCS" point="VCS" vscore="13" hscore="12" text="[Molly Bjornbey] Kill by Mady Geist."/>  
+      <play number="42" serveteam="VCS" point="DU" vscore="14" hscore="12" text="[Molly Bjornbey] Attack error by Ellie Lucas."/>  
+      <play number="43" serveteam="DU" point="DU" vscore="15" hscore="12" text="[Kylie Beckering] Attack error by Ellie Lucas."/>  
+      <play number="44" serveteam="DU" point="DU" vscore="16" hscore="12" text="[Kylie Beckering] Attack error by Kadie Kocka (block by Ellie Weg; Haley Kuperus)."/>  
+      <play number="45" serveteam="DU" text="Timeout Valley City State."/>  
+      <play number="46" serveteam="DU" point="VCS" vscore="16" hscore="13" text="[Kylie Beckering] Service error."/>  
+      <play number="47" serveteam="VCS" point="VCS" vscore="16" hscore="14" text="[Annika Pulju] Attack error by Haley Kuperus (block by Kadie Kocka; Eden Carrier)."/>  
+      <play number="48" serveteam="VCS" point="DU" vscore="17" hscore="14" text="[Annika Pulju] Kill by Ellie Weg."/>  
+      <play number="49" text="DU subs: Breanna Beckering; Carlee Jackson."/>  
+      <play number="50" serveteam="DU" point="VCS" vscore="17" hscore="15" text="[Carlee Jackson] Kill by Kadie Kocka."/>  
+      <play number="51" text="VCS subs: Gracie Schumacher."/>  
+      <play number="52" serveteam="VCS" point="VCS" vscore="17" hscore="16" text="[Gracie Schumacher] Attack error by Scarlett Winterfeld."/>  
+      <play number="53" serveteam="VCS" point="VCS" vscore="17" hscore="17" text="[Gracie Schumacher] Attack error by Scarlett Winterfeld."/>  
+      <play number="54" serveteam="DU" text="Timeout Dordt (IA)."/>  
+      <play number="55" serveteam="VCS" point="DU" vscore="18" hscore="17" text="[Gracie Schumacher] Kill by Ellie Weg."/>  
+      <play number="56" text="DU subs: Haley Wielenga."/>  
+      <play number="57" serveteam="DU" point="DU" vscore="19" hscore="17" text="[Haley Wielenga] Attack error by Madden Bogenreif."/>  
+      <play number="58" serveteam="DU" point="DU" vscore="20" hscore="17" text="[Haley Wielenga] Kill by Laney Wolfswinkel."/>  
+      <play number="59" serveteam="DU" point="DU" vscore="21" hscore="17" text="[Haley Wielenga] Service ace (Kadie Kocka)."/>  
+      <play number="60" serveteam="DU" text="Timeout Valley City State."/>  
+      <play number="61" serveteam="DU" point="DU" vscore="22" hscore="17" text="[Haley Wielenga] Service ace (Kadie Kocka)."/>  
+      <play number="62" serveteam="DU" point="DU" vscore="23" hscore="17" text="[Haley Wielenga] Attack error by Eden Carrier (block by Ellie Weg)."/>  
+      <play number="63" serveteam="DU" point="VCS" vscore="23" hscore="18" text="[Haley Wielenga] Kill by Madden Bogenreif."/>  
+      <play number="64" serveteam="VCS" point="DU" vscore="24" hscore="18" text="[Hudson Zerface] Kill by Laney Wolfswinkel."/>  
+      <play number="65" serveteam="DU" point="VCS" vscore="24" hscore="19" text="[Peyton Poppema] Service error."/>  
+      <play number="66" serveteam="VCS" point="VCS" vscore="24" hscore="20" text="[Ellie Lucas] Attack error by Laney Wolfswinkel."/>  
+      <play number="67" serveteam="VCS" point="VCS" vscore="24" hscore="21" text="[Reece Cave] Kill by Hudson Zerface."/>  
+      <play number="68" serveteam="VCS" point="VCS" vscore="24" hscore="22" text="[Reece Cave] Service ace (Kylie Beckering)."/>  
+      <play number="69" serveteam="DU" text="Timeout Dordt (IA)."/>  
+      <play number="70" serveteam="VCS" point="DU" vscore="25" hscore="22" text="[Reece Cave] Service error."/> 
+    </game>  
+    <game number="2"> 
+      <play number="71" text="On court for DU: Ellie Weg; Jaida Barrow; Laney Wolfswinkel; Haley Wielenga; Chloe Huisman; Haley Kuperus."/>  
+      <play number="72" text="On court for VCS: Brynn Sorenson; Hudson Zerface; Eden Carrier; Mady Geist; Gracie Schumacher; Madden Bogenreif."/>  
+      <play number="73" serveteam="VCS" point="DU" vscore="1" hscore="0" text="[Annika Pulju] Kill by Haley Kuperus (from Chloe Huisman), block error by Mady Geist."/>  
+      <play number="74" text="DU subs: Scarlett Winterfeld."/>  
+      <play number="75" serveteam="DU" point="DU" vscore="2" hscore="0" text="[Laney Wolfswinkel] Kill by Haley Kuperus (from Chloe Huisman), block error by Mady Geist."/>  
+      <play number="76" serveteam="DU" point="VCS" vscore="2" hscore="1" text="[Laney Wolfswinkel] Kill by Madden Bogenreif."/>  
+      <play number="77" text="VCS subs: Ellie Lucas."/>  
+      <play number="78" serveteam="VCS" point="DU" vscore="3" hscore="1" text="[Madden Bogenreif] Kill by Haley Kuperus."/>  
+      <play number="79" serveteam="VCS" point="DU" vscore="4" hscore="1" text="[Madden Bogenreif] Kill by Ellie Weg."/>  
+      <play number="80" serveteam="DU" point="DU" vscore="5" hscore="1" text="[Kylie Beckering] Kill by Ellie Weg."/>  
+      <play number="81" serveteam="DU" point="VCS" vscore="5" hscore="2" text="[Kylie Beckering] Service error."/>  
+      <play number="82" text="VCS subs: Kadie Kocka; Molly Bjornbey."/>  
+      <play number="83" serveteam="VCS" point="DU" vscore="6" hscore="2" text="[Molly Bjornbey] Attack error by Kadie Kocka (block by Ellie Weg; Haley Kuperus)."/>  
+      <play number="84" text="DU subs: Breanna Beckering; Carlee Jackson."/>  
+      <play number="85" serveteam="DU" point="DU" vscore="7" hscore="2" text="[Carlee Jackson] Kill by Scarlett Winterfeld."/>  
+      <play number="86" serveteam="DU" point="DU" vscore="8" hscore="2" text="[Carlee Jackson] Attack error by Ellie Lucas."/>  
+      <play number="87" serveteam="DU" text="Timeout Valley City State."/>  
+      <play number="88" serveteam="DU" point="VCS" vscore="8" hscore="3" text="[Carlee Jackson] Attack error by Ellie Weg."/>  
+      <play number="89" text="VCS subs: Reece Cave."/>  
+      <play number="90" serveteam="VCS" point="DU" vscore="9" hscore="3" text="[Reece Cave] Kill by Laney Wolfswinkel."/>  
+      <play number="91" text="DU subs: Haley Wielenga."/>  
+      <play number="92" text="VCS subs: Mady Geist."/>  
+      <play number="93" serveteam="DU" point="VCS" vscore="9" hscore="4" text="[Haley Wielenga] Service error."/>  
+      <play number="94" text="VCS subs: Gracie Schumacher."/>  
+      <play number="95" serveteam="VCS" point="DU" vscore="10" hscore="4" text="[Gracie Schumacher] Kill by Breanna Beckering."/>  
+      <play number="96" text="DU subs: Maddy Jackson."/>  
+      <play number="97" serveteam="DU" point="VCS" vscore="10" hscore="5" text="[Maddy Jackson] Attack error by Laney Wolfswinkel."/>  
+      <play number="98" text="DU subs: Ellie Weg."/>  
+      <play number="99" text="VCS subs: Brynn Sorenson; Hudson Zerface."/>  
+      <play number="100" serveteam="VCS" point="VCS" vscore="10" hscore="6" text="[Hudson Zerface] Attack error by Jaida Barrow."/>  
+      <play number="101" serveteam="VCS" point="DU" vscore="11" hscore="6" text="[Hudson Zerface] Kill by Laney Wolfswinkel."/>  
+      <play number="102" text="DU subs: Chloe Huisman; Haley Kuperus."/>  
+      <play number="103" serveteam="DU" point="VCS" vscore="11" hscore="7" text="[Chloe Huisman] Service error."/>  
+      <play number="104" serveteam="VCS" point="VCS" vscore="11" hscore="8" text="[Annika Pulju] Service ace (Haley Wielenga)."/>  
+      <play number="105" serveteam="VCS" point="DU" vscore="12" hscore="8" text="[Annika Pulju] Attack error by Madden Bogenreif."/>  
+      <play number="106" text="DU subs: Scarlett Winterfeld."/>  
+      <play number="107" serveteam="DU" point="VCS" vscore="12" hscore="9" text="[Laney Wolfswinkel] Service error."/>  
+      <play number="108" text="VCS subs: Ellie Lucas."/>  
+      <play number="109" serveteam="VCS" point="DU" vscore="13" hscore="9" text="[Madden Bogenreif] Kill by Haley Kuperus (from Chloe Huisman), block error by Brynn Sorenson."/>  
+      <play number="110" serveteam="DU" point="DU" vscore="14" hscore="9" text="[Kylie Beckering] Service ace (Hudson Zerface)."/>  
+      <play number="111" serveteam="DU" point="VCS" vscore="14" hscore="10" text="[Kylie Beckering] Kill by Brynn Sorenson."/>  
+      <play number="112" text="VCS subs: Kadie Kocka; Molly Bjornbey."/>  
+      <play number="113" serveteam="VCS" point="VCS" vscore="14" hscore="11" text="[Molly Bjornbey] Attack error by Haley Kuperus (block by Kadie Kocka; Mady Geist)."/>  
+      <play number="114" serveteam="VCS" point="VCS" vscore="14" hscore="12" text="[Molly Bjornbey] Service ace (Laney Wolfswinkel)."/>  
+      <play number="115" serveteam="VCS" point="DU" vscore="15" hscore="12" text="[Molly Bjornbey] Kill by Scarlett Winterfeld."/>  
+      <play number="116" text="DU subs: Breanna Beckering; Carlee Jackson."/>  
+      <play number="117" serveteam="DU" point="DU" vscore="16" hscore="12" text="[Carlee Jackson] Attack error by Mady Geist (block by Ellie Weg)."/>  
+      <play number="118" serveteam="DU" point="DU" vscore="17" hscore="12" text="[Carlee Jackson] Service ace (Annika Pulju)."/>  
+      <play number="119" serveteam="DU" point="DU" vscore="18" hscore="12" text="[Carlee Jackson] Service ace (Molly Bjornbey)."/>  
+      <play number="120" serveteam="DU" point="DU" vscore="19" hscore="12" text="[Carlee Jackson] Service ace (Annika Pulju)."/>  
+      <play number="121" serveteam="DU" point="VCS" vscore="19" hscore="13" text="[Carlee Jackson] Kill by Kadie Kocka."/>  
+      <play number="122" text="VCS subs: Reece Cave."/>  
+      <play number="123" serveteam="VCS" point="DU" vscore="20" hscore="13" text="[Reece Cave] Kill by Breanna Beckering."/>  
+      <play number="124" text="DU subs: Haley Wielenga."/>  
+      <play number="125" text="VCS subs: Mady Geist."/>  
+      <play number="126" serveteam="DU" point="DU" vscore="21" hscore="13" text="[Haley Wielenga] Service ace (Annika Pulju)."/>  
+      <play number="127" serveteam="DU" text="Timeout Valley City State."/>  
+      <play number="128" serveteam="DU" point="DU" vscore="22" hscore="13" text="[Haley Wielenga] Kill by Laney Wolfswinkel."/>  
+      <play number="129" serveteam="DU" point="VCS" vscore="22" hscore="14" text="[Haley Wielenga] Kill by Eden Carrier."/>  
+      <play number="130" text="VCS subs: Gracie Schumacher."/>  
+      <play number="131" serveteam="VCS" point="DU" vscore="23" hscore="14" text="[Gracie Schumacher] Kill by Laney Wolfswinkel."/>  
+      <play number="132" text="DU subs: Maddy Jackson."/>  
+      <play number="133" serveteam="DU" point="DU" vscore="24" hscore="14" text="[Maddy Jackson] Service ace (Kadie Kocka)."/>  
+      <play number="134" serveteam="DU" point="VCS" vscore="24" hscore="15" text="[Maddy Jackson] Service error."/>  
+      <play number="135" text="DU subs: Ellie Weg."/>  
+      <play number="136" text="VCS subs: Brynn Sorenson; Hudson Zerface."/>  
+      <play number="137" serveteam="VCS" point="DU" vscore="25" hscore="15" text="[Hudson Zerface] Kill by Breanna Beckering."/> 
+    </game>  
+    <game number="3"> 
+      <play number="138" text="On court for VCS: Brynn Sorenson; Hudson Zerface; Eden Carrier; Mady Geist; Gracie Schumacher; Madden Bogenreif."/>  
+      <play number="139" text="On court for DU: Ellie Weg; Jaida Barrow; Chloe Huisman; Laney Wolfswinkel; Haley Wielenga; Haley Kuperus."/>  
+      <play number="140" serveteam="DU" point="VCS" vscore="0" hscore="1" text="[Chloe Huisman] Kill by Mady Geist."/>  
+      <play number="141" text="VCS subs: Ellie Lucas."/>  
+      <play number="142" serveteam="VCS" point="VCS" vscore="0" hscore="2" text="[Madden Bogenreif] Service ace (Laney Wolfswinkel)."/>  
+      <play number="143" serveteam="VCS" point="DU" vscore="1" hscore="2" text="[Madden Bogenreif] Service error."/>  
+      <play number="144" text="DU subs: Scarlett Winterfeld."/>  
+      <play number="145" serveteam="DU" point="VCS" vscore="1" hscore="3" text="[Laney Wolfswinkel] Kill by Brynn Sorenson."/>  
+      <play number="146" text="VCS subs: Kadie Kocka; Molly Bjornbey."/>  
+      <play number="147" serveteam="VCS" point="DU" vscore="2" hscore="3" text="[Molly Bjornbey] Kill by Jaida Barrow (from Chloe Huisman)."/>  
+      <play number="148" serveteam="DU" point="DU" vscore="3" hscore="3" text="[Kylie Beckering] Service ace (Annika Pulju)."/>  
+      <play number="149" serveteam="DU" point="DU" vscore="4" hscore="3" text="[Kylie Beckering] Kill by Haley Kuperus."/>  
+      <play number="150" serveteam="DU" point="VCS" vscore="4" hscore="4" text="[Kylie Beckering] Attack error by Haley Kuperus."/>  
+      <play number="151" serveteam="VCS" point="DU" vscore="5" hscore="4" text="[Kinlee Sufficool] Kill by Scarlett Winterfeld."/>  
+      <play number="152" text="DU subs: Breanna Beckering; Carlee Jackson."/>  
+      <play number="153" serveteam="DU" point="DU" vscore="6" hscore="4" text="[Carlee Jackson] Attack error by Madden Bogenreif."/>  
+      <play number="154" serveteam="DU" point="DU" vscore="7" hscore="4" text="[Carlee Jackson] Service ace (Kinlee Sufficool)."/>  
+      <play number="155" serveteam="DU" point="VCS" vscore="7" hscore="5" text="[Carlee Jackson] Attack error by Breanna Beckering."/>  
+      <play number="156" text="VCS subs: Gracie Schumacher."/>  
+      <play number="157" serveteam="VCS" point="DU" vscore="8" hscore="5" text="[Gracie Schumacher] Attack error by Eden Carrier (block by Ellie Weg)."/>  
+      <play number="158" text="DU subs: Haley Wielenga."/>  
+      <play number="159" serveteam="DU" point="VCS" vscore="8" hscore="6" text="[Haley Wielenga] Service error."/>  
+      <play number="160" text="VCS subs: Brynn Sorenson; Hudson Zerface."/>  
+      <play number="161" serveteam="VCS" point="DU" vscore="9" hscore="6" text="[Hudson Zerface] Attack error by Brynn Sorenson (block by Ellie Weg; Breanna Beckering)."/>  
+      <play number="162" text="DU subs: Peyton Poppema."/>  
+      <play number="163" serveteam="DU" point="DU" vscore="10" hscore="6" text="[Peyton Poppema] Attack error by Brynn Sorenson (block by Jaida Barrow)."/>  
+      <play number="164" serveteam="DU" point="DU" vscore="11" hscore="6" text="[Peyton Poppema] Attack error by Eden Carrier."/>  
+      <play number="165" serveteam="DU" text="Timeout Valley City State."/>  
+      <play number="166" serveteam="DU" point="DU" vscore="12" hscore="6" text="[Peyton Poppema] Kill by Haley Wielenga."/>  
+      <play number="167" serveteam="DU" point="DU" vscore="13" hscore="6" text="[Peyton Poppema] Bad set by Team."/>  
+      <play number="168" serveteam="DU" point="VCS" vscore="13" hscore="7" text="[Peyton Poppema] Kill by Gracie Schumacher (from Hudson Zerface)."/>  
+      <play number="169" text="DU subs: Ellie Weg."/>  
+      <play number="170" serveteam="VCS" point="DU" vscore="14" hscore="7" text="[Annika Pulju] Service error."/>  
+      <play number="171" text="DU subs: Haley Kuperus; Chloe Huisman."/>  
+      <play number="172" serveteam="DU" point="DU" vscore="15" hscore="7" text="[Chloe Huisman] Service ace (Hudson Zerface)."/>  
+      <play number="173" serveteam="DU" point="DU" vscore="16" hscore="7" text="[Chloe Huisman] Service ace (Brynn Sorenson)."/>  
+      <play number="174" text="VCS subs: Molly Bjornbey."/>  
+      <play number="175" serveteam="DU" point="VCS" vscore="16" hscore="8" text="[Chloe Huisman] Service error."/>  
+      <play number="176" text="VCS subs: Ellie Lucas."/>  
+      <play number="177" serveteam="VCS" point="DU" vscore="17" hscore="8" text="[Madden Bogenreif] Service error."/>  
+      <play number="178" text="DU subs: Scarlett Winterfeld."/>  
+      <play number="179" serveteam="DU" point="VCS" vscore="17" hscore="9" text="[Laney Wolfswinkel] Kill by Mady Geist."/>  
+      <play number="180" text="VCS subs: Kadie Kocka."/>  
+      <play number="181" serveteam="VCS" point="DU" vscore="18" hscore="9" text="[Molly Bjornbey] Kill by Scarlett Winterfeld."/>  
+      <play number="182" serveteam="DU" point="DU" vscore="19" hscore="9" text="[Kylie Beckering] Kill by Ellie Weg."/>  
+      <play number="183" serveteam="DU" point="VCS" vscore="19" hscore="10" text="[Kylie Beckering] Kill by Mady Geist."/>  
+      <play number="184" serveteam="VCS" point="VCS" vscore="19" hscore="11" text="[Kinlee Sufficool] Attack error by Haley Kuperus."/>  
+      <play number="185" serveteam="VCS" point="VCS" vscore="19" hscore="12" text="[Kinlee Sufficool] Kill by Eden Carrier (from Madden Bogenreif)."/>  
+      <play number="186" serveteam="VCS" point="DU" vscore="20" hscore="12" text="[Kinlee Sufficool] Kill by Haley Kuperus."/>  
+      <play number="187" text="DU subs: Breanna Beckering; Carlee Jackson."/>  
+      <play number="188" serveteam="DU" point="VCS" vscore="20" hscore="13" text="[Carlee Jackson] Service error."/>  
+      <play number="189" text="VCS subs: Gracie Schumacher."/>  
+      <play number="190" serveteam="VCS" point="VCS" vscore="20" hscore="14" text="[Gracie Schumacher] Kill by Kadie Kocka, block error by Breanna Beckering."/>  
+      <play number="191" serveteam="VCS" point="DU" vscore="21" hscore="14" text="[Gracie Schumacher] Kill by Scarlett Winterfeld."/>  
+      <play number="192" text="DU subs: Haley Wielenga."/>  
+      <play number="193" serveteam="DU" point="VCS" vscore="21" hscore="15" text="[Haley Wielenga] Attack error by Laney Wolfswinkel."/>  
+      <play number="194" text="VCS subs: Hudson Zerface."/>  
+      <play number="195" serveteam="VCS" point="VCS" vscore="21" hscore="16" text="[Hudson Zerface] Attack error by Breanna Beckering."/>  
+      <play number="196" serveteam="VCS" point="DU" vscore="22" hscore="16" text="[Hudson Zerface] Attack error by Madden Bogenreif."/>  
+      <play number="197" text="DU subs: Peyton Poppema."/>  
+      <play number="198" serveteam="DU" point="VCS" vscore="22" hscore="17" text="[Peyton Poppema] Kill by Eden Carrier."/>  
+      <play number="199" text="VCS subs: Reece Cave."/>  
+      <play number="200" text="DU subs: Ellie Weg."/>  
+      <play number="201" serveteam="VCS" point="VCS" vscore="22" hscore="18" text="[Reece Cave] Attack error by Carlee Jackson (block by Mady Geist)."/>  
+      <play number="202" serveteam="DU" text="Timeout Dordt (IA)."/>  
+      <play number="203" serveteam="VCS" point="DU" vscore="23" hscore="18" text="[Reece Cave] Service error."/>  
+      <play number="204" text="VCS subs: Eden Carrier."/>  
+      <play number="205" text="DU subs: Chloe Huisman; Haley Kuperus."/>  
+      <play number="206" serveteam="DU" point="VCS" vscore="23" hscore="19" text="[Chloe Huisman] Kill by Mady Geist."/>  
+      <play number="207" text="VCS subs: Ellie Lucas."/>  
+      <play number="208" serveteam="VCS" point="VCS" vscore="23" hscore="20" text="[Madden Bogenreif] Service ace (Haley Wielenga)."/>  
+      <play number="209" serveteam="VCS" point="VCS" vscore="23" hscore="21" text="[Madden Bogenreif] Kill by Mady Geist."/>  
+      <play number="210" serveteam="VCS" point="DU" vscore="24" hscore="21" text="[Madden Bogenreif] Kill by Haley Kuperus."/>  
+      <play number="211" text="DU subs: Scarlett Winterfeld."/>  
+      <play number="212" serveteam="DU" point="DU" vscore="25" hscore="21" text="[Laney Wolfswinkel] Kill by Haley Kuperus."/> 
+    </game> 
+  </plays>  
+  <analysis/>  
+  <status complete="Y" vscore="3" hscore="0" game="3" vpoints="25" hpoints="21" serving="V" running="F"/>  
+  <leadchanges ties="2" leads="1"> 
+    <leadchange game="1" ties="8" leads="5"/>  
+    <leadchange game="2" ties="0" leads="0"/>  
+    <leadchange game="3" ties="2" leads="1"/> 
+  </leadchanges>  
+  <breakdowns vh="V" pts="75" kill="40" ace="14" block="7" eatk="19" esvc="5" ebhe="1"> 
+    <breakdown game="1" pts="25" kill="15" ace="4" block="2" eatk="9" esvc="1" ebhe="0"/>  
+    <breakdown game="2" pts="25" kill="15" ace="6" block="2" eatk="4" esvc="0" ebhe="0"/>  
+    <breakdown game="3" pts="25" kill="10" ace="4" block="3" eatk="6" esvc="4" ebhe="1"/> 
+  </breakdowns>  
+  <breakdowns vh="H" pts="58" kill="21" ace="6" block="4" eatk="15" esvc="12" ebhe="0"> 
+    <breakdown game="1" pts="22" kill="7" ace="2" block="2" eatk="5" esvc="4" ebhe="0"/>  
+    <breakdown game="2" pts="15" kill="4" ace="2" block="1" eatk="4" esvc="5" ebhe="0"/>  
+    <breakdown game="3" pts="21" kill="10" ace="2" block="1" eatk="6" esvc="3" ebhe="0"/> 
+  </breakdowns> 
+</vbgame>
+
+

@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vbgame source="PrestoSports" version="7.21.0" generated="08/28/2026"> 
+  <venue gameid="" location="2102 Harvell Cir,, Bellevue, NE, 68005" arena="" start="4:00 PM" end="5:45 PM" duration="1:45" delay="" attend="75" schednote="" leaguegame="N" neutralgame="Y" visid="BENEDICT" visname="Benedictine (KS)" homeid="VALLEY C" homename="Valley City State" date="8/28/2026"> 
+    <officials/>  
+    <rules/> 
+  </venue>  
+  <team vh="V" id="BENEDICT" name="Benedictine (KS)" code="NAIA207" record="4-2"> 
+    <linescore line="16,25,22,22" score="1"> 
+      <linegame game="1" points="16"/>  
+      <linegame game="2" points="25"/>  
+      <linegame game="3" points="22"/>  
+      <linegame game="4" points="22"/> 
+    </linescore>  
+    <attackbygame> 
+      <attackgame game="1" k="11" e="7" ta="30" pct=".133"/>  
+      <attackgame game="2" k="15" e="3" ta="33" pct=".364"/>  
+      <attackgame game="3" k="16" e="6" ta="47" pct=".213"/>  
+      <attackgame game="4" k="9" e="4" ta="36" pct=".139"/> 
+    </attackbygame>  
+    <totals> 
+      <attack k="51" e="20" ta="146" pct=".212"/>  
+      <set a="49" e="1" ta="50"/>  
+      <serve sa="4" se="11" ta="86"/>  
+      <defense dig="66" re="10" ta="90"/>  
+      <block bs="1" ba="16" be="6" tb="9.0"/>  
+      <misc bhe="0" pts="64.0"/> 
+    </totals>  
+    <player uni="01" code="01" name="Kelly DeMeulenaere" checkname="DEMEULENAERE,KELLY" gp="4" oncourt="N" playerId="saivp5zow3ygn9r6"> 
+      <attack k="0" e="0" ta="0" pct=".000"/>  
+      <set a="2" e="0" ta="2"/>  
+      <serve sa="0" se="3" ta="10"/>  
+      <defense dig="22" re="4" ta="37"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="0.0"/> 
+    </player>  
+    <player uni="02" code="02" name="Ava Penuel" checkname="PENUEL,AVA" gp="4" oncourt="N" playerId="xbwimolkmon4pklm"> 
+      <attack k="0" e="0" ta="0" pct=".000"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="1" se="1" ta="18"/>  
+      <defense dig="13" re="3" ta="24"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="1.0"/> 
+    </player>  
+    <player uni="03" code="03" name="Lainee Mustain" checkname="MUSTAIN,LAINEE" gp="4" oncourt="Y" ms="1" playerId="unk5aucaknrxtobh"> 
+      <attack k="0" e="0" ta="0" pct=".000"/>  
+      <set a="1" e="0" ta="1"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="6" re="1" ta="13"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="0.0"/> 
+    </player>  
+    <player uni="04" code="04" name="Wren Vancleave" checkname="VANCLEAVE,WREN" gp="4" oncourt="Y" ms="1" playerId="92mrnja2qbfkur8a"> 
+      <attack k="1" e="1" ta="5" pct=".000"/>  
+      <set a="46" e="1" ta="47"/>  
+      <serve sa="0" se="0" ta="15"/>  
+      <defense dig="6" re="0" ta="0"/>  
+      <block bs="1" ba="2" be="2" tb="3.0"/>  
+      <misc bhe="0" pts="3.0"/> 
+    </player>  
+    <player uni="05" code="05" name="Tatum Huff" checkname="HUFF,TATUM" gp="3" oncourt="Y" playerId="sdfwkgzxbz81ic2o"> 
+      <attack k="0" e="0" ta="0" pct=".000"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="3" re="0" ta="8"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="0.0"/> 
+    </player>  
+    <player uni="06" code="06" name="Barbara Terra" checkname="TERRA,BARBARA" gp="4" oncourt="Y" ms="1" playerId="277lm2ij8gedoec5"> 
+      <attack k="13" e="5" ta="32" pct=".250"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="1" re="0" ta="0"/>  
+      <block bs="0" ba="3" be="0" tb="3.0"/>  
+      <misc bhe="0" pts="14.5"/> 
+    </player>  
+    <player uni="07" code="07" name="Aubrey Wisker" checkname="WISKER,AUBREY" gp="0" oncourt="N" playerId="z3nfx1qexy67mu8f"/>  
+    <player uni="08" code="08" name="Chiara Abelleira" checkname="ABELLEIRA,CHIARA" gp="2" oncourt="N" playerId="n3rty9l04evrv36a"> 
+      <attack k="0" e="0" ta="0" pct=".000"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="2" ta="5"/>  
+      <defense dig="0" re="0" ta="0"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="0.0"/> 
+    </player>  
+    <player uni="09" code="09" name="Stefania Scomazzon" checkname="SCOMAZZON,STEFANIA" gp="4" oncourt="N" ms="1" playerId="q1gauj5t6cbdxwi4"> 
+      <attack k="16" e="5" ta="37" pct=".297"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="1" ta="15"/>  
+      <defense dig="9" re="0" ta="0"/>  
+      <block bs="0" ba="2" be="0" tb="2.0"/>  
+      <misc bhe="0" pts="17.0"/> 
+    </player>  
+    <player uni="10" code="10" name="Mya Schirk" checkname="SCHIRK,MYA" gp="4" oncourt="N" playerId="x1e8tcihkeq2evd6"> 
+      <attack k="0" e="0" ta="0" pct=".000"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="2" se="3" ta="13"/>  
+      <defense dig="1" re="0" ta="0"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="2.0"/> 
+    </player>  
+    <player uni="12" code="12" name="Hailey Ugolini" checkname="UGOLINI,HAILEY" gp="1" oncourt="N" playerId="uxsctn62e73mv9h1"> 
+      <attack k="0" e="0" ta="0" pct=".000"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="0" re="0" ta="1"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="0.0"/> 
+    </player>  
+    <player uni="15" code="15" name="Allison Kuebelbeck" checkname="KUEBELBECK,ALLISON" gp="4" oncourt="Y" ms="1" playerId="291glc4m65vfi9oa"> 
+      <attack k="3" e="2" ta="9" pct=".111"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="0" re="0" ta="0"/>  
+      <block bs="0" ba="3" be="1" tb="3.0"/>  
+      <misc bhe="0" pts="4.5"/> 
+    </player>  
+    <player uni="16" code="16" name="JoJo Vander Woude" checkname="WOUDE,JOJO VANDER" gp="4" oncourt="Y" ms="1" playerId="l63nr6dykl49jvcy"> 
+      <attack k="10" e="3" ta="27" pct=".259"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="1" re="0" ta="0"/>  
+      <block bs="0" ba="4" be="1" tb="4.0"/>  
+      <misc bhe="0" pts="12.0"/> 
+    </player>  
+    <player uni="17" code="17" name="Bridget O'Sullivan" checkname="O'SULLIVAN,BRIDGET" gp="4" oncourt="N" playerId="um9kbk16pq3ues3f"> 
+      <attack k="8" e="4" ta="36" pct=".111"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="2" re="1" ta="6"/>  
+      <block bs="0" ba="2" be="2" tb="2.0"/>  
+      <misc bhe="0" pts="9.0"/> 
+    </player>  
+    <player uni="21" code="21" name="Riley Hunt" checkname="HUNT,RILEY" gp="0" oncourt="N" playerId="r079wxqd6e7jsinn"/>  
+    <player uni="24" code="24" name="Hallie Walker" checkname="WALKER,HALLIE" gp="0" oncourt="N" playerId="lp43c98fn30kcizn"/>  
+    <player uni="25" code="25" name="Lucia Maria navarro" checkname="NAVARRO,LUCIA MARIA" gp="0" oncourt="N" playerId="cxgs5vy7uuup4jkz"/>  
+    <player uni="33" code="33" name="Isabella Franco" checkname="FRANCO,ISABELLA" gp="4" oncourt="N" playerId="x8rkdzcp0tyr5xrr"> 
+      <attack k="0" e="0" ta="0" pct=".000"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="1" se="1" ta="10"/>  
+      <defense dig="2" re="0" ta="0"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="1.0"/> 
+    </player>  
+    <player uni="35" code="35" name="Peyton McAtee" checkname="MCATEE,PEYTON" gp="0" oncourt="N" playerId="fvb0rqxmhxwgjxv6"/>  
+    <player uni="TM" code="TM" name="Team" checkname="TEAM" gp="4" oncourt="N" playerId=""> 
+      <attack k="0" e="0" ta="0" pct=".000"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="0" re="1" ta="1"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="0.0"/> 
+    </player> 
+  </team>  
+  <team vh="H" id="VALLEY C" name="Valley City State" code="NAIA2200" record="2-4"> 
+    <linescore line="25,21,25,25" score="3"> 
+      <linegame game="1" points="25"/>  
+      <linegame game="2" points="21"/>  
+      <linegame game="3" points="25"/>  
+      <linegame game="4" points="25"/> 
+    </linescore>  
+    <attackbygame> 
+      <attackgame game="1" k="10" e="3" ta="29" pct=".241"/>  
+      <attackgame game="2" k="16" e="8" ta="41" pct=".195"/>  
+      <attackgame game="3" k="13" e="5" ta="40" pct=".200"/>  
+      <attackgame game="4" k="15" e="9" ta="42" pct=".143"/> 
+    </attackbygame>  
+    <totals> 
+      <attack k="54" e="25" ta="152" pct=".191"/>  
+      <set a="49" e="0" ta="49"/>  
+      <serve sa="10" se="5" ta="95"/>  
+      <defense dig="61" re="4" ta="75"/>  
+      <block bs="1" ba="8" be="2" tb="5.0"/>  
+      <misc bhe="0" pts="69.0"/> 
+    </totals>  
+    <player uni="01" code="01" name="Brynn Sorenson" checkname="SORENSON,BRYNN" gp="4" oncourt="N" ms="1" playerId="1o4b1wdj0v7l04rz"> 
+      <attack k="6" e="3" ta="18" pct=".167"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="1" re="0" ta="0"/>  
+      <block bs="0" ba="1" be="0" tb="1.0"/>  
+      <misc bhe="0" pts="6.5"/> 
+    </player>  
+    <player uni="02" code="02" name="Kiana Hilary" checkname="HILARY,KIANA" gp="0" oncourt="N" playerId="euh6yyhkqdhvnalq"/>  
+    <player uni="03" code="03" name="Hudson Zerface" checkname="ZERFACE,HUDSON" gp="4" oncourt="Y" ms="1" playerId="p774k9mp3phfl1uu"> 
+      <attack k="0" e="0" ta="0" pct=".000"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="1" se="0" ta="21"/>  
+      <defense dig="8" re="2" ta="10"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="1.0"/> 
+    </player>  
+    <player uni="04" code="04" name="Kadie Kocka" checkname="KOCKA,KADIE" gp="4" oncourt="N" playerId="5nmjiveyf5dhr387"> 
+      <attack k="12" e="3" ta="29" pct=".310"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="0" re="0" ta="9"/>  
+      <block bs="0" ba="1" be="1" tb="1.0"/>  
+      <misc bhe="0" pts="12.5"/> 
+    </player>  
+    <player uni="05" code="05" name="Ellie Lucas" checkname="LUCAS,ELLIE" gp="4" oncourt="Y" playerId="e8xma607d042zbxt"> 
+      <attack k="4" e="3" ta="16" pct=".062"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="2" re="0" ta="0"/>  
+      <block bs="0" ba="1" be="0" tb="1.0"/>  
+      <misc bhe="0" pts="4.5"/> 
+    </player>  
+    <player uni="06" code="06" name="Libby Mathern" checkname="MATHERN,LIBBY" gp="0" oncourt="N" playerId="po9vx2i7k8b9bgrg"/>  
+    <player uni="07" code="07" name="Eden Carrier" checkname="CARRIER,EDEN" gp="4" oncourt="N" ms="1" playerId="evpufzzlrn8fza8v"> 
+      <attack k="7" e="4" ta="23" pct=".130"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="0" re="0" ta="1"/>  
+      <block bs="0" ba="3" be="0" tb="3.0"/>  
+      <misc bhe="0" pts="8.5"/> 
+    </player>  
+    <player uni="08" code="08" name="Molly Bjornbey" checkname="BJORNBEY,MOLLY" gp="4" oncourt="Y" ms="1" playerId="jz1klyt4nnn96fa1"> 
+      <attack k="8" e="4" ta="27" pct=".148"/>  
+      <set a="2" e="0" ta="2"/>  
+      <serve sa="2" se="1" ta="16"/>  
+      <defense dig="13" re="1" ta="39"/>  
+      <block bs="0" ba="1" be="0" tb="1.0"/>  
+      <misc bhe="0" pts="10.5"/> 
+    </player>  
+    <player uni="09" code="09" name="Kinlee Sufficool" checkname="SUFFICOOL,KINLEE" gp="4" oncourt="Y" playerId="z6kldkhakvihrt8h"> 
+      <attack k="0" e="0" ta="0" pct=".000"/>  
+      <set a="1" e="0" ta="1"/>  
+      <serve sa="0" se="1" ta="13"/>  
+      <defense dig="2" re="0" ta="0"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="0.0"/> 
+    </player>  
+    <player uni="10" code="10" name="Mady Geist" checkname="GEIST,MADY" gp="4" oncourt="Y" ms="1" playerId="x49lgdw9g3inag99"> 
+      <attack k="13" e="7" ta="27" pct=".222"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="1" re="0" ta="0"/>  
+      <block bs="1" ba="1" be="1" tb="2.0"/>  
+      <misc bhe="0" pts="14.5"/> 
+    </player>  
+    <player uni="12" code="12" name="Annika Pulju" checkname="PULJU,ANNIKA" gp="4" oncourt="N" playerId="jrsprwt59i81p7ov"> 
+      <attack k="0" e="0" ta="1" pct=".000"/>  
+      <set a="5" e="0" ta="5"/>  
+      <serve sa="2" se="1" ta="16"/>  
+      <defense dig="18" re="1" ta="16"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="2.0"/> 
+    </player>  
+    <player uni="15" code="15" name="Reece Cave" checkname="CAVE,REECE" gp="0" oncourt="N" playerId="g9ogiud2t0y1gxw6"/>  
+    <player uni="17" code="17" name="Kaitlyn Erickstad" checkname="ERICKSTAD,KAITLYN" gp="0" oncourt="N" playerId="6791bj2c0xiiyj4i"/>  
+    <player uni="19" code="19" name="Gracie Schumacher" checkname="SCHUMACHER,GRACIE" gp="4" oncourt="Y" playerId="p2x29ubp5f8tjlyl"> 
+      <attack k="3" e="0" ta="5" pct=".600"/>  
+      <set a="23" e="0" ta="23"/>  
+      <serve sa="2" se="0" ta="15"/>  
+      <defense dig="10" re="0" ta="0"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="5.0"/> 
+    </player>  
+    <player uni="20" code="20" name="Anna Roisum" checkname="ROISUM,ANNA" gp="0" oncourt="N" playerId="41hc76zw4ib7mvp3"/>  
+    <player uni="22" code="22" name="Madden Bogenreif" checkname="BOGENREIF,MADDEN" gp="4" oncourt="N" ms="1" playerId="aanwu4ndxkcqohee"> 
+      <attack k="1" e="1" ta="6" pct=".000"/>  
+      <set a="18" e="0" ta="18"/>  
+      <serve sa="3" se="2" ta="14"/>  
+      <defense dig="6" re="0" ta="0"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="4.0"/> 
+    </player>  
+    <player uni="TM" code="TM" name="Team" checkname="TEAM" gp="4" oncourt="N" playerId=""> 
+      <attack k="0" e="0" ta="0" pct=".000"/>  
+      <set a="0" e="0" ta="0"/>  
+      <serve sa="0" se="0" ta="0"/>  
+      <defense dig="0" re="0" ta="0"/>  
+      <block bs="0" ba="0" be="0" tb="0.0"/>  
+      <misc bhe="0" pts="0.0"/> 
+    </player> 
+  </team>  
+  <plays format="summary"> 
+    <game number="1"> 
+      <play number="1" text="BENEDICT starters: Allison Kuebelbeck; JoJo Vander Woude; Lainee Mustain; Wren Vancleave; Barbara Terra; Stefania Scomazzon."/>  
+      <play number="2" text="VALLEY C starters: Mady Geist; Madden Bogenreif; Brynn Sorenson; Hudson Zerface; Eden Carrier; Molly Bjornbey."/>  
+      <play number="3" serveteam="VALLEY C" point="BENEDICT" vscore="1" hscore="0" text="[Madden Bogenreif] Kill by Barbara Terra."/>  
+      <play number="4" serveteam="BENEDICT" point="BENEDICT" vscore="2" hscore="0" text="[Ava Penuel] Kill by Stefania Scomazzon (from Wren Vancleave)."/>  
+      <play number="5" serveteam="BENEDICT" point="VALLEY C" vscore="2" hscore="1" text="[Ava Penuel] Kill by Brynn Sorenson (from Madden Bogenreif)."/>  
+      <play number="6" text="VALLEY C subs: Kadie Kocka."/>  
+      <play number="7" serveteam="VALLEY C" point="VALLEY C" vscore="2" hscore="2" text="[Molly Bjornbey] Service ace (Ava Penuel)."/>  
+      <play number="8" serveteam="VALLEY C" point="VALLEY C" vscore="2" hscore="3" text="[Molly Bjornbey] Kill by Kadie Kocka (from Annika Pulju)."/>  
+      <play number="9" serveteam="VALLEY C" point="BENEDICT" vscore="3" hscore="3" text="[Molly Bjornbey] Kill by Stefania Scomazzon (from Wren Vancleave)."/>  
+      <play number="10" serveteam="BENEDICT" point="BENEDICT" vscore="4" hscore="3" text="[Kelly DeMeulenaere] Attack error by Mady Geist."/>  
+      <play number="11" serveteam="BENEDICT" point="VALLEY C" vscore="4" hscore="4" text="[Kelly DeMeulenaere] Service error."/>  
+      <play number="12" serveteam="VALLEY C" point="VALLEY C" vscore="4" hscore="5" text="[Annika Pulju] Kill by Kadie Kocka (from Madden Bogenreif)."/>  
+      <play number="13" serveteam="VALLEY C" point="VALLEY C" vscore="4" hscore="6" text="[Annika Pulju] Attack error by Stefania Scomazzon."/>  
+      <play number="14" serveteam="VALLEY C" point="BENEDICT" vscore="5" hscore="6" text="[Annika Pulju] Kill by Bridget O'Sullivan (from Wren Vancleave)."/>  
+      <play number="15" serveteam="BENEDICT" point="VALLEY C" vscore="5" hscore="7" text="[Stefania Scomazzon] Kill by Kadie Kocka (from Madden Bogenreif)."/>  
+      <play number="16" text="VALLEY C subs: Gracie Schumacher; Ellie Lucas."/>  
+      <play number="17" serveteam="VALLEY C" point="VALLEY C" vscore="5" hscore="8" text="[Gracie Schumacher] Kill by Kadie Kocka (from Gracie Schumacher)."/>  
+      <play number="18" serveteam="VALLEY C" point="VALLEY C" vscore="5" hscore="9" text="[Gracie Schumacher] Kill by Eden Carrier, block error by Wren Vancleave."/>  
+      <play number="19" serveteam="VALLEY C" point="BENEDICT" vscore="6" hscore="9" text="[Gracie Schumacher] Kill by JoJo Vander Woude (from Wren Vancleave)."/>  
+      <play number="20" serveteam="BENEDICT" point="VALLEY C" vscore="6" hscore="10" text="[Mya Schirk] Service error."/>  
+      <play number="21" serveteam="VALLEY C" point="VALLEY C" vscore="6" hscore="11" text="[Hudson Zerface] Attack error by JoJo Vander Woude."/>  
+      <play number="22" serveteam="VALLEY C" point="VALLEY C" vscore="6" hscore="12" text="[Hudson Zerface] Attack error by Barbara Terra (block by Ellie Lucas; Eden Carrier)."/>  
+      <play number="23" serveteam="VALLEY C" point="BENEDICT" vscore="7" hscore="12" text="[Hudson Zerface] Kill by Barbara Terra (from Wren Vancleave)."/>  
+      <play number="24" text="BENEDICT subs: Isabella Franco."/>  
+      <play number="25" serveteam="BENEDICT" point="BENEDICT" vscore="8" hscore="12" text="[Isabella Franco] Kill by Barbara Terra."/>  
+      <play number="26" serveteam="BENEDICT" point="BENEDICT" vscore="9" hscore="12" text="[Isabella Franco] Kill by Barbara Terra (from Wren Vancleave)."/>  
+      <play number="27" serveteam="BENEDICT" point="VALLEY C" vscore="9" hscore="13" text="[Isabella Franco] Kill by Gracie Schumacher (from Annika Pulju)."/>  
+      <play number="28" text="VALLEY C subs: Kinlee Sufficool."/>  
+      <play number="29" serveteam="VALLEY C" point="VALLEY C" vscore="9" hscore="14" text="[Kinlee Sufficool] Attack error by Barbara Terra."/>  
+      <play number="30" text="BENEDICT subs: Lainee Mustain."/>  
+      <play number="31" serveteam="VALLEY C" point="VALLEY C" vscore="9" hscore="15" text="[Kinlee Sufficool] Kill by Ellie Lucas."/>  
+      <play number="32" serveteam="VALLEY C" point="BENEDICT" vscore="10" hscore="15" text="[Kinlee Sufficool] Service error."/>  
+      <play number="33" serveteam="BENEDICT" point="BENEDICT" vscore="11" hscore="15" text="[Wren Vancleave] Attack error by Ellie Lucas."/>  
+      <play number="34" serveteam="BENEDICT" point="VALLEY C" vscore="11" hscore="16" text="[Wren Vancleave] Kill by Mady Geist (from Gracie Schumacher)."/>  
+      <play number="35" text="VALLEY C subs: Madden Bogenreif; Brynn Sorenson."/>  
+      <play number="36" serveteam="VALLEY C" point="VALLEY C" vscore="11" hscore="17" text="[Madden Bogenreif] Attack error by Barbara Terra."/>  
+      <play number="37" serveteam="VALLEY C" point="BENEDICT" vscore="12" hscore="17" text="[Madden Bogenreif] Service error."/>  
+      <play number="38" text="BENEDICT subs: Bridget O'Sullivan; Ava Penuel."/>  
+      <play number="39" serveteam="BENEDICT" point="VALLEY C" vscore="12" hscore="18" text="[Ava Penuel] Service error."/>  
+      <play number="40" serveteam="VALLEY C" point="VALLEY C" vscore="12" hscore="19" text="[Molly Bjornbey] Attack error by Stefania Scomazzon."/>  
+      <play number="41" serveteam="VALLEY C" point="BENEDICT" vscore="13" hscore="19" text="[Molly Bjornbey] Kill by Stefania Scomazzon (from Wren Vancleave)."/>  
+      <play number="42" serveteam="BENEDICT" point="BENEDICT" vscore="14" hscore="19" text="[Kelly DeMeulenaere] Attack error by Mady Geist."/>  
+      <play number="43" serveteam="BENEDICT" point="VALLEY C" vscore="14" hscore="20" text="[Kelly DeMeulenaere] Service error."/>  
+      <play number="44" serveteam="VALLEY C" point="VALLEY C" vscore="14" hscore="21" text="[Annika Pulju] Service ace (Kelly DeMeulenaere)."/>  
+      <play number="45" serveteam="VALLEY C" point="BENEDICT" vscore="15" hscore="21" text="[Annika Pulju] Kill by Stefania Scomazzon (from Wren Vancleave)."/>  
+      <play number="46" serveteam="BENEDICT" point="BENEDICT" vscore="16" hscore="21" text="[Stefania Scomazzon] Kill by Bridget O'Sullivan (from Wren Vancleave)."/>  
+      <play number="47" serveteam="BENEDICT" point="VALLEY C" vscore="16" hscore="22" text="[Stefania Scomazzon] Attack error by JoJo Vander Woude."/>  
+      <play number="48" text="VALLEY C subs: Gracie Schumacher; Ellie Lucas."/>  
+      <play number="49" serveteam="VALLEY C" point="VALLEY C" vscore="16" hscore="23" text="[Gracie Schumacher] Service ace (Ava Penuel)."/>  
+      <play number="50" serveteam="VALLEY C" point="VALLEY C" vscore="16" hscore="24" text="[Gracie Schumacher] Service ace (Ava Penuel)."/>  
+      <play number="51" serveteam="VALLEY C" point="VALLEY C" vscore="16" hscore="25" text="[Gracie Schumacher] Kill by Eden Carrier."/> 
+    </game>  
+    <game number="2"> 
+      <play number="52" text="On court for BENEDICT: Allison Kuebelbeck; JoJo Vander Woude; Wren Vancleave; Lainee Mustain; Barbara Terra; Stefania Scomazzon."/>  
+      <play number="53" text="On court for VALLEY C: Mady Geist; Gracie Schumacher; Madden Bogenreif; Molly Bjornbey; Hudson Zerface; Eden Carrier."/>  
+      <play number="54" serveteam="BENEDICT" point="VALLEY C" vscore="0" hscore="1" text="[Wren Vancleave] Kill by Mady Geist (from Gracie Schumacher)."/>  
+      <play number="55" text="VALLEY C subs: Brynn Sorenson."/>  
+      <play number="56" serveteam="VALLEY C" point="BENEDICT" vscore="1" hscore="1" text="[Madden Bogenreif] Kill by Barbara Terra (from Wren Vancleave)."/>  
+      <play number="57" text="BENEDICT subs: Bridget O'Sullivan; Ava Penuel."/>  
+      <play number="58" serveteam="BENEDICT" point="VALLEY C" vscore="1" hscore="2" text="[Ava Penuel] Attack error by Bridget O'Sullivan."/>  
+      <play number="59" text="VALLEY C subs: Kadie Kocka."/>  
+      <play number="60" serveteam="VALLEY C" point="BENEDICT" vscore="2" hscore="2" text="[Molly Bjornbey] Kill by Allison Kuebelbeck (from Wren Vancleave)."/>  
+      <play number="61" text="BENEDICT subs: Chiara Abelleira."/>  
+      <play number="62" serveteam="BENEDICT" point="BENEDICT" vscore="3" hscore="2" text="[Chiara Abelleira] Kill by Bridget O'Sullivan (from Wren Vancleave)."/>  
+      <play number="63" serveteam="BENEDICT" point="VALLEY C" vscore="3" hscore="3" text="[Chiara Abelleira] Service error."/>  
+      <play number="64" text="BENEDICT subs: Allison Kuebelbeck."/>  
+      <play number="65" serveteam="VALLEY C" point="BENEDICT" vscore="4" hscore="3" text="[Annika Pulju] Kill by JoJo Vander Woude (from Wren Vancleave)."/>  
+      <play number="66" serveteam="BENEDICT" point="VALLEY C" vscore="4" hscore="4" text="[Stefania Scomazzon] Kill by Madden Bogenreif (from Molly Bjornbey)."/>  
+      <play number="67" text="VALLEY C subs: Gracie Schumacher; Ellie Lucas."/>  
+      <play number="68" serveteam="VALLEY C" point="BENEDICT" vscore="5" hscore="4" text="[Gracie Schumacher] Kill by Bridget O'Sullivan (from Wren Vancleave)."/>  
+      <play number="69" text="BENEDICT subs: Mya Schirk; Tatum Huff; Barbara Terra."/>  
+      <play number="70" serveteam="BENEDICT" point="BENEDICT" vscore="6" hscore="4" text="[Mya Schirk] Kill by Barbara Terra (from Wren Vancleave)."/>  
+      <play number="71" serveteam="BENEDICT" point="VALLEY C" vscore="6" hscore="5" text="[Mya Schirk] Kill by Eden Carrier (from Gracie Schumacher)."/>  
+      <play number="72" text="BENEDICT subs: Lainee Mustain."/>  
+      <play number="73" text="VALLEY C subs: Hudson Zerface."/>  
+      <play number="74" serveteam="VALLEY C" point="VALLEY C" vscore="6" hscore="6" text="[Hudson Zerface] Attack error by Barbara Terra."/>  
+      <play number="75" serveteam="VALLEY C" point="VALLEY C" vscore="6" hscore="7" text="[Hudson Zerface] Kill by Molly Bjornbey."/>  
+      <play number="76" serveteam="VALLEY C" point="VALLEY C" vscore="6" hscore="8" text="[Hudson Zerface] Attack error by JoJo Vander Woude."/>  
+      <play number="77" serveteam="VALLEY C" point="BENEDICT" vscore="7" hscore="8" text="[Hudson Zerface] Kill by Wren Vancleave (from Lainee Mustain)."/>  
+      <play number="78" text="BENEDICT subs: Isabella Franco."/>  
+      <play number="79" serveteam="BENEDICT" point="BENEDICT" vscore="8" hscore="8" text="[Isabella Franco] Service ace (Annika Pulju)."/>  
+      <play number="80" serveteam="BENEDICT" point="BENEDICT" vscore="9" hscore="8" text="[Isabella Franco] Attack error by Eden Carrier (block by Allison Kuebelbeck; Wren Vancleave; Barbara Terra)."/>  
+      <play number="81" serveteam="BENEDICT" point="VALLEY C" vscore="9" hscore="9" text="[Isabella Franco] Kill by Molly Bjornbey (from Gracie Schumacher)."/>  
+      <play number="82" text="BENEDICT subs: JoJo Vander Woude."/>  
+      <play number="83" text="VALLEY C subs: Kinlee Sufficool."/>  
+      <play number="84" serveteam="VALLEY C" point="BENEDICT" vscore="10" hscore="9" text="[Kinlee Sufficool] Kill by Barbara Terra (from Wren Vancleave)."/>  
+      <play number="85" text="BENEDICT subs: Stefania Scomazzon."/>  
+      <play number="86" serveteam="BENEDICT" point="VALLEY C" vscore="10" hscore="10" text="[Wren Vancleave] Kill by Mady Geist (from Gracie Schumacher)."/>  
+      <play number="87" text="VALLEY C subs: Madden Bogenreif; Brynn Sorenson."/>  
+      <play number="88" serveteam="VALLEY C" point="VALLEY C" vscore="10" hscore="11" text="[Madden Bogenreif] Kill by Mady Geist."/>  
+      <play number="89" serveteam="VALLEY C" point="BENEDICT" vscore="11" hscore="11" text="[Madden Bogenreif] Kill by Barbara Terra (from Wren Vancleave)."/>  
+      <play number="90" serveteam="BENEDICT" point="BENEDICT" vscore="12" hscore="11" text="[Ava Penuel] Kill by Stefania Scomazzon (from Wren Vancleave)."/>  
+      <play number="91" serveteam="BENEDICT" point="BENEDICT" vscore="13" hscore="11" text="[Ava Penuel] Kill by Bridget O'Sullivan (from Wren Vancleave)."/>  
+      <play number="92" serveteam="BENEDICT" point="VALLEY C" vscore="13" hscore="12" text="[Ava Penuel] Kill by Mady Geist (from Madden Bogenreif)."/>  
+      <play number="93" text="VALLEY C subs: Kadie Kocka."/>  
+      <play number="94" serveteam="VALLEY C" point="BENEDICT" vscore="14" hscore="12" text="[Molly Bjornbey] Kill by Stefania Scomazzon (from Wren Vancleave)."/>  
+      <play number="95" text="BENEDICT subs: Chiara Abelleira."/>  
+      <play number="96" serveteam="BENEDICT" point="VALLEY C" vscore="14" hscore="13" text="[Chiara Abelleira] Kill by Mady Geist."/>  
+      <play number="97" serveteam="VALLEY C" point="BENEDICT" vscore="15" hscore="13" text="[Annika Pulju] Service error."/>  
+      <play number="98" serveteam="BENEDICT" point="VALLEY C" vscore="15" hscore="14" text="[Stefania Scomazzon] Kill by Eden Carrier (from Madden Bogenreif)."/>  
+      <play number="99" text="VALLEY C subs: Gracie Schumacher; Ellie Lucas."/>  
+      <play number="100" serveteam="VALLEY C" point="VALLEY C" vscore="15" hscore="15" text="[Gracie Schumacher] Kill by Kadie Kocka (from Gracie Schumacher)."/>  
+      <play number="101" serveteam="VALLEY C" point="BENEDICT" vscore="16" hscore="15" text="[Gracie Schumacher] Attack error by Eden Carrier (block by Wren Vancleave)."/>  
+      <play number="102" text="BENEDICT subs: Mya Schirk; Barbara Terra; Tatum Huff."/>  
+      <play number="103" serveteam="BENEDICT" point="VALLEY C" vscore="16" hscore="16" text="[Mya Schirk] Kill by Kadie Kocka (from Gracie Schumacher)."/>  
+      <play number="104" text="BENEDICT subs: Lainee Mustain."/>  
+      <play number="105" serveteam="VALLEY C" point="VALLEY C" vscore="16" hscore="17" text="[Hudson Zerface] Bad set by Wren Vancleave."/>  
+      <play number="106" serveteam="VALLEY C" point="BENEDICT" vscore="17" hscore="17" text="[Hudson Zerface] Attack error by Molly Bjornbey."/>  
+      <play number="107" text="BENEDICT subs: Isabella Franco."/>  
+      <play number="108" serveteam="BENEDICT" point="VALLEY C" vscore="17" hscore="18" text="[Isabella Franco] Kill by Gracie Schumacher (from Molly Bjornbey)."/>  
+      <play number="109" text="BENEDICT subs: JoJo Vander Woude."/>  
+      <play number="110" text="VALLEY C subs: Kinlee Sufficool."/>  
+      <play number="111" serveteam="VALLEY C" point="VALLEY C" vscore="17" hscore="19" text="[Kinlee Sufficool] Kill by Gracie Schumacher (from Kinlee Sufficool)."/>  
+      <play number="112" serveteam="VALLEY C" point="VALLEY C" vscore="17" hscore="20" text="[Kinlee Sufficool] Kill by Mady Geist (from Gracie Schumacher)."/>  
+      <play number="113" serveteam="BENEDICT" text="Timeout Benedictine (KS)."/>  
+      <play number="114" serveteam="VALLEY C" point="BENEDICT" vscore="18" hscore="20" text="[Kinlee Sufficool] Kill by Allison Kuebelbeck (from Wren Vancleave)."/>  
+      <play number="115" text="BENEDICT subs: Stefania Scomazzon."/>  
+      <play number="116" serveteam="BENEDICT" point="BENEDICT" vscore="19" hscore="20" text="[Wren Vancleave] Kill by Stefania Scomazzon (from Wren Vancleave)."/>  
+      <play number="117" serveteam="BENEDICT" point="BENEDICT" vscore="20" hscore="20" text="[Wren Vancleave] Attack error by Mady Geist (block by Allison Kuebelbeck; Stefania Scomazzon; Barbara Terra)."/>  
+      <play number="118" serveteam="BENEDICT" point="VALLEY C" vscore="20" hscore="21" text="[Wren Vancleave] Kill by Molly Bjornbey (from Gracie Schumacher)."/>  
+      <play number="119" text="VALLEY C subs: Madden Bogenreif; Brynn Sorenson."/>  
+      <play number="120" serveteam="VALLEY C" point="BENEDICT" vscore="21" hscore="21" text="[Madden Bogenreif] Kill by Stefania Scomazzon (from Wren Vancleave)."/>  
+      <play number="121" text="BENEDICT subs: Bridget O'Sullivan; Ava Penuel."/>  
+      <play number="122" serveteam="BENEDICT" point="BENEDICT" vscore="22" hscore="21" text="[Ava Penuel] Attack error by Mady Geist."/>  
+      <play number="123" serveteam="BENEDICT" point="BENEDICT" vscore="23" hscore="21" text="[Ava Penuel] Attack error by Molly Bjornbey (block by JoJo Vander Woude; Bridget O'Sullivan)."/>  
+      <play number="124" serveteam="BENEDICT" point="BENEDICT" vscore="24" hscore="21" text="[Ava Penuel] Attack error by Mady Geist."/>  
+      <play number="125" serveteam="BENEDICT" point="BENEDICT" vscore="25" hscore="21" text="[Ava Penuel] Attack error by Madden Bogenreif."/> 
+    </game>  
+    <game number="3"> 
+      <play number="126" text="On court for BENEDICT: Allison Kuebelbeck; JoJo Vander Woude; Lainee Mustain; Stefania Scomazzon; Barbara Terra; Wren Vancleave."/>  
+      <play number="127" text="On court for VALLEY C: Mady Geist; Madden Bogenreif; Brynn Sorenson; Hudson Zerface; Molly Bjornbey; Eden Carrier."/>  
+      <play number="128" serveteam="VALLEY C" point="VALLEY C" vscore="0" hscore="1" text="[Madden Bogenreif] Service ace (Kelly DeMeulenaere)."/>  
+      <play number="129" serveteam="VALLEY C" point="BENEDICT" vscore="1" hscore="1" text="[Madden Bogenreif] Service error."/>  
+      <play number="130" text="BENEDICT subs: Bridget O'Sullivan; Ava Penuel."/>  
+      <play number="131" serveteam="BENEDICT" point="VALLEY C" vscore="1" hscore="2" text="[Ava Penuel] Kill by Molly Bjornbey (from Madden Bogenreif)."/>  
+      <play number="132" text="VALLEY C subs: Kadie Kocka."/>  
+      <play number="133" serveteam="VALLEY C" point="BENEDICT" vscore="2" hscore="2" text="[Molly Bjornbey] Kill by Stefania Scomazzon (from Wren Vancleave)."/>  
+      <play number="134" text="BENEDICT subs: Chiara Abelleira."/>  
+      <play number="135" serveteam="BENEDICT" point="VALLEY C" vscore="2" hscore="3" text="[Chiara Abelleira] Kill by Mady Geist (from Madden Bogenreif)."/>  
+      <play number="136" serveteam="VALLEY C" point="VALLEY C" vscore="2" hscore="4" text="[Annika Pulju] Kill by Brynn Sorenson (from Madden Bogenreif), block error by Bridget O'Sullivan."/>  
+      <play number="137" serveteam="VALLEY C" point="VALLEY C" vscore="2" hscore="5" text="[Annika Pulju] Kill by Eden Carrier."/>  
+      <play number="138" serveteam="VALLEY C" point="VALLEY C" vscore="2" hscore="6" text="[Annika Pulju] Service ace (Bridget O'Sullivan)."/>  
+      <play number="139" serveteam="VALLEY C" point="VALLEY C" vscore="2" hscore="7" text="[Annika Pulju] Attack error by Stefania Scomazzon."/>  
+      <play number="140" serveteam="VALLEY C" point="BENEDICT" vscore="3" hscore="7" text="[Annika Pulju] Kill by Bridget O'Sullivan (from Wren Vancleave)."/>  
+      <play number="141" serveteam="BENEDICT" point="BENEDICT" vscore="4" hscore="7" text="[Stefania Scomazzon] Attack error by Eden Carrier."/>  
+      <play number="142" serveteam="BENEDICT" point="VALLEY C" vscore="4" hscore="8" text="[Stefania Scomazzon] Attack error by Bridget O'Sullivan (block by Brynn Sorenson; Eden Carrier)."/>  
+      <play number="143" text="VALLEY C subs: Gracie Schumacher; Ellie Lucas."/>  
+      <play number="144" serveteam="VALLEY C" point="VALLEY C" vscore="4" hscore="9" text="[Gracie Schumacher] Attack error by Bridget O'Sullivan."/>  
+      <play number="145" serveteam="BENEDICT" text="Timeout Benedictine (KS)."/>  
+      <play number="146" serveteam="VALLEY C" point="BENEDICT" vscore="5" hscore="9" text="[Gracie Schumacher] Kill by JoJo Vander Woude (from Wren Vancleave)."/>  
+      <play number="147" text="BENEDICT subs: Mya Schirk; Tatum Huff; Barbara Terra."/>  
+      <play number="148" serveteam="BENEDICT" point="VALLEY C" vscore="5" hscore="10" text="[Mya Schirk] Kill by Kadie Kocka (from Gracie Schumacher)."/>  
+      <play number="149" text="BENEDICT subs: Lainee Mustain."/>  
+      <play number="150" text="VALLEY C subs: Hudson Zerface."/>  
+      <play number="151" serveteam="VALLEY C" point="BENEDICT" vscore="6" hscore="10" text="[Hudson Zerface] Kill by JoJo Vander Woude (from Wren Vancleave)."/>  
+      <play number="152" text="BENEDICT subs: Isabella Franco."/>  
+      <play number="153" serveteam="BENEDICT" point="VALLEY C" vscore="6" hscore="11" text="[Isabella Franco] Service error."/>  
+      <play number="154" text="BENEDICT subs: JoJo Vander Woude."/>  
+      <play number="155" text="VALLEY C subs: Kinlee Sufficool."/>  
+      <play number="156" serveteam="VALLEY C" point="BENEDICT" vscore="7" hscore="11" text="[Kinlee Sufficool] Kill by Barbara Terra (from Wren Vancleave), block error by Mady Geist."/>  
+      <play number="157" text="BENEDICT subs: Stefania Scomazzon."/>  
+      <play number="158" serveteam="BENEDICT" point="BENEDICT" vscore="8" hscore="11" text="[Wren Vancleave] Kill by Allison Kuebelbeck."/>  
+      <play number="159" serveteam="BENEDICT" point="BENEDICT" vscore="9" hscore="11" text="[Wren Vancleave] Attack error by Molly Bjornbey."/>  
+      <play number="160" serveteam="BENEDICT" point="BENEDICT" vscore="10" hscore="11" text="[Wren Vancleave] Kill by Stefania Scomazzon (from Wren Vancleave)."/>  
+      <play number="161" serveteam="BENEDICT" text="Timeout Valley City State."/>  
+      <play number="162" serveteam="BENEDICT" point="VALLEY C" vscore="10" hscore="12" text="[Wren Vancleave] Kill by Mady Geist (from Gracie Schumacher), block error by Allison Kuebelbeck."/>  
+      <play number="163" text="VALLEY C subs: Madden Bogenreif; Brynn Sorenson."/>  
+      <play number="164" serveteam="VALLEY C" point="BENEDICT" vscore="11" hscore="12" text="[Madden Bogenreif] Kill by Stefania Scomazzon (from Wren Vancleave)."/>  
+      <play number="165" text="BENEDICT subs: Bridget O'Sullivan; Ava Penuel."/>  
+      <play number="166" serveteam="BENEDICT" point="VALLEY C" vscore="11" hscore="13" text="[Ava Penuel] Attack error by Bridget O'Sullivan."/>  
+      <play number="167" text="VALLEY C subs: Kadie Kocka."/>  
+      <play number="168" serveteam="VALLEY C" point="VALLEY C" vscore="11" hscore="14" text="[Molly Bjornbey] Kill by Kadie Kocka (from Madden Bogenreif)."/>  
+      <play number="169" serveteam="VALLEY C" point="BENEDICT" vscore="12" hscore="14" text="[Molly Bjornbey] Attack error by Mady Geist (block by Allison Kuebelbeck; Stefania Scomazzon)."/>  
+      <play number="170" text="BENEDICT subs: Chiara Abelleira."/>  
+      <play number="171" serveteam="BENEDICT" point="VALLEY C" vscore="12" hscore="15" text="[Chiara Abelleira] Service error."/>  
+      <play number="172" text="BENEDICT subs: Allison Kuebelbeck."/>  
+      <play number="173" serveteam="VALLEY C" point="BENEDICT" vscore="13" hscore="15" text="[Annika Pulju] Kill by Stefania Scomazzon (from Wren Vancleave)."/>  
+      <play number="174" serveteam="BENEDICT" point="BENEDICT" vscore="14" hscore="15" text="[Stefania Scomazzon] Kill by JoJo Vander Woude."/>  
+      <play number="175" serveteam="BENEDICT" point="VALLEY C" vscore="14" hscore="16" text="[Stefania Scomazzon] Kill by Kadie Kocka (from Madden Bogenreif)."/>  
+      <play number="176" text="VALLEY C subs: Gracie Schumacher; Ellie Lucas."/>  
+      <play number="177" serveteam="VALLEY C" point="BENEDICT" vscore="15" hscore="16" text="[Gracie Schumacher] Kill by JoJo Vander Woude (from Wren Vancleave)."/>  
+      <play number="178" text="BENEDICT subs: Mya Schirk; Tatum Huff; Barbara Terra."/>  
+      <play number="179" serveteam="BENEDICT" point="BENEDICT" vscore="16" hscore="16" text="[Mya Schirk] Attack error by Kadie Kocka (block by JoJo Vander Woude; Barbara Terra)."/>  
+      <play number="180" serveteam="BENEDICT" point="BENEDICT" vscore="17" hscore="16" text="[Mya Schirk] Kill by JoJo Vander Woude (from Wren Vancleave)."/>  
+      <play number="181" serveteam="BENEDICT" point="VALLEY C" vscore="17" hscore="17" text="[Mya Schirk] Service error."/>  
+      <play number="182" text="BENEDICT subs: Lainee Mustain."/>  
+      <play number="183" text="VALLEY C subs: Hudson Zerface."/>  
+      <play number="184" serveteam="VALLEY C" point="VALLEY C" vscore="17" hscore="18" text="[Hudson Zerface] Attack error by Wren Vancleave (block by Eden Carrier; Molly Bjornbey)."/>  
+      <play number="185" serveteam="VALLEY C" point="BENEDICT" vscore="18" hscore="18" text="[Hudson Zerface] Kill by Barbara Terra (from Wren Vancleave)."/>  
+      <play number="186" text="BENEDICT subs: Isabella Franco."/>  
+      <play number="187" serveteam="BENEDICT" point="VALLEY C" vscore="18" hscore="19" text="[Isabella Franco] Kill by Molly Bjornbey (from Gracie Schumacher)."/>  
+      <play number="188" text="VALLEY C subs: Kinlee Sufficool."/>  
+      <play number="189" serveteam="VALLEY C" point="VALLEY C" vscore="18" hscore="20" text="[Kinlee Sufficool] Attack error by Allison Kuebelbeck."/>  
+      <play number="190" serveteam="VALLEY C" point="BENEDICT" vscore="19" hscore="20" text="[Kinlee Sufficool] Kill by Barbara Terra (from Wren Vancleave)."/>  
+      <play number="191" text="VALLEY C subs: Eden Carrier."/>  
+      <play number="192" text="BENEDICT subs: Stefania Scomazzon."/>  
+      <play number="193" serveteam="BENEDICT" point="VALLEY C" vscore="19" hscore="21" text="[Wren Vancleave] Kill by Mady Geist (from Gracie Schumacher)."/>  
+      <play number="194" text="VALLEY C subs: Madden Bogenreif; Brynn Sorenson."/>  
+      <play number="195" serveteam="VALLEY C" point="VALLEY C" vscore="19" hscore="22" text="[Madden Bogenreif] Service ace (Lainee Mustain)."/>  
+      <play number="196" serveteam="BENEDICT" text="Timeout Benedictine (KS)."/>  
+      <play number="197" serveteam="VALLEY C" point="BENEDICT" vscore="20" hscore="22" text="[Hudson Zerface] Kill by Barbara Terra (from Wren Vancleave)."/>  
+      <play number="198" serveteam="BENEDICT" point="BENEDICT" vscore="21" hscore="22" text="[Ava Penuel] Attack error by Brynn Sorenson."/>  
+      <play number="199" serveteam="BENEDICT" point="VALLEY C" vscore="21" hscore="23" text="[Ava Penuel] Kill by Mady Geist (from Madden Bogenreif)."/>  
+      <play number="200" text="VALLEY C subs: Kadie Kocka."/>  
+      <play number="201" serveteam="VALLEY C" point="VALLEY C" vscore="21" hscore="24" text="[Molly Bjornbey] Kill by Kadie Kocka (from Madden Bogenreif)."/>  
+      <play number="202" serveteam="VALLEY C" point="BENEDICT" vscore="22" hscore="24" text="[Molly Bjornbey] Kill by Stefania Scomazzon (from Wren Vancleave)."/>  
+      <play number="203" serveteam="BENEDICT" point="VALLEY C" vscore="22" hscore="25" text="[Kelly DeMeulenaere] Kill by Brynn Sorenson (from Madden Bogenreif)."/> 
+    </game>  
+    <game number="4"> 
+      <play number="204" text="On court for BENEDICT: Allison Kuebelbeck; JoJo Vander Woude; Barbara Terra; Stefania Scomazzon; Lainee Mustain; Wren Vancleave."/>  
+      <play number="205" serveteam="BENEDICT" point="BENEDICT" vscore="1" hscore="0" text="[Wren Vancleave] Kill by Barbara Terra."/>  
+      <play number="206" serveteam="BENEDICT" point="VALLEY C" vscore="1" hscore="1" text="[Wren Vancleave] Kill by Brynn Sorenson (from Madden Bogenreif)."/>  
+      <play number="207" serveteam="VALLEY C" point="BENEDICT" vscore="2" hscore="1" text="[Molly Bjornbey] Service error."/>  
+      <play number="208" text="BENEDICT subs: Bridget O'Sullivan; Ava Penuel."/>  
+      <play number="209" serveteam="BENEDICT" point="VALLEY C" vscore="2" hscore="2" text="[Ava Penuel] Kill by Brynn Sorenson (from Madden Bogenreif)."/>  
+      <play number="210" serveteam="VALLEY C" point="BENEDICT" vscore="3" hscore="2" text="[Annika Pulju] Kill by Stefania Scomazzon, block error by Kadie Kocka."/>  
+      <play number="211" serveteam="BENEDICT" point="BENEDICT" vscore="4" hscore="2" text="[Kelly DeMeulenaere] Attack error by Brynn Sorenson (block by JoJo Vander Woude; Bridget O'Sullivan)."/>  
+      <play number="212" serveteam="BENEDICT" point="VALLEY C" vscore="4" hscore="3" text="[Kelly DeMeulenaere] Kill by Brynn Sorenson (from Annika Pulju)."/>  
+      <play number="213" text="VALLEY C subs: Gracie Schumacher."/>  
+      <play number="214" serveteam="VALLEY C" point="VALLEY C" vscore="4" hscore="4" text="[Gracie Schumacher] Kill by Kadie Kocka (from Annika Pulju)."/>  
+      <play number="215" serveteam="VALLEY C" point="BENEDICT" vscore="5" hscore="4" text="[Gracie Schumacher] Kill by Stefania Scomazzon (from Wren Vancleave)."/>  
+      <play number="216" serveteam="BENEDICT" point="VALLEY C" vscore="5" hscore="5" text="[Stefania Scomazzon] Service error."/>  
+      <play number="217" text="VALLEY C subs: Hudson Zerface."/>  
+      <play number="218" serveteam="VALLEY C" point="VALLEY C" vscore="5" hscore="6" text="[Hudson Zerface] Kill by Molly Bjornbey (from Gracie Schumacher)."/>  
+      <play number="219" serveteam="VALLEY C" point="VALLEY C" vscore="5" hscore="7" text="[Hudson Zerface] Kill by Ellie Lucas (from Gracie Schumacher), block error by Bridget O'Sullivan."/>  
+      <play number="220" serveteam="VALLEY C" point="VALLEY C" vscore="5" hscore="8" text="[Hudson Zerface] Attack error by Stefania Scomazzon."/>  
+      <play number="221" serveteam="VALLEY C" point="BENEDICT" vscore="6" hscore="8" text="[Hudson Zerface] Kill by Bridget O'Sullivan."/>  
+      <play number="222" text="BENEDICT subs: Mya Schirk; Barbara Terra; Tatum Huff."/>  
+      <play number="223" serveteam="BENEDICT" point="BENEDICT" vscore="7" hscore="8" text="[Mya Schirk] Attack error by Molly Bjornbey (block by JoJo Vander Woude; Wren Vancleave)."/>  
+      <play number="224" serveteam="BENEDICT" point="BENEDICT" vscore="8" hscore="8" text="[Mya Schirk] Service ace (Hudson Zerface)."/>  
+      <play number="225" serveteam="BENEDICT" point="BENEDICT" vscore="9" hscore="8" text="[Mya Schirk] Service ace (Hudson Zerface)."/>  
+      <play number="226" serveteam="BENEDICT" point="VALLEY C" vscore="9" hscore="9" text="[Mya Schirk] Service error."/>  
+      <play number="227" text="BENEDICT subs: Lainee Mustain."/>  
+      <play number="228" text="VALLEY C subs: Kinlee Sufficool."/>  
+      <play number="229" serveteam="VALLEY C" point="BENEDICT" vscore="10" hscore="9" text="[Kinlee Sufficool] Attack error by Ellie Lucas."/>  
+      <play number="230" text="VALLEY C subs: Eden Carrier."/>  
+      <play number="231" serveteam="BENEDICT" point="VALLEY C" vscore="10" hscore="10" text="[Isabella Franco] Kill by Molly Bjornbey (from Gracie Schumacher)."/>  
+      <play number="232" text="VALLEY C subs: Madden Bogenreif; Brynn Sorenson."/>  
+      <play number="233" serveteam="VALLEY C" point="VALLEY C" vscore="10" hscore="11" text="[Madden Bogenreif] Attack error by Allison Kuebelbeck (block by Mady Geist)."/>  
+      <play number="234" serveteam="VALLEY C" point="VALLEY C" vscore="10" hscore="12" text="[Madden Bogenreif] Service ace (Kelly DeMeulenaere)."/>  
+      <play number="235" serveteam="VALLEY C" point="BENEDICT" vscore="11" hscore="12" text="[Madden Bogenreif] Attack error by Mady Geist."/>  
+      <play number="236" text="BENEDICT subs: Stefania Scomazzon."/>  
+      <play number="237" serveteam="BENEDICT" point="VALLEY C" vscore="11" hscore="13" text="[Wren Vancleave] Kill by Mady Geist (from Madden Bogenreif), block error by JoJo Vander Woude."/>  
+      <play number="238" serveteam="VALLEY C" point="VALLEY C" vscore="11" hscore="14" text="[Molly Bjornbey] Attack error by Stefania Scomazzon (block by Mady Geist; Kadie Kocka)."/>  
+      <play number="239" serveteam="VALLEY C" point="VALLEY C" vscore="11" hscore="15" text="[Molly Bjornbey] Service ace (Team)."/>  
+      <play number="240" serveteam="BENEDICT" text="Timeout Benedictine (KS)."/>  
+      <play number="241" serveteam="VALLEY C" point="BENEDICT" vscore="12" hscore="15" text="[Molly Bjornbey] Kill by Stefania Scomazzon (from Wren Vancleave)."/>  
+      <play number="242" text="BENEDICT subs: Bridget O'Sullivan; Ava Penuel."/>  
+      <play number="243" serveteam="BENEDICT" point="BENEDICT" vscore="13" hscore="15" text="[Ava Penuel] Service ace (Molly Bjornbey)."/>  
+      <play number="244" serveteam="BENEDICT" point="VALLEY C" vscore="13" hscore="16" text="[Ava Penuel] Kill by Kadie Kocka (from Madden Bogenreif)."/>  
+      <play number="245" serveteam="VALLEY C" point="VALLEY C" vscore="13" hscore="17" text="[Annika Pulju] Kill by Eden Carrier (from Madden Bogenreif)."/>  
+      <play number="246" serveteam="VALLEY C" point="BENEDICT" vscore="14" hscore="17" text="[Annika Pulju] Attack error by Kadie Kocka."/>  
+      <play number="247" serveteam="BENEDICT" point="BENEDICT" vscore="15" hscore="17" text="[Kelly DeMeulenaere] Kill by JoJo Vander Woude (from Wren Vancleave)."/>  
+      <play number="248" serveteam="BENEDICT" point="BENEDICT" vscore="16" hscore="17" text="[Kelly DeMeulenaere] Attack error by Brynn Sorenson."/>  
+      <play number="249" serveteam="BENEDICT" point="VALLEY C" vscore="16" hscore="18" text="[Kelly DeMeulenaere] Service error."/>  
+      <play number="250" text="VALLEY C subs: Gracie Schumacher; Ellie Lucas."/>  
+      <play number="251" serveteam="VALLEY C" point="BENEDICT" vscore="17" hscore="18" text="[Gracie Schumacher] Kill by JoJo Vander Woude (from Wren Vancleave)."/>  
+      <play number="252" serveteam="BENEDICT" point="BENEDICT" vscore="18" hscore="18" text="[Stefania Scomazzon] Kill by Bridget O'Sullivan (from Wren Vancleave)."/>  
+      <play number="253" serveteam="BENEDICT" point="BENEDICT" vscore="19" hscore="18" text="[Stefania Scomazzon] Attack error by Ellie Lucas."/>  
+      <play number="254" serveteam="BENEDICT" text="Timeout Valley City State."/>  
+      <play number="255" serveteam="BENEDICT" point="BENEDICT" vscore="20" hscore="18" text="[Stefania Scomazzon] Attack error by Kadie Kocka."/>  
+      <play number="256" serveteam="BENEDICT" point="BENEDICT" vscore="21" hscore="18" text="[Stefania Scomazzon] Kill by JoJo Vander Woude (from Wren Vancleave)."/>  
+      <play number="257" serveteam="BENEDICT" point="VALLEY C" vscore="21" hscore="19" text="[Stefania Scomazzon] Kill by Ellie Lucas (from Annika Pulju)."/>  
+      <play number="258" text="VALLEY C subs: Hudson Zerface."/>  
+      <play number="259" serveteam="VALLEY C" point="VALLEY C" vscore="21" hscore="20" text="[Hudson Zerface] Kill by Molly Bjornbey, block error by Wren Vancleave."/>  
+      <play number="260" serveteam="VALLEY C" point="VALLEY C" vscore="21" hscore="21" text="[Hudson Zerface] Service ace (Kelly DeMeulenaere)."/>  
+      <play number="261" serveteam="VALLEY C" point="VALLEY C" vscore="21" hscore="22" text="[Hudson Zerface] Kill by Eden Carrier (from Gracie Schumacher)."/>  
+      <play number="262" serveteam="VALLEY C" point="BENEDICT" vscore="22" hscore="22" text="[Hudson Zerface] Attack error by Eden Carrier."/>  
+      <play number="263" text="BENEDICT subs: Mya Schirk; Barbara Terra; Tatum Huff."/>  
+      <play number="264" serveteam="BENEDICT" point="VALLEY C" vscore="22" hscore="23" text="[Mya Schirk] Kill by Ellie Lucas (from Gracie Schumacher)."/>  
+      <play number="265" text="BENEDICT subs: Lainee Mustain."/>  
+      <play number="266" text="VALLEY C subs: Kinlee Sufficool."/>  
+      <play number="267" serveteam="VALLEY C" point="VALLEY C" vscore="22" hscore="24" text="[Kinlee Sufficool] Kill by Mady Geist (from Gracie Schumacher)."/>  
+      <play number="268" serveteam="BENEDICT" text="Timeout Benedictine (KS)."/>  
+      <play number="269" serveteam="VALLEY C" point="VALLEY C" vscore="22" hscore="25" text="[Kinlee Sufficool] Attack error by Barbara Terra."/> 
+    </game> 
+  </plays>  
+  <analysis/>  
+  <status complete="Y" vscore="1" hscore="3" game="4" vpoints="22" hpoints="25" serving="H" running="F"/>  
+  <leadchanges ties="10" leads="5"> 
+    <leadchange game="1" ties="3" leads="3"/>  
+    <leadchange game="2" ties="14" leads="7"/>  
+    <leadchange game="3" ties="5" leads="2"/>  
+    <leadchange game="4" ties="10" leads="5"/> 
+  </leadchanges>  
+  <breakdowns vh="V" pts="85" kill="51" ace="4" block="9" eatk="20" esvc="5" ebhe="0"> 
+    <breakdown game="1" pts="16" kill="11" ace="0" block="0" eatk="7" esvc="2" ebhe="0"/>  
+    <breakdown game="2" pts="25" kill="15" ace="1" block="5" eatk="3" esvc="1" ebhe="0"/>  
+    <breakdown game="3" pts="22" kill="16" ace="0" block="2" eatk="6" esvc="1" ebhe="0"/>  
+    <breakdown game="4" pts="22" kill="9" ace="3" block="2" eatk="4" esvc="1" ebhe="0"/> 
+  </breakdowns>  
+  <breakdowns vh="H" pts="96" kill="54" ace="10" block="5" eatk="25" esvc="11" ebhe="1"> 
+    <breakdown game="1" pts="25" kill="10" ace="4" block="1" eatk="3" esvc="4" ebhe="0"/>  
+    <breakdown game="2" pts="21" kill="16" ace="0" block="0" eatk="8" esvc="1" ebhe="1"/>  
+    <breakdown game="3" pts="25" kill="13" ace="3" block="2" eatk="5" esvc="3" ebhe="0"/>  
+    <breakdown game="4" pts="25" kill="15" ace="3" block="2" eatk="9" esvc="3" ebhe="0"/> 
+  </breakdowns> 
+</vbgame>
+
+

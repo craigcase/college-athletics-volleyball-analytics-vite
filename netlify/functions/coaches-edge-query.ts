@@ -46,18 +46,20 @@ export default async (request: Request) => {
 
     if (resolved.status !== 'resolved') {
       let rotationState = false;
-      if (resolved.reasonCode === 'requires_rotation') {
+      let contactSequence = false;
+      if (resolved.reasonCode === 'requires_rotation' || resolved.reasonCode === 'requires_contact_sequence') {
         const capability = await db
           .from('match_capabilities')
-          .select('rotation_state')
+.select('rotation_state,contact_sequence')
           .eq('match_id', matchId)
           .maybeSingle();
         assertNoError(capability.error, 'Read Coach Edge match capabilities');
         rotationState = Boolean((capability.data as any)?.rotation_state);
+        contactSequence = Boolean((capability.data as any)?.contact_sequence);
       }
       return json({
         status: resolved.status,
-        message: unsupportedQuestionMessage(resolved.reasonCode, { rotationState }),
+        message: unsupportedQuestionMessage(resolved.reasonCode, { rotationState, contactSequence }),
         scope,
       });
     }
@@ -75,7 +77,7 @@ export default async (request: Request) => {
 
     return json({
       status: 'answered',
-      answer: answer.finding ? formatFindingAnswer(answer.finding, opponentName) : formatCoachAnswer(resolved.query, answer.numbers, opponentName),
+      answer: answer.finding && resolved.query.intent !== 'metric_finding_status' ? formatFindingAnswer(answer.finding, opponentName) : formatCoachAnswer(resolved.query, answer.numbers, opponentName, answer.evidence),
       scope,
       confidence: answer.finding ? 'Evidence-backed • deterministic stored finding' : 'Evidence-backed • deterministic stored metric',
       evidence: answer.evidence,
