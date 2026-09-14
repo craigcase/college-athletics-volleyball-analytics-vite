@@ -42,7 +42,7 @@ export function validateProgramIdentityUpdate(input: unknown): ProgramIdentityVa
 
 export function validateProgramSetup(input: unknown): ProgramValidation {
   const identity = validateIdentity(input);
-  if (!identity.ok) return identity;
+  if (identity.ok === false) return { ok:false, errors: identity.errors };
   const candidate = input as Record<string, unknown>;
   const seasonYear = typeof candidate.seasonYear === 'number' ? candidate.seasonYear : Number.NaN;
   if (!Number.isInteger(seasonYear) || seasonYear < 2000 || seasonYear > 2100) return { ok:false, errors:['Season year is invalid.'] };
