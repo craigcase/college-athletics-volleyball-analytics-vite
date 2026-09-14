@@ -11,6 +11,7 @@ test('resolver maps natural rally questions to deterministic rally metrics',()=>
     ['What was our sideout percentage against Mayville?','sideout_percentage'],
     ['How often did we score the first point after siding out?','score1_percentage'],
     ['How many SOS2 opportunities did we convert?','sos2_percentage'],
+    ['How often did we win the first two serving rallies after sideout?','sos2_percentage'],
     ['How long were our best serving runs?','longest_service_run'],
     ['What was our point scored percentage?','point_scored_percentage'],
     ['What was our EPO percentage?','epo_percentage'],

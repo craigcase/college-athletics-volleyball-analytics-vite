@@ -17,6 +17,7 @@ const opponentStopWords = new Set(['state', 'university', 'college', 'the', 'and
 
 function metricFromQuestion(text: string): MetricCode | null {
   if (/\bsos\s*2\b/i.test(text)) return 'sos2_percentage';
+  if (/\bfirst\s+(?:two|2)\s+serving\s+rall(?:y|ies)\s+after\s+(?:a\s+)?sideout\b/i.test(text)) return 'sos2_percentage';
   if (/\bscore\s*1\b|first\s+(?:serving\s+)?point\s+after\s+(?:a\s+)?sideout|first\s+point\s+after\s+siding\s+out/i.test(text)) return 'score1_percentage';
   if (/\berror\s+pile[- ]?on\b|\bepo\b/i.test(text)) return 'epo_percentage';
   if (/\b(longest|best)\b[^?]*\bserv(?:e|ing)\s+runs?\b|\bserv(?:e|ing)\s+run\b[^?]*\b(longest|best)\b/i.test(text)) return 'longest_service_run';
