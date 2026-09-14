@@ -24,3 +24,14 @@ test('ambiguous same-day candidates are surfaced instead of guessed', () => {
   assert.equal(result.status, 'ambiguous');
   assert.deepEqual(result.candidateIds, ['a','b']);
 });
+
+
+test('institutional suffix differences do not block an otherwise exact opponent match', () => {
+  const result = resolveCanonicalMatch({
+    evidence: { date: '2026-09-02', opponentName: 'Mayville State', homeAway: 'away', sourceMatchId: '121' },
+    candidates: [
+      { id: 'match-mayville', date: '2026-09-02', opponentNames: ['Mayville State University'], homeAway: 'away', sourceMatchIds: ['6523'] },
+    ],
+  });
+  assert.deepEqual(result, { status: 'matched', matchId: 'match-mayville', confidence: 0.85 });
+});

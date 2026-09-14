@@ -21,13 +21,14 @@ export type MatchResolution =
   | { status: 'unmatched'; confidence: number };
 
 const normalize = (value: string | undefined) => (value ?? '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+const normalizeOpponent = (value: string | undefined) => normalize(value).replace(/\s+(university|college)$/,'').trim();
 const scoreSets = (a?: string[], b?: string[]) => !!a && !!b && a.length === b.length && a.every((v, i) => normalize(v) === normalize(b[i]));
 
 function scoreCandidate(evidence: MatchEvidenceIdentity, candidate: MatchCandidate): number {
   let score = 0;
   if (evidence.sourceMatchId && candidate.sourceMatchIds?.includes(evidence.sourceMatchId)) return 1;
   if (evidence.date && candidate.date && evidence.date === candidate.date) score += 0.35;
-  if (evidence.opponentName && candidate.opponentNames.some((name) => normalize(name) === normalize(evidence.opponentName))) score += 0.35;
+  if (evidence.opponentName && candidate.opponentNames.some((name) => normalizeOpponent(name) === normalizeOpponent(evidence.opponentName))) score += 0.35;
   if (evidence.homeAway && candidate.homeAway && evidence.homeAway !== 'unknown' && candidate.homeAway !== 'unknown' && evidence.homeAway === candidate.homeAway) score += 0.15;
   if (scoreSets(evidence.setScores, candidate.setScores)) score += 0.15;
   return Math.min(1, Number(score.toFixed(4)));
