@@ -101,3 +101,13 @@ test('deep data quality view is secondary, compact by point, and filters by set'
   assert.match(quality,/terminal_event_type/);
   assert.match(quality,/canCorrectData/);
 });
+
+test('match summary uses the configured school abbreviation instead of generic US labels', async()=>{
+  const summary=await readFile(new URL('../../src/components/MatchSummary.tsx',import.meta.url),'utf8');
+  const page=await readFile(new URL('../../src/pages/MatchPage.tsx',import.meta.url),'utf8');
+  assert.match(summary,/schoolAbbreviation/);
+  assert.match(page,/schoolAbbreviation=\{program\.schoolAbbreviation\}/);
+  assert.doesNotMatch(summary,/<small>US<\/small>/);
+  assert.doesNotMatch(summary,/\?'US':'OPP'/);
+  assert.doesNotMatch(summary,/>Us</);
+});

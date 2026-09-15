@@ -103,3 +103,36 @@ test('public Sidearm parser merges table enrichment even when structured team ob
   assert.equal(parsed.observations.find(o => o.entityType === 'set' && o.entityKey === 'us:set:1' && o.field === 'attack_attempts')?.value, 29);
   assert.equal(parsed.observations.find(o => o.entityType === 'player' && o.entityKey === 'us:player:Mady Geist' && o.field === 'kills')?.value, 13);
 });
+
+test('public Sidearm parser tolerates title rows before the live PBP header and Set # labels', async () => {
+  const { parsePublicBoxScoreHtml } = await import('../../.core-dist/lib/ingestion/match/public-boxscore.js');
+  const liveShapeHtml = `
+    <html><head><title>Volleyball vs Grand View University (IA) on 8/29/2026 - Box Score - Valley City State University</title></head><body>
+      <table>
+        <tr><th>Set</th><th colspan="4">Valley City State</th><th colspan="4">Grand View University (IA)</th></tr>
+        <tr><th></th><th>K</th><th>E</th><th>TA</th><th>Pct</th><th>K</th><th>E</th><th>TA</th><th>Pct</th></tr>
+        <tr><td>Set #1</td><td>9</td><td>7</td><td>35</td><td>.057</td><td>12</td><td>4</td><td>31</td><td>.258</td></tr>
+        <tr><td>Total</td><td>43</td><td>30</td><td>145</td><td>.090</td><td>52</td><td>16</td><td>138</td><td>.261</td></tr>
+      </table>
+      <table>
+        <tr><th colspan="5">Set #1</th></tr>
+        <tr><th>Serve</th><th>Score</th><th>VCSU</th><th>GRAND VI</th><th>Play Description</th></tr>
+        <tr><td>GRAND VI</td><td>0-1</td><td></td><td></td><td>[Grand View Server] Kill by Grand View Hitter.</td></tr>
+        <tr><td>VCSU</td><td>1-1</td><td></td><td></td><td>[VCSU Server] Kill by VCSU Hitter.</td></tr>
+      </table>
+      <table>
+        <tr><th colspan="5">Set #2</th></tr>
+        <tr><th>Serve</th><th>Score</th><th>VCSU</th><th>GRAND VI</th><th>Play Description</th></tr>
+        <tr><td>VCSU</td><td>1-0</td><td></td><td></td><td>[VCSU Server] Service ace.</td></tr>
+      </table>
+    </body></html>`;
+  const parsed = parsePublicBoxScoreHtml(liveShapeHtml, 'https://vcsuvikings.com/sports/volleyball/stats/2026/grand-view-university-iowa-/boxscore/6522', { ourTeamNames: ['Valley City State','VCSU','VALLEY C','VC'] });
+  assert.equal(parsed.observations.find(o => o.entityType === 'set' && o.entityKey === 'us:set:1' && o.field === 'kills')?.value, 9);
+  assert.equal(parsed.timeline?.scoringRecords.length, 3);
+  assert.equal(parsed.timeline?.scoringRecords[0]?.setNumber, 1);
+  assert.equal(parsed.timeline?.scoringRecords[2]?.setNumber, 2);
+  assert.deepEqual(parsed.timeline?.setFinalScores, [
+    { setNumber: 1, score: { our: 1, opponent: 1 } },
+    { setNumber: 2, score: { our: 1, opponent: 0 } },
+  ]);
+});

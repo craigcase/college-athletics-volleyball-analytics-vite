@@ -64,6 +64,11 @@ const teamMatches = (candidate: string, names: string[]) => {
   });
 };
 
+const setNumberFromLabel = (value: string | undefined) => {
+  const match = value?.trim().match(/^(?:set\s*#?\s*)?(\d+)$/i);
+  return match ? Number(match[1]) : undefined;
+};
+
 const isoDateFromUsDate = (value: string) => {
   const match = value.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
   if (!match) return undefined;
@@ -97,9 +102,8 @@ function parseSidearmTables(html: string, ourTeamNames: string[]) {
   const attackGroup = groups.find(group => group.some(row => row.length >= 3 && row[0].trim().toLowerCase() === 'set'));
   if (attackGroup) {
     for (const row of attackGroup) {
-      const label = row[0]?.trim();
-      if (!/^\d+$/.test(label ?? '') || row.length < 9) continue;
-      const setNumber = Number(label);
+      const setNumber = setNumberFromLabel(row[0]);
+      if (!setNumber || row.length < 9) continue;
       const values: Array<['us'|'opponent', number, number, number, number]> = [
         [firstKey, 1, 2, 3, 4],
         [secondKey, 5, 6, 7, 8],
@@ -188,21 +192,28 @@ function nonScoringTimelineType(rawText: string): ParsedTimelineDraft['timelineE
   return undefined;
 }
 
-function parsePublicTimeline(html: string, teamOrder: TeamOrder | undefined, ourTeamNames: string[]): ParsedTimelineDraft | undefined {
-  const groups = tableGroups(html);
-  const pbpGroups = groups.filter(rows => {
-    const header = rows[0]?.map(x => x.trim().toLowerCase()) ?? [];
+function publicTimelineHeaderIndex(rows: string[][]) {
+  return rows.findIndex(row => {
+    const header = row.map(x => x.trim().toLowerCase());
     return header.includes('serve') && header.includes('score') && header.includes('play description');
   });
+}
+
+function parsePublicTimeline(html: string, teamOrder: TeamOrder | undefined, ourTeamNames: string[]): ParsedTimelineDraft | undefined {
+  const groups = tableGroups(html);
+  const pbpGroups = groups
+    .map(rows => ({ rows, headerIndex: publicTimelineHeaderIndex(rows) }))
+    .filter(group => group.headerIndex >= 0);
   if (!pbpGroups.length) return undefined;
 
   const scoringRecords: ParsedTimelineDraft['scoringRecords'] = [];
   const timelineEvents: ParsedTimelineDraft['timelineEvents'] = [];
   const setFinalScores: ParsedTimelineDraft['setFinalScores'] = [];
 
-  pbpGroups.forEach((rows, setIndex) => {
-    const setNumber = setIndex + 1;
-    const header = rows[0].map(x => x.trim());
+  pbpGroups.forEach(({ rows, headerIndex }, setIndex) => {
+    const explicitSetNumber = rows.slice(0, headerIndex).flat().map(setNumberFromLabel).find((value): value is number => value !== undefined);
+    const setNumber = explicitSetNumber ?? setIndex + 1;
+    const header = rows[headerIndex].map(x => x.trim());
     const serveIndex = header.findIndex(x => x.toLowerCase() === 'serve');
     const scoreIndex = header.findIndex(x => x.toLowerCase() === 'score');
     const descIndex = header.findIndex(x => x.toLowerCase() === 'play description');
@@ -221,7 +232,7 @@ function parsePublicTimeline(html: string, teamOrder: TeamOrder | undefined, our
 
     let prior = { our: 0, opponent: 0 };
     let lastScore = prior;
-    for (let rowIndex = 1; rowIndex < rows.length; rowIndex += 1) {
+    for (let rowIndex = headerIndex + 1; rowIndex < rows.length; rowIndex += 1) {
       const row = rows[rowIndex];
       const rawText = descIndex >= 0 ? (row[descIndex] ?? '').trim() : '';
       const sourceOrdinal = rowIndex;

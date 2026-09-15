@@ -13,7 +13,7 @@ import { getAdminClient } from '../../db/client.js';
 import { assertNoError } from '../../db/supabase-utils';
 import { id, nowIso } from '../ids';
 
-const PARSER_VERSION='ingestion-2.1.0';
+const PARSER_VERSION='ingestion-2.1.1';
 export const MATCH_PARSER_VERSION=PARSER_VERSION;
 
 export async function finalizeMatchImport(input:{

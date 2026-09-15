@@ -1,5 +1,12 @@
 # College Athletics Consulting — Volleyball Analytics
 
+## v0.7.2.1 Sidearm PBP hotfix
+
+- Reads live Sidearm play-by-play tables even when title rows appear before the Serve / Score / Play Description header.
+- Accepts live `Set #1`-style set labels for set-level evidence.
+- Uses the configured school abbreviation (for example, VCSU) instead of generic `US` labels in match summary comparisons.
+- No additional Supabase migration is required beyond the v0.7.2 migration.
+
 ## v0.7.2 Import review and evidence quality
 
 - Adds an immediate **Match Import Review** whenever a source cannot be attached to a canonical match safely. The coach sees the imported evidence, the best schedule candidate, and explicit `Confirm Match`, `Choose Another Match`, or secondary `This Match Is Missing From the Schedule` actions.
