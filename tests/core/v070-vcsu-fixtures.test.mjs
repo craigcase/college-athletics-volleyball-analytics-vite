@@ -4,6 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { parseMatchSource } from '../../.core-dist/lib/ingestion/match/parse-source.js';
 import { buildCanonicalTimeline } from '../../.core-dist/lib/ingestion/match/timeline-builder.js';
 import { calculateRallyAnalytics } from '../../.core-dist/lib/analytics/rally.js';
+import { auditTimelineAgainstTotals } from '../../.core-dist/lib/ingestion/reconciliation/audit.js';
 
 const fixtureDir = 'tests/fixtures/v070/vcsu';
 const ourTeamNames = ['Valley City State', 'Valley City', 'VCSU', 'VCS', 'VC'];
@@ -208,4 +209,32 @@ test('Mount Mercy score conflict suppresses match-level rally analytics rather t
     setScoreIntegrity: canonical.setScoreIntegrity,
   });
   assert.deepEqual(metrics, []);
+});
+
+
+test('Benedictine Presto control match freezes independent rally percentage baselines', async () => {
+  const { canonical } = await parseFixture(fixtures.find(f => f.file === '08-28-26BenedictineCollegeGame.xml'));
+  const actual = calculateRallyAnalytics({ matchId: 'benedictine', canonicalRevision: 1, rallies: canonical.rallies });
+  const pick = (subject, metric) => {
+    const row = actual.find(x => x.subject === subject && x.metric === metric);
+    return [row?.numerator, row?.denominator];
+  };
+  assert.deepEqual(pick('our_team', 'sideout_percentage'), [47, 86]);
+  assert.deepEqual(pick('our_team', 'point_scored_percentage'), [49, 95]);
+  assert.deepEqual(pick('our_team', 'score1_percentage'), [28, 46]);
+  assert.deepEqual(pick('our_team', 'sos2_percentage'), [14, 46]);
+  assert.deepEqual(pick('opponent', 'sideout_percentage'), [46, 95]);
+  assert.deepEqual(pick('opponent', 'point_scored_percentage'), [39, 86]);
+  assert.deepEqual(pick('opponent', 'score1_percentage'), [22, 46]);
+  assert.deepEqual(pick('opponent', 'sos2_percentage'), [10, 46]);
+});
+
+test('College of Saint Mary gap remains unresolved when complete box totals do not uniquely identify its missing rally detail', async () => {
+  const { parsed, canonical } = await parseFixture(fixtures.find(f => f.file === '08-21-26CSMGame.xml'));
+  const audit = auditTimelineAgainstTotals({ timeline: canonical, observations: parsed.observations });
+  assert.equal(audit.reconciledCount, 0);
+  assert.equal(audit.unresolvedCount, 1);
+  const gap = audit.timeline.rallies.find(r => r.evidenceStatus === 'gap_placeholder');
+  assert.ok(gap);
+  assert.equal(gap.terminal, undefined);
 });

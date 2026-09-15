@@ -14,12 +14,20 @@ export type TerminalEventType =
   | 'penalty_point'
   | 'unknown';
 
+export type TerminalRelatedEvent = {
+  type: TerminalEventType;
+  teamSide?: TeamSide;
+  playerSourceKey?: string;
+};
+
 export type TerminalEvent = {
   type: TerminalEventType;
   teamSide?: TeamSide;
   playerSourceKey?: string;
   assistSourceKeys?: string[];
   blockerSourceKeys?: string[];
+  receiverSourceKey?: string;
+  relatedEvents?: TerminalRelatedEvent[];
   rawText: string;
 };
 
@@ -79,7 +87,7 @@ export type CanonicalRallyDraft = {
   terminal?: TerminalEvent;
   pathway: RallyPathway;
   attribution: PointAttribution;
-  evidenceStatus: 'supported' | 'gap_placeholder' | 'ambiguous';
+  evidenceStatus: 'supported' | 'gap_placeholder' | 'ambiguous' | 'uniquely_reconciled' | 'staff_confirmed';
   sourceLinks: Array<{ sourceKey: string; sourceOrdinal: number; confidence: number }>;
 };
 

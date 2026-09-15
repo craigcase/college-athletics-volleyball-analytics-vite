@@ -1,3 +1,32 @@
+# Migration Notes — v0.7.2
+
+## Import review and evidence quality
+
+Apply `supabase/migrations/202609140001_import_evidence_quality.sql` **after** `202609130002_rally_analytics.sql` before testing v0.7.2. The migration is additive and preserves existing raw sources, canonical match/rally data, analytics, authentication, and user-scoped RLS.
+
+The migration adds:
+
+- `program_memberships.can_correct_data` for explicit coach/admin data-correction permission; program owners are enabled by default;
+- `program_opponent_aliases` for program-specific, auditable trusted opponent-name confirmations;
+- `canonical_override_history` for append-only correction/undo history;
+- expanded `match_rallies.evidence_status` values supporting `uniquely_reconciled` and `staff_confirmed`.
+
+### Import and evidence behavior
+
+- Match-identity ambiguity is blocking and now enters **Match Import Review** immediately.
+- Confirmed opponent-name variants are stored as program-specific trusted aliases; they are not global replacements.
+- One program-owned Sidearm URL is parsed for maximum safe evidence, including team/player totals, set attack totals, substitutions, timeouts, starter/on-court statements, and explicit terminal attribution when present.
+- PBP is audited against official totals. A missing fact is filled only when exactly one mathematical reconciliation is possible. Otherwise the unknown remains local to the affected metric.
+- Every completed import returns an **Import Quality Summary**. Match pages expose a secondary compact **Data Quality & Match Timeline** for inspection.
+- Authorized corrections are overlays above immutable raw source evidence, are reversible, and trigger deterministic recalculation. Optional correction reasons are preserved in audit history.
+
+### Acceptance references
+
+- Mayville remains the v0.7.1 regression for canonical rally analytics and Coach's Edge SOS2.
+- Benedictine is the clean Presto/control case and Match Import Review/trusted-alias acceptance case.
+- College of Saint Mary exercises a localized unresolved PBP gap.
+- Mount Mercy remains the structural set-score contradiction/fail-safe case.
+
 # Migration Notes — v0.7.0
 
 ## Rally analytics foundation

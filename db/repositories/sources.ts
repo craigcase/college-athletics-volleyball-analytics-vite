@@ -50,3 +50,21 @@ export async function updateSourceParserVersion(sourceArtifactId:string,parserVe
   const result=await db.from('source_artifacts').update({parser_version:parserVersion}).eq('id',sourceArtifactId);
   assertNoError(result.error,'Update source parser version');
 }
+
+export async function loadStoredSource(input:{programId:string;sourceArtifactId:string}):Promise<{
+  id:string;programId:string;lineageId:string;sourceFamily:SourceFamily;sourceUrl?:string;fileName?:string;contentType?:string;parserVersion:string;bytes:Uint8Array;
+}>{
+  const db=getAdminClient();
+  const result=await db.from('source_artifacts').select('id,program_id,lineage_id,source_family,source_url,original_filename,content_type,parser_version,object_key').eq('id',input.sourceArtifactId).eq('program_id',input.programId).maybeSingle();
+  assertNoError(result.error,'Read stored source artifact');
+  const row=result.data as any;
+  if(!row)throw new Error('SOURCE_ARTIFACT_NOT_FOUND');
+  const downloaded=await db.storage.from(getEvidenceBucket()).download(row.object_key);
+  assertNoError(downloaded.error,'Load preserved source bytes');
+  if(!downloaded.data)throw new Error('SOURCE_BYTES_NOT_FOUND');
+  return {
+    id:row.id,programId:row.program_id,lineageId:row.lineage_id,sourceFamily:row.source_family as SourceFamily,
+    ...(row.source_url?{sourceUrl:row.source_url}:{}),...(row.original_filename?{fileName:row.original_filename}:{}),...(row.content_type?{contentType:row.content_type}:{}),
+    parserVersion:row.parser_version??'unknown',bytes:new Uint8Array(await downloaded.data.arrayBuffer()),
+  };
+}

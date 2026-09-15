@@ -1,5 +1,17 @@
 # College Athletics Consulting — Volleyball Analytics
 
+## v0.7.2 Import review and evidence quality
+
+- Adds an immediate **Match Import Review** whenever a source cannot be attached to a canonical match safely. The coach sees the imported evidence, the best schedule candidate, and explicit `Confirm Match`, `Choose Another Match`, or secondary `This Match Is Missing From the Schedule` actions.
+- Saves coach/admin-confirmed opponent labels as **program-specific trusted aliases** so future imports can resolve the same naming variant without broad global string rules.
+- Expands the program-owned public Sidearm URL into a maximum-safe evidence source: team and player match totals, set attack totals, scoring rallies, substitutions, timeouts, starter/on-court statements, and explicit terminal attribution are preserved when the page exposes them.
+- Audits PBP against official box/set/player totals. A missing detail is derived only when the available constraints leave exactly one mathematical solution; otherwise the uncertainty remains local to only the analytics that require that detail.
+- Shows an **Import Quality Summary** after every completed import and adds a secondary **Data Quality & Match Timeline** view, compacted by point with an `All Sets | Set 1 | ...` filter.
+- Adds reversible coach/admin staff corrections with optional reason, append-only audit history, targeted deterministic recalculation, and immutable raw source evidence.
+- Keeps coach notes/highlights and Film Room sharing behavior deferred to v0.7.3 so v0.7.2 can be stress-tested as a data-trust release first.
+
+**Database update required:** apply `supabase/migrations/202609140001_import_evidence_quality.sql` **after** `202609130002_rally_analytics.sql` before testing v0.7.2.
+
 ## v0.7.0 Rally analytics stress-test engine
 
 - Adds source-specific play-by-play ingestion for **PrestoSports** and **Volleyball LiveStats In-Arena Tool** XML plus public Sidearm play-by-play.
@@ -67,8 +79,9 @@ The existing database was created with fail-closed RLS and no browser/user polic
 2. `supabase/migrations/202609120001_user_scoped_rls.sql` — introduced in v0.6.0 and still required.
 3. `supabase/migrations/202609130001_program_identity_settings.sql` — introduced in v0.6.6; adds full university name and the expanded authenticated program-creation contract.
 4. `supabase/migrations/202609130002_rally_analytics.sql` — introduced in v0.7.0; adds canonical rally/timeline/source-link/rotation tables, rally capability fields, set-level rally-score integrity fields, grants, and user-scoped RLS.
+5. `supabase/migrations/202609140001_import_evidence_quality.sql` — introduced in v0.7.2; adds data-correction permission, trusted opponent aliases, reversible override history, and expanded rally evidence-status support.
 
-The RLS migration adds user-scoped RLS, Storage policies, and authenticated program bootstrap. The v0.6.6 identity migration extends that bootstrap without changing the authorization model. The v0.7.0 migration is additive and keeps existing box-score evidence and analytics intact.
+The RLS migration adds user-scoped RLS, Storage policies, and authenticated program bootstrap. The v0.6.6 identity migration extends that bootstrap without changing the authorization model. The v0.7.0 migration adds the canonical rally foundation. The v0.7.2 migration adds trusted identity confirmation and correction/audit infrastructure without changing the raw-source preservation model.
 
 ## Architecture
 

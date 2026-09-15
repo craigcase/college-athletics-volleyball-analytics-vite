@@ -7,6 +7,9 @@ import rosterImport from '../netlify/functions/roster-import.js';
 import scheduleImport from '../netlify/functions/schedule-import.js';
 import matchImportUrl from '../netlify/functions/match-import-url.js';
 import matchImportFile from '../netlify/functions/match-import-file.js';
+import matchImportReview from '../netlify/functions/match-import-review.js';
+import matchDataQuality from '../netlify/functions/match-data-quality.js';
+import matchDataCorrection from '../netlify/functions/match-data-correction.js';
 import coachesEdgeQuery from '../netlify/functions/coaches-edge-query.js';
 import roster from '../netlify/functions/roster.js';
 import schedule from '../netlify/functions/schedule.js';
@@ -33,6 +36,9 @@ const handlers: Record<string, Handler> = {
   'schedule-import': scheduleImport,
   'match-import-url': matchImportUrl,
   'match-import-file': matchImportFile,
+  'match-import-review': matchImportReview,
+  'match-data-quality': matchDataQuality,
+  'match-data-correction': matchDataCorrection,
   'coaches-edge-query': coachesEdgeQuery,
   'roster': roster,
   'schedule': schedule,

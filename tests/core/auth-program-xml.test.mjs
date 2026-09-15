@@ -99,3 +99,10 @@ test('program identity validation requires a full university name and valid colo
     schoolName: 'Valley City State University', schoolAbbreviation:'VCSU', teamName:'VIKINGS', primaryColor:'#18315', secondaryColor:'#ffffff', accentColor:'#b49a63'
   }).ok, false);
 });
+
+
+test('program repository exposes explicit data-correction capability in program context', async () => {
+  const source = await (await import('node:fs/promises')).readFile('db/repositories/programs.ts', 'utf8');
+  assert.match(source, /canCorrectData:\s*boolean/);
+  assert.match(source, /can_correct_data/);
+});

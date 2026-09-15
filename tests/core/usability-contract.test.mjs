@@ -66,3 +66,38 @@ test('match summary exposes evidence-gated rally analytics without calculating t
   assert.match(page,/summary\.rallyAnalytics/);
   assert.doesNotMatch(page,/calculateRallyAnalytics/);
 });
+
+test('match import review blocks ambiguous completion and exposes confirmation, alternate match, and missing schedule actions', async()=>{
+  const drawer=await readFile(new URL('../../src/components/MatchImportDrawer.tsx',import.meta.url),'utf8');
+  const review=await readFile(new URL('../../src/components/MatchImportReview.tsx',import.meta.url),'utf8').catch(()=> '');
+  const quality=await readFile(new URL('../../src/components/ImportQualitySummary.tsx',import.meta.url),'utf8').catch(()=> '');
+  assert.match(drawer,/needs_review/);
+  assert.match(drawer,/MatchImportReview/);
+  assert.match(review,/Match Import Review/);
+  assert.match(review,/Confirm Match/);
+  assert.match(review,/Choose Another Match/);
+  assert.match(review,/This Match Is Missing From the Schedule/);
+  assert.match(review,/Imported source/);
+  assert.match(review,/Likely scheduled match/);
+  assert.match(quality,/Import complete/);
+  assert.match(quality,/Data level/);
+  assert.match(quality,/rallies processed/i);
+  assert.match(quality,/View Data Quality/);
+});
+
+test('deep data quality view is secondary, compact by point, and filters by set', async()=>{
+  const page=await readFile(new URL('../../src/pages/MatchPage.tsx',import.meta.url),'utf8');
+  const quality=await readFile(new URL('../../src/components/MatchDataQuality.tsx',import.meta.url),'utf8').catch(()=> '');
+  assert.match(page,/Data Quality/);
+  assert.match(page,/MatchDataQuality/);
+  assert.match(quality,/All Sets/);
+  assert.match(quality,/Set \{setNumber\}/);
+  assert.match(quality,/Data Issue/);
+  assert.match(quality,/Correct Play/);
+  assert.match(quality,/Optional reason/);
+  assert.match(quality,/Undo correction/);
+  assert.match(quality,/activeOverrideFields/);
+  assert.match(quality,/activeOverrideFields\.includes\('terminal_event_type'\)/);
+  assert.match(quality,/terminal_event_type/);
+  assert.match(quality,/canCorrectData/);
+});

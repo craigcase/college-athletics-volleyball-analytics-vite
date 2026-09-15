@@ -8,19 +8,20 @@ export type ProgramContext = {
   programId: string; seasonId: string; seasonYear: number; teamId: string;
   schoolName: string | null; schoolAbbreviation: string; teamName: string; primaryColor: string; secondaryColor: string; accentColor: string;
   role: 'owner'|'staff'|'player';
+  canCorrectData: boolean;
 };
 
-type Membership = { program_id:string; role:'owner'|'staff'|'player' };
+type Membership = { program_id:string; role:'owner'|'staff'|'player'; can_correct_data?:boolean|null };
 
 async function membershipForUser(user: CurrentUser | string): Promise<Membership | null> {
   const db=getAdminClient();
   if(typeof user!=='string' && user.id){
-    const byId=await db.from('program_memberships').select('program_id,role').eq('user_external_id',user.id).eq('is_active',true).limit(1).maybeSingle();
+    const byId=await db.from('program_memberships').select('program_id,role,can_correct_data').eq('user_external_id',user.id).eq('is_active',true).limit(1).maybeSingle();
     assertNoError(byId.error,'Read program membership');
     if(byId.data)return byId.data as Membership;
   }
   const email=typeof user==='string'?user:user.email;
-  const byEmail=await db.from('program_memberships').select('program_id,role').ilike('user_email',email).eq('is_active',true).limit(1).maybeSingle();
+  const byEmail=await db.from('program_memberships').select('program_id,role,can_correct_data').ilike('user_email',email).eq('is_active',true).limit(1).maybeSingle();
   assertNoError(byEmail.error,'Read program membership');
   return (byEmail.data as Membership|null) ?? null;
 }
@@ -37,7 +38,7 @@ export async function getActiveProgramForUser(user: CurrentUser | string): Promi
   assertNoError(seasonResult.error,'Read active season');
   const s=seasonResult.data as any;
   if(!s)return null;
-  return {programId:p.id,seasonId:s.id,seasonYear:s.year,teamId:p.team_id,schoolName:p.school_name??null,schoolAbbreviation:p.school_abbreviation,teamName:p.team_name,primaryColor:p.primary_color,secondaryColor:p.secondary_color,accentColor:p.accent_color,role:membership.role};
+  return {programId:p.id,seasonId:s.id,seasonYear:s.year,teamId:p.team_id,schoolName:p.school_name??null,schoolAbbreviation:p.school_abbreviation,teamName:p.team_name,primaryColor:p.primary_color,secondaryColor:p.secondary_color,accentColor:p.accent_color,role:membership.role,canCorrectData:membership.role==='owner'||Boolean(membership.can_correct_data)};
 }
 
 export async function createProgram(input: ProgramSetupInput, user: CurrentUser): Promise<ProgramContext> {
@@ -72,6 +73,7 @@ export async function createProgram(input: ProgramSetupInput, user: CurrentUser)
       secondaryColor: String(row.secondaryColor),
       accentColor: String(row.accentColor),
       role: 'owner',
+      canCorrectData: true,
     };
   }
 
@@ -98,7 +100,7 @@ export async function createProgram(input: ProgramSetupInput, user: CurrentUser)
     await db.from('teams').delete().eq('id',teamId);
     throw error;
   }
-  return {programId,seasonId,seasonYear:input.seasonYear,teamId,schoolName:input.schoolName,schoolAbbreviation:input.schoolAbbreviation,teamName:input.teamName,primaryColor:input.primaryColor,secondaryColor:input.secondaryColor,accentColor:input.accentColor,role:'owner'};
+  return {programId,seasonId,seasonYear:input.seasonYear,teamId,schoolName:input.schoolName,schoolAbbreviation:input.schoolAbbreviation,teamName:input.teamName,primaryColor:input.primaryColor,secondaryColor:input.secondaryColor,accentColor:input.accentColor,role:'owner',canCorrectData:true};
 }
 
 export async function updateProgramIdentity(input: ProgramIdentityInput, user: CurrentUser): Promise<ProgramContext> {

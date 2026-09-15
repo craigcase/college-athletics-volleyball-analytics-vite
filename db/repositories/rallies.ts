@@ -3,6 +3,7 @@ import { assertNoError } from '../supabase-utils';
 import { nowIso } from '../../lib/ids';
 import type { CanonicalRallyDraft, CanonicalTimelineDraft, SetScoreIntegrity, TeamSide, TerminalEvent } from '../../lib/ingestion/match/timeline-types';
 import type { RotationObservation } from '../../lib/ingestion/match/rotation-state';
+import { applyRallyOverrides, type ActiveRallyOverride } from '../../lib/ingestion/reconciliation/overrides';
 
 const rallyId = (matchId:string, revision:number, setNumber:number, rallyNumber:number) =>
   `rally_${matchId}_${revision}_${setNumber}_${rallyNumber}`;
@@ -105,7 +106,7 @@ export async function replaceCanonicalTimeline(input:{
     source_record_key:link.sourceKey,
     source_ordinal:link.sourceOrdinal,
     alignment_confidence:link.confidence,
-    reconciliation_status:rally.evidenceStatus==='ambiguous'?'ambiguous':'aligned',
+    reconciliation_status:rally.evidenceStatus==='ambiguous'?'ambiguous':rally.evidenceStatus==='uniquely_reconciled'?'reconciled':'aligned',
     source_score_json:JSON.stringify(rally.scoreAfter),
     created_at:now,
   })));
@@ -134,15 +135,18 @@ export async function replaceCanonicalTimeline(input:{
 
   return {
     rallyCount:input.timeline.rallies.length,
-    placeholderCount:input.timeline.rallies.filter(r=>r.evidenceStatus!=='supported').length,
+    placeholderCount:input.timeline.rallies.filter(r=>r.evidenceStatus==='gap_placeholder'||r.evidenceStatus==='ambiguous').length,
   };
 }
 
 export async function loadCanonicalRallies(matchId:string,canonicalRevision:number):Promise<CanonicalRallyDraft[]>{
   const db=getAdminClient();
-  const result=await db.from('match_rallies').select('*').eq('match_id',matchId).eq('canonical_revision',canonicalRevision).order('set_number',{ascending:true}).order('rally_number',{ascending:true});
-  assertNoError(result.error,'Load canonical rallies');
-  return ((result.data??[]) as any[]).map(row=>{
+  const [result,matchResult]=await Promise.all([
+    db.from('match_rallies').select('*').eq('match_id',matchId).eq('canonical_revision',canonicalRevision).order('set_number',{ascending:true}).order('rally_number',{ascending:true}),
+    db.from('matches').select('program_id').eq('id',matchId).maybeSingle(),
+  ]);
+  assertNoError(result.error,'Load canonical rallies');assertNoError(matchResult.error,'Load rally match program');
+  const rallies=((result.data??[]) as any[]).map(row=>{
     let terminal:TerminalEvent|undefined;
     if(row.terminal_json){
       try{ terminal=typeof row.terminal_json==='string'?JSON.parse(row.terminal_json):row.terminal_json; }catch{ terminal=undefined; }
@@ -163,6 +167,12 @@ export async function loadCanonicalRallies(matchId:string,canonicalRevision:numb
       sourceLinks:[],
     } as CanonicalRallyDraft;
   });
+  const programId=(matchResult.data as any)?.program_id;
+  if(!programId)return rallies;
+  const overridesResult=await db.from('canonical_overrides').select('entity_id,field_name,canonical_value_json').eq('program_id',programId).eq('entity_type','match_rally').like('entity_id',`${matchId}:%`);
+  assertNoError(overridesResult.error,'Load active rally overrides');
+  const overrides:ActiveRallyOverride[]=((overridesResult.data??[]) as any[]).flatMap(row=>{try{return[{entityId:String(row.entity_id),fieldName:row.field_name,value:typeof row.canonical_value_json==='string'?JSON.parse(row.canonical_value_json):row.canonical_value_json} as ActiveRallyOverride];}catch{return[];}});
+  return applyRallyOverrides(rallies,overrides,matchId);
 }
 
 

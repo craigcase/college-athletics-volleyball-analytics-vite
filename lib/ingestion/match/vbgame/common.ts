@@ -151,10 +151,13 @@ export function classifyTerminalEvent(
   let playerSourceKey: string | undefined;
   let assistSourceKeys: string[] | undefined;
   let blockerSourceKeys: string[] | undefined;
+  let receiverSourceKey: string | undefined;
+  const relatedEvents: NonNullable<TerminalEvent['relatedEvents']> = [];
 
   if (/Service ace/i.test(rawText)) {
     type = 'service_ace'; teamSide = pointWinner;
     playerSourceKey = cleanPlayer(rawText.match(/^\[([^\]]+)\]/)?.[1]);
+    receiverSourceKey = cleanPlayer(rawText.match(/Service ace\s*\(([^)]+)\)/i)?.[1]);
   } else if (/Service error/i.test(rawText)) {
     type = 'service_error'; teamSide = servingSide;
     playerSourceKey = cleanPlayer(rawText.match(/^\[([^\]]+)\]/)?.[1]);
@@ -183,7 +186,21 @@ export function classifyTerminalEvent(
     type = 'penalty_point'; teamSide = pointWinner;
   }
 
-  return { type, ...(teamSide ? { teamSide } : {}), ...(playerSourceKey ? { playerSourceKey } : {}), ...(assistSourceKeys?.length ? { assistSourceKeys } : {}), ...(blockerSourceKeys?.length ? { blockerSourceKeys } : {}), rawText };
+  const blockErrorPlayer = cleanPlayer(rawText.match(/block(?:ing)? error by ([^.]+)/i)?.[1]);
+  if (blockErrorPlayer && type !== 'blocking_error') {
+    relatedEvents.push({ type: 'blocking_error', teamSide: opposite(pointWinner), playerSourceKey: blockErrorPlayer });
+  }
+
+  return {
+    type,
+    ...(teamSide ? { teamSide } : {}),
+    ...(playerSourceKey ? { playerSourceKey } : {}),
+    ...(assistSourceKeys?.length ? { assistSourceKeys } : {}),
+    ...(blockerSourceKeys?.length ? { blockerSourceKeys } : {}),
+    ...(receiverSourceKey ? { receiverSourceKey } : {}),
+    ...(relatedEvents.length ? { relatedEvents } : {}),
+    rawText,
+  };
 }
 
 export function terminalAttribution(terminal?: TerminalEvent): PointAttribution {

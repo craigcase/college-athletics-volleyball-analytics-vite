@@ -77,7 +77,8 @@ function pushTeamValue(observations: EvidenceObservation[], entityKey: 'us' | 'o
 
 type TeamOrder = [{ name: string; key: 'us'|'opponent' }, { name: string; key: 'us'|'opponent' }];
 function parseSidearmTables(html: string, ourTeamNames: string[]) {
-  const rows = tableRows(html);
+  const groups = tableGroups(html);
+  const rows = groups.flat();
   const teamHeader = rows.find(row => row.length >= 3 && row[0].trim().toLowerCase() === 'set');
   if (!teamHeader) return { observations: [] as EvidenceObservation[] };
 
@@ -91,8 +92,32 @@ function parseSidearmTables(html: string, ourTeamNames: string[]) {
   const secondKey: 'us' | 'opponent' = firstIsUs ? 'opponent' : 'us';
   const opponentName = firstIsUs ? secondTeam : firstTeam;
   const observations: EvidenceObservation[] = [];
+  const teamOrder = [{ name: firstTeam, key: firstKey }, { name: secondTeam, key: secondKey }] as TeamOrder;
 
-  const totalRow = rows.find(row => row.length >= 9 && row[0].trim().toLowerCase() === 'total');
+  const attackGroup = groups.find(group => group.some(row => row.length >= 3 && row[0].trim().toLowerCase() === 'set'));
+  if (attackGroup) {
+    for (const row of attackGroup) {
+      const label = row[0]?.trim();
+      if (!/^\d+$/.test(label ?? '') || row.length < 9) continue;
+      const setNumber = Number(label);
+      const values: Array<['us'|'opponent', number, number, number, number]> = [
+        [firstKey, 1, 2, 3, 4],
+        [secondKey, 5, 6, 7, 8],
+      ];
+      for (const [key, kIdx, eIdx, taIdx, pctIdx] of values) {
+        const fields: Array<[string, string | undefined]> = [
+          ['kills', row[kIdx]], ['attack_errors', row[eIdx]], ['attack_attempts', row[taIdx]], ['hitting_percentage', row[pctIdx]],
+        ];
+        for (const [field, raw] of fields) {
+          const value = number(raw);
+          if (value !== undefined) observations.push({ entityType: 'set', entityKey: `${key}:set:${setNumber}`, field, value, setNumber });
+        }
+      }
+    }
+  }
+
+  const totalRow = attackGroup?.find(row => row.length >= 9 && row[0].trim().toLowerCase() === 'total')
+    ?? rows.find(row => row.length >= 9 && row[0].trim().toLowerCase() === 'total');
   if (totalRow) {
     pushTeamValue(observations, firstKey, 'kills', totalRow[1]);
     pushTeamValue(observations, firstKey, 'attack_errors', totalRow[2]);
@@ -102,7 +127,7 @@ function parseSidearmTables(html: string, ourTeamNames: string[]) {
     pushTeamValue(observations, secondKey, 'attack_attempts', totalRow[7]);
   }
 
-  const comparisonFields: Record<string, string> = { kills: 'kills', aces: 'aces', 'service errors': 'service_errors', blocks: 'blocks', assists: 'assists', digs: 'digs' };
+  const comparisonFields: Record<string, string> = { kills: 'kills', aces: 'aces', 'service errors': 'service_errors', blocks: 'blocks', assists: 'assists', digs: 'digs', 'reception errors': 'reception_errors' };
   for (const row of rows) {
     if (row.length < 3) continue;
     const field = comparisonFields[row[0].trim().toLowerCase()];
@@ -111,10 +136,57 @@ function parseSidearmTables(html: string, ourTeamNames: string[]) {
     if (!observations.some(item => item.entityKey === secondKey && item.field === field)) pushTeamValue(observations, secondKey, field, row[2]);
   }
 
-  return { observations, opponentName, teamOrder: [{ name: firstTeam, key: firstKey }, { name: secondTeam, key: secondKey }] as TeamOrder };
+  const playerGroups = groups.filter(group => {
+    const header = group[0]?.map(value => value.trim().toLowerCase()) ?? [];
+    return header.length >= 18 && header.includes('player') && header.includes('sp') && header.includes('ta') && header.includes('bhe') && header.includes('re');
+  });
+  const playerFields: Array<[number, string]> = [
+    [2, 'sets_played'], [3, 'kills'], [4, 'attack_errors'], [5, 'attack_attempts'], [6, 'hitting_percentage'],
+    [7, 'assists'], [8, 'setting_errors'], [9, 'aces'], [10, 'service_errors'], [12, 'block_solos'], [13, 'block_assists'],
+    [14, 'block_errors'], [15, 'digs'], [16, 'ball_handling_errors'], [17, 'reception_errors'], [18, 'points'],
+  ];
+  playerGroups.slice(0, 2).forEach((group, groupIndex) => {
+    const team = teamOrder[groupIndex];
+    if (!team) return;
+    for (const row of group.slice(1)) {
+      const playerName = row[1]?.trim();
+      if (!playerName || /^player$/i.test(playerName) || row.length < 18) continue;
+      const entityKey = `${team.key}:player:${playerName}`;
+      for (const [index, field] of playerFields) {
+        const value = number(row[index]);
+        if (value !== undefined) observations.push({ entityType: 'player', entityKey, field, value });
+      }
+      const jersey = row[0]?.trim();
+      if (jersey) observations.push({ entityType: 'player', entityKey, field: 'jersey_number', value: jersey });
+      observations.push({ entityType: 'player', entityKey, field: 'name', value: playerName });
+      observations.push({ entityType: 'player', entityKey, field: 'team_side', value: team.key });
+    }
+  });
+
+  return { observations, opponentName, teamOrder };
+}
+function toTeamSide(key: 'us'|'opponent'): TeamSide { return key === 'us' ? 'our_team' : 'opponent'; }
+
+function timelineTeamSide(rawText: string, teamOrder: TeamOrder | undefined, ourTeamNames: string[]): TeamSide | undefined {
+  const afterOnCourt = rawText.match(/\bon court for\s+([^:]+):/i)?.[1]?.trim();
+  const beforeLabel = rawText.match(/^(.+?)\s+(?:subs?:|starters?:)/i)?.[1]?.trim();
+  const subject = afterOnCourt ?? beforeLabel ?? rawText;
+  if (teamOrder) {
+    for (const team of teamOrder) if (teamMatches(subject, [team.name])) return toTeamSide(team.key);
+  }
+  if (teamMatches(subject, ourTeamNames)) return 'our_team';
+  return undefined;
 }
 
-function toTeamSide(key: 'us'|'opponent'): TeamSide { return key === 'us' ? 'our_team' : 'opponent'; }
+function nonScoringTimelineType(rawText: string): ParsedTimelineDraft['timelineEvents'][number]['type'] | undefined {
+  if (/timeout/i.test(rawText)) return 'timeout';
+  if (/\bsubs?:/i.test(rawText)) return 'substitution';
+  if (/\bstarters?:|\bon court for\b/i.test(rawText)) return 'starter_announcement';
+  if (/challenge/i.test(rawText)) return 'challenge';
+  if (/penalty/i.test(rawText)) return 'penalty';
+  if (/official|score correction|adjustment/i.test(rawText)) return 'official_adjustment';
+  return undefined;
+}
 
 function parsePublicTimeline(html: string, teamOrder: TeamOrder | undefined, ourTeamNames: string[]): ParsedTimelineDraft | undefined {
   const groups = tableGroups(html);
@@ -157,7 +229,9 @@ function parsePublicTimeline(html: string, teamOrder: TeamOrder | undefined, our
       const scoreText = scoreIndex >= 0 ? row[scoreIndex] ?? '' : '';
       const scoreMatch = scoreText.match(/^(\d+)\s*-\s*(\d+)$/);
       if (!scoreMatch) {
-        if (/timeout/i.test(rawText)) timelineEvents.push({ setNumber, sourceKey, sourceOrdinal, type: 'timeout', rawText });
+        const type = nonScoringTimelineType(rawText);
+        const teamSide = timelineTeamSide(rawText, teamOrder, ourTeamNames);
+        if (type) timelineEvents.push({ setNumber, sourceKey, sourceOrdinal, type, ...(teamSide ? { teamSide } : {}), rawText });
         continue;
       }
       const first = Number(scoreMatch[1]); const second = Number(scoreMatch[2]);
@@ -218,7 +292,14 @@ export function parsePublicBoxScoreHtml(html: string, sourceUrl: string, options
 
   const siteTeamName = title.match(/-\s*Box Score\s*-\s*(.+)$/i)?.[1]?.trim();
   const sidearm = options.ourTeamNames?.length ? parseSidearmTables(html, [...options.ourTeamNames, ...(siteTeamName ? [siteTeamName] : [])]) : { observations: [] as EvidenceObservation[] };
-  if (observations.length === 0) observations.push(...sidearm.observations);
+  for (const observation of sidearm.observations) {
+    const duplicate = observations.some(existing => existing.entityType === observation.entityType
+      && existing.entityKey === observation.entityKey
+      && existing.field === observation.field
+      && existing.setNumber === observation.setNumber
+      && existing.rallyIndex === observation.rallyIndex);
+    if (!duplicate) observations.push(observation);
+  }
   if (!match.opponentName && 'opponentName' in sidearm && sidearm.opponentName) match.opponentName = sidearm.opponentName;
 
   const timeline = parsePublicTimeline(html, 'teamOrder' in sidearm ? sidearm.teamOrder : undefined, options.ourTeamNames ?? []);
