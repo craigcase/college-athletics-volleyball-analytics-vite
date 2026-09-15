@@ -192,81 +192,201 @@ function nonScoringTimelineType(rawText: string): ParsedTimelineDraft['timelineE
   return undefined;
 }
 
-function publicTimelineHeaderIndex(rows: string[][]) {
-  return rows.findIndex(row => {
-    const header = row.map(x => x.trim().toLowerCase());
-    return header.includes('serve') && header.includes('score') && header.includes('play description');
-  });
+type PublicTimelineHeader =
+  | { kind: 'classic'; serveIndex: number; scoreIndex: number; descIndex: number; abbreviations: string[] }
+  | { kind: 'split'; serveIndex: number; visitorDescriptionIndex: number; visitorScoreIndex: number; homeScoreIndex: number; homeDescriptionIndex: number; visitorTeamLabel: string; homeTeamLabel: string };
+
+function publicTimelineHeader(row: string[]): PublicTimelineHeader | undefined {
+  const header = row.map(x => x.trim());
+  const lower = header.map(x => x.toLowerCase());
+  const serveIndex = lower.findIndex(x => x === 'serve');
+  if (serveIndex < 0) return undefined;
+
+  const scoreIndex = lower.findIndex(x => x === 'score');
+  const descIndex = lower.findIndex(x => x === 'play description');
+  if (scoreIndex >= 0 && descIndex >= 0) {
+    return {
+      kind: 'classic', serveIndex, scoreIndex, descIndex,
+      abbreviations: header.filter(x => /^[A-Z]{2,8}$/.test(x)),
+    };
+  }
+
+  const visitorScoreIndex = lower.findIndex(x => /^(?:visiting|visitor) team score$/.test(x));
+  const homeScoreIndex = lower.findIndex(x => /^home team score$/.test(x));
+  if (visitorScoreIndex < 1 || homeScoreIndex < 0 || homeScoreIndex + 1 >= row.length) return undefined;
+  return {
+    kind: 'split',
+    serveIndex,
+    visitorDescriptionIndex: visitorScoreIndex - 1,
+    visitorScoreIndex,
+    homeScoreIndex,
+    homeDescriptionIndex: homeScoreIndex + 1,
+    visitorTeamLabel: header[visitorScoreIndex - 1] ?? '',
+    homeTeamLabel: header[homeScoreIndex + 1] ?? '',
+  };
 }
+
+function explicitSetNumberFromRow(row: string[]): number | undefined {
+  for (const value of row) {
+    const match = value.trim().match(/^set\s*#?\s*(\d+)$/i);
+    if (match) return Number(match[1]);
+  }
+  return undefined;
+}
+
+function labelToSide(label: string, teamOrder: TeamOrder | undefined, ourTeamNames: string[]): TeamSide | undefined {
+  if (teamOrder) {
+    for (const team of teamOrder) if (teamMatches(label, [team.name])) return toTeamSide(team.key);
+  }
+  if (teamMatches(label, ourTeamNames)) return 'our_team';
+  return undefined;
+}
+
+function oppositeSide(side: TeamSide): TeamSide { return side === 'our_team' ? 'opponent' : 'our_team'; }
 
 function parsePublicTimeline(html: string, teamOrder: TeamOrder | undefined, ourTeamNames: string[]): ParsedTimelineDraft | undefined {
   const groups = tableGroups(html);
-  const pbpGroups = groups
-    .map(rows => ({ rows, headerIndex: publicTimelineHeaderIndex(rows) }))
-    .filter(group => group.headerIndex >= 0);
-  if (!pbpGroups.length) return undefined;
-
   const scoringRecords: ParsedTimelineDraft['scoringRecords'] = [];
   const timelineEvents: ParsedTimelineDraft['timelineEvents'] = [];
-  const setFinalScores: ParsedTimelineDraft['setFinalScores'] = [];
+  const finalScores = new Map<number, { our: number; opponent: number }>();
+  let inferredSetCounter = 0;
+  let foundTimelineHeader = false;
 
-  pbpGroups.forEach(({ rows, headerIndex }, setIndex) => {
-    const explicitSetNumber = rows.slice(0, headerIndex).flat().map(setNumberFromLabel).find((value): value is number => value !== undefined);
-    const setNumber = explicitSetNumber ?? setIndex + 1;
-    const header = rows[headerIndex].map(x => x.trim());
-    const serveIndex = header.findIndex(x => x.toLowerCase() === 'serve');
-    const scoreIndex = header.findIndex(x => x.toLowerCase() === 'score');
-    const descIndex = header.findIndex(x => x.toLowerCase() === 'play description');
-    const abbrevs = header.filter(x => /^[A-Z]{2,5}$/.test(x));
-    const abbrToSide = new Map<string, TeamSide>();
-    if (teamOrder && abbrevs.length >= 2) {
-      abbrToSide.set(abbrevs[0], toTeamSide(teamOrder[0].key));
-      abbrToSide.set(abbrevs[1], toTeamSide(teamOrder[1].key));
-    } else {
-      for (const abbr of abbrevs) {
-        if (teamMatches(abbr, ourTeamNames)) abbrToSide.set(abbr, 'our_team');
-      }
-      const unknown = abbrevs.filter(a => !abbrToSide.has(a));
-      if (abbrToSide.size === 1 && unknown.length === 1) abbrToSide.set(unknown[0], 'opponent');
-    }
-
+  groups.forEach((rows, groupIndex) => {
+    let pendingSetNumber: number | undefined;
+    let header: PublicTimelineHeader | undefined;
+    let setNumber: number | undefined;
     let prior = { our: 0, opponent: 0 };
     let lastScore = prior;
-    for (let rowIndex = headerIndex + 1; rowIndex < rows.length; rowIndex += 1) {
+    let hasScoringRecord = false;
+    let abbrToSide = new Map<string, TeamSide>();
+    let visitorSide: TeamSide | undefined;
+    let homeSide: TeamSide | undefined;
+
+    const finalizeSegment = () => {
+      if (setNumber !== undefined && hasScoringRecord) finalScores.set(setNumber, lastScore);
+      header = undefined;
+      setNumber = undefined;
+      prior = { our: 0, opponent: 0 };
+      lastScore = prior;
+      hasScoringRecord = false;
+      abbrToSide = new Map<string, TeamSide>();
+      visitorSide = undefined;
+      homeSide = undefined;
+    };
+
+    for (let rowIndex = 0; rowIndex < rows.length; rowIndex += 1) {
       const row = rows[rowIndex];
-      const rawText = descIndex >= 0 ? (row[descIndex] ?? '').trim() : '';
+      const explicitSetNumber = explicitSetNumberFromRow(row);
+      if (explicitSetNumber !== undefined && !publicTimelineHeader(row)) {
+        if (header) finalizeSegment();
+        pendingSetNumber = explicitSetNumber;
+        inferredSetCounter = Math.max(inferredSetCounter, explicitSetNumber);
+        continue;
+      }
+
+      const detectedHeader = publicTimelineHeader(row);
+      if (detectedHeader) {
+        foundTimelineHeader = true;
+        if (header) finalizeSegment();
+        header = detectedHeader;
+        if (pendingSetNumber !== undefined) {
+          setNumber = pendingSetNumber;
+          pendingSetNumber = undefined;
+        } else {
+          inferredSetCounter += 1;
+          setNumber = inferredSetCounter;
+        }
+        prior = { our: 0, opponent: 0 };
+        lastScore = prior;
+        hasScoringRecord = false;
+
+        if (header.kind === 'classic') {
+          if (teamOrder && header.abbreviations.length >= 2) {
+            abbrToSide.set(header.abbreviations[0], toTeamSide(teamOrder[0].key));
+            abbrToSide.set(header.abbreviations[1], toTeamSide(teamOrder[1].key));
+          } else {
+            for (const abbr of header.abbreviations) if (teamMatches(abbr, ourTeamNames)) abbrToSide.set(abbr, 'our_team');
+            const unknown = header.abbreviations.filter(a => !abbrToSide.has(a));
+            if (abbrToSide.size === 1 && unknown.length === 1) abbrToSide.set(unknown[0], 'opponent');
+          }
+        } else {
+          visitorSide = labelToSide(header.visitorTeamLabel, teamOrder, ourTeamNames);
+          homeSide = labelToSide(header.homeTeamLabel, teamOrder, ourTeamNames);
+          if (visitorSide && !homeSide) homeSide = oppositeSide(visitorSide);
+          if (homeSide && !visitorSide) visitorSide = oppositeSide(homeSide);
+        }
+        continue;
+      }
+
+      if (!header || setNumber === undefined) continue;
       const sourceOrdinal = rowIndex;
-      const sourceKey = `set-${setNumber}-row-${rowIndex}`;
-      const scoreText = scoreIndex >= 0 ? row[scoreIndex] ?? '' : '';
-      const scoreMatch = scoreText.match(/^(\d+)\s*-\s*(\d+)$/);
-      if (!scoreMatch) {
+      const sourceKey = `set-${setNumber}-group-${groupIndex}-row-${rowIndex}`;
+      let rawText = '';
+      let scoreAfter: { our: number; opponent: number } | undefined;
+      let servingSide: TeamSide | undefined;
+
+      if (header.kind === 'classic') {
+        rawText = (row[header.descIndex] ?? '').trim();
+        const scoreText = row[header.scoreIndex] ?? '';
+        const scoreMatch = scoreText.match(/^(\d+)\s*-\s*(\d+)$/);
+        if (scoreMatch) {
+          const first = Number(scoreMatch[1]); const second = Number(scoreMatch[2]);
+          if (teamOrder) {
+            const firstSide = toTeamSide(teamOrder[0].key);
+            scoreAfter = firstSide === 'our_team' ? { our: first, opponent: second } : { our: second, opponent: first };
+          } else scoreAfter = { our: first, opponent: second };
+        }
+        const serveToken = (row[header.serveIndex] ?? '').trim();
+        servingSide = abbrToSide.get(serveToken);
+      } else {
+        const visitorDescription = (row[header.visitorDescriptionIndex] ?? '').trim();
+        const homeDescription = (row[header.homeDescriptionIndex] ?? '').trim();
+        const visitorScore = number(row[header.visitorScoreIndex]);
+        const homeScore = number(row[header.homeScoreIndex]);
+        if (visitorScore !== undefined && homeScore !== undefined && visitorSide && homeSide) {
+          const priorVisitor = visitorSide === 'our_team' ? prior.our : prior.opponent;
+          const priorHome = homeSide === 'our_team' ? prior.our : prior.opponent;
+          const visitorDelta = visitorScore - priorVisitor;
+          const homeDelta = homeScore - priorHome;
+          scoreAfter = visitorSide === 'our_team'
+            ? { our: visitorScore, opponent: homeScore }
+            : { our: homeScore, opponent: visitorScore };
+          rawText = visitorDelta > 0 && homeDelta === 0 ? visitorDescription : homeDelta > 0 && visitorDelta === 0 ? homeDescription : (visitorDescription || homeDescription);
+        } else rawText = [visitorDescription, homeDescription].filter(Boolean).join(' ').trim();
+        const serveToken = (row[header.serveIndex] ?? '').trim();
+        if (visitorSide && teamMatches(serveToken, [header.visitorTeamLabel])) servingSide = visitorSide;
+        else if (homeSide && teamMatches(serveToken, [header.homeTeamLabel])) servingSide = homeSide;
+        else if (teamMatches(serveToken, ourTeamNames)) servingSide = 'our_team';
+      }
+
+      if (!scoreAfter) {
         const type = nonScoringTimelineType(rawText);
         const teamSide = timelineTeamSide(rawText, teamOrder, ourTeamNames);
         if (type) timelineEvents.push({ setNumber, sourceKey, sourceOrdinal, type, ...(teamSide ? { teamSide } : {}), rawText });
         continue;
       }
-      const first = Number(scoreMatch[1]); const second = Number(scoreMatch[2]);
-      let scoreAfter: { our: number; opponent: number };
-      if (teamOrder) {
-        const firstSide = toTeamSide(teamOrder[0].key);
-        scoreAfter = firstSide === 'our_team' ? { our: first, opponent: second } : { our: second, opponent: first };
-      } else {
-        scoreAfter = { our: first, opponent: second };
-      }
+
       const dOur = scoreAfter.our - prior.our; const dOpp = scoreAfter.opponent - prior.opponent;
       const pointWinner: TeamSide | undefined = dOur > 0 && dOpp === 0 ? 'our_team' : dOpp > 0 && dOur === 0 ? 'opponent' : undefined;
       if (!pointWinner) { prior = scoreAfter; lastScore = scoreAfter; continue; }
-      const serveToken = serveIndex >= 0 ? (row[serveIndex] ?? '').trim() : '';
-      const servingSide = abbrToSide.get(serveToken);
       const serverSourceKey = rawText.match(/^\[([^\]]+)\]/)?.[1]?.trim();
       const terminal = classifyTerminalEvent(rawText, pointWinner, servingSide);
       scoringRecords.push({ setNumber, sourceKey, sourceOrdinal, ...(servingSide ? { servingSide } : {}), ...(serverSourceKey ? { serverSourceKey } : {}), pointWinner, scoreAfter, rawText, ...(terminal.type !== 'unknown' ? { terminal } : {}) });
-      prior = scoreAfter; lastScore = scoreAfter;
+      hasScoringRecord = true;
+      prior = scoreAfter;
+      lastScore = scoreAfter;
     }
-    setFinalScores.push({ setNumber, score: lastScore });
+    if (header) finalizeSegment();
   });
 
-  return { producer: 'public_sidearm', setFinalScores, scoringRecords, timelineEvents };
+  if (!foundTimelineHeader) return undefined;
+  return {
+    producer: 'public_sidearm',
+    setFinalScores: [...finalScores.entries()].sort(([a], [b]) => a - b).map(([setNumber, score]) => ({ setNumber, score })),
+    scoringRecords,
+    timelineEvents,
+  };
 }
 
 export function parsePublicBoxScoreHtml(html: string, sourceUrl: string, options: PublicBoxScoreParseOptions = {}): PublicBoxScoreEvidence {

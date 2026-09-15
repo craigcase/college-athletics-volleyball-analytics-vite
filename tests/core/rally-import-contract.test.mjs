@@ -17,7 +17,7 @@ test('rally repository exposes deterministic replacement and load interfaces', a
 
 test('match import uses parser v2 and persists canonical timeline before recalculation', async () => {
   const source = await read('../../lib/services/import-match.ts');
-  assert.match(source, /PARSER_VERSION\s*=\s*['"]ingestion-2\.1\.1['"]/);
+  assert.match(source, /PARSER_VERSION\s*=\s*['"]ingestion-2\.1\.2['"]/);
   const importStart = source.indexOf('export async function importMatchBytes');
   const preserve = source.indexOf('await preserveSource(', importStart);
   const parse = source.indexOf('parseMatchSource(', importStart);

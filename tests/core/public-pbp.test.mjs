@@ -136,3 +136,60 @@ test('public Sidearm parser tolerates title rows before the live PBP header and 
     { setNumber: 2, score: { our: 1, opponent: 0 } },
   ]);
 });
+
+test('public Sidearm parser reads live two-sided scoreboard PBP and repeated set headers in one table', async () => {
+  const { parsePublicBoxScoreHtml } = await import('../../.core-dist/lib/ingestion/match/public-boxscore.js');
+  const liveHtml = `
+    <html><head><title>Volleyball vs Grand View University (IA) on 8/29/2026 - Box Score - Valley City State University</title></head><body>
+      <table>
+        <tr><th>Set</th><th colspan="4">Grand View</th><th colspan="4">Valley City State</th></tr>
+        <tr><th></th><th>K</th><th>E</th><th>TA</th><th>Pct</th><th>K</th><th>E</th><th>TA</th><th>Pct</th></tr>
+        <tr><td>Total</td><td>52</td><td>16</td><td>138</td><td>.261</td><td>43</td><td>30</td><td>145</td><td>.090</td></tr>
+      </table>
+      <table>
+        <tr><th colspan="6">Set #1</th></tr>
+        <tr><th>Serve</th><th>GRAND VI</th><th>Visiting Team Score</th><th>Scoring Team Logo</th><th>Home Team Score</th><th>VALLEY C</th></tr>
+        <tr><td>VALLEY C</td><td>[Madden Bogenreif] Kill by Brooklyn Roder.</td><td>1</td><td></td><td>0</td><td></td></tr>
+        <tr><td>GRAND VI</td><td></td><td>1</td><td></td><td>1</td><td>[Victoria Gasparini] Service error.</td></tr>
+        <tr><td>--</td><td>Timeout Grand View.</td><td></td><td></td><td></td><td></td></tr>
+        <tr><th colspan="6">Set #2</th></tr>
+        <tr><th>Serve</th><th>GRAND VI</th><th>Visiting Team Score</th><th>Scoring Team Logo</th><th>Home Team Score</th><th>VALLEY C</th></tr>
+        <tr><td>GRAND VI</td><td></td><td>0</td><td></td><td>1</td><td>[Ava Renner] Service error.</td></tr>
+        <tr><td>VALLEY C</td><td>[Gracie Schumacher] Kill by Victoria Gasparini.</td><td>1</td><td></td><td>1</td><td></td></tr>
+      </table>
+    </body></html>`;
+  const parsed = parsePublicBoxScoreHtml(liveHtml, 'https://vcsuvikings.com/sports/volleyball/stats/2026/grand-view-university-ia-/boxscore/6522', { ourTeamNames: ['Valley City State','VCSU','VALLEY C','VC'] });
+  assert.equal(parsed.timeline?.scoringRecords.length, 4);
+  assert.deepEqual(parsed.timeline?.scoringRecords.map(r => [r.setNumber, r.pointWinner, r.scoreAfter.our, r.scoreAfter.opponent]), [
+    [1, 'opponent', 0, 1],
+    [1, 'our_team', 1, 1],
+    [2, 'our_team', 1, 0],
+    [2, 'opponent', 1, 1],
+  ]);
+  assert.equal(parsed.timeline?.timelineEvents.some(e => e.setNumber === 1 && e.type === 'timeout' && e.teamSide === 'opponent'), true);
+  assert.deepEqual(parsed.timeline?.setFinalScores, [
+    { setNumber: 1, score: { our: 1, opponent: 1 } },
+    { setNumber: 2, score: { our: 1, opponent: 1 } },
+  ]);
+});
+
+test('public Sidearm split scoreboard reads the scoring-side description when our team is the visitor', async () => {
+  const { parsePublicBoxScoreHtml } = await import('../../.core-dist/lib/ingestion/match/public-boxscore.js');
+  const html = `
+    <html><head><title>Volleyball vs Example Opponent on 9/1/2026 - Box Score - Valley City State University</title></head><body>
+      <table>
+        <tr><th>Set</th><th colspan="4">Valley City State</th><th colspan="4">Example Opponent</th></tr>
+        <tr><th></th><th>K</th><th>E</th><th>TA</th><th>Pct</th><th>K</th><th>E</th><th>TA</th><th>Pct</th></tr>
+        <tr><td>Total</td><td>1</td><td>0</td><td>1</td><td>1.000</td><td>0</td><td>0</td><td>0</td><td>.000</td></tr>
+      </table>
+      <table>
+        <tr><th>Serve</th><th>VALLEY C</th><th>Visiting Team Score</th><th>Scoring Team Logo</th><th>Home Team Score</th><th>EXAMPLE</th></tr>
+        <tr><td>VALLEY C</td><td>[VCSU Server] Service ace (Opponent Receiver).</td><td>1</td><td></td><td>0</td><td></td></tr>
+      </table>
+    </body></html>`;
+  const parsed = parsePublicBoxScoreHtml(html, 'https://vcsuvikings.com/boxscore/9999', { ourTeamNames: ['Valley City State','VCSU','VALLEY C'] });
+  assert.equal(parsed.timeline?.scoringRecords.length, 1);
+  assert.equal(parsed.timeline?.scoringRecords[0]?.pointWinner, 'our_team');
+  assert.equal(parsed.timeline?.scoringRecords[0]?.terminal?.type, 'service_ace');
+  assert.equal(parsed.timeline?.scoringRecords[0]?.serverSourceKey, 'VCSU Server');
+});

@@ -1,9 +1,9 @@
 # College Athletics Consulting — Volleyball Analytics
 
-## v0.7.2.1 Sidearm PBP hotfix
+## v0.7.2.2 Sidearm live-scoreboard PBP hotfix
 
-- Reads live Sidearm play-by-play tables even when title rows appear before the Serve / Score / Play Description header.
-- Accepts live `Set #1`-style set labels for set-level evidence.
+- Reads live Sidearm play-by-play in both the classic `Serve / Score / Play Description` layout and the live two-sided scoreboard layout (`Visiting Team Score` / `Home Team Score`).
+- Splits repeated PBP headers into the correct sets, including `Set #1`-style labels, instead of treating the whole page as one flat stream.
 - Uses the configured school abbreviation (for example, VCSU) instead of generic `US` labels in match summary comparisons.
 - No additional Supabase migration is required beyond the v0.7.2 migration.
 
